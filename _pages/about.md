@@ -1,31 +1,24 @@
 ---
 
-title: "About David Florian"
+title: "About Lyla Kiani"
 
 ---
 
 ## Education
 
-David prides himself on his diverse skill set. His most prominent fields of expertise are additive manufacturing (i.e., 3D printing) and biotechnology. 
+My most prominent fields of expertise are additive manufacturing (i.e., 3D printing) and biotechnology. 
 
-* University of Virginia
-  * BS Mathematics
-  * BS Biomedical Engineering
 * Vanderbilt University
-  * PhD Biomedical Engineering
+  * Computer Science Major
+  * Minors in Data Science, Digital Fabrication
+  * Class of 2026
 
 ## Technical Skills
 
-David can operate a number of different computer controlled (CNC) fabrication tools to turn 3D models into real-life parts. David has experience with the following additive manufacturing technologies:
+**Programming Languages:** Python, SQL, C++, C, Java, JavaScript, TypeScript, R, HTML/CSS
 
-* Fused Filament Fabrication (FFF)
-* Stereolithography (SLA)
-* Selective Laser Sintering (SLS)
-* 3D Inkjet Printing
-* Bioplotting
+**Tools/Cloud:** Apache Spark, Apache Airflow, PyTorch, TensorFlow, Git, Docker, MySQL, AWS (S3, Lambda)
 
-## Press 
+**Methodologies:** ETLs, Workflow Orchestration, APIs, Decision Trees
 
-The new Digital Fabrication Minor was covered in the [Vanderbilt Hustler](https://vanderbilthustler.com/2022/11/09/digital-fabrication-minor-introduced-for-2022-23-academic-year/).
-
-<img src="/assets/img/David_Headshot_web2.jpg" alt="David Florian" style="width:200px;"/>
+<img src="/assets/img/Screenshot 2026-01-07 at 5.54.53 PM.jpg" alt="Lyla Kiani" style="width:200px;"/>
