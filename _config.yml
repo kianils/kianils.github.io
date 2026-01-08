@@ -13,7 +13,7 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 locale                   : "en-US"
 title                    : "Lyla Kiani"
 title_separator          : "-"
-subtitle                 : "Example Website for Class"
+subtitle                 : "Digital Fabrication & Computer Science Portfolio"
 name                     : &name "Lyla Kiani" # &name is a YAML anchor which can be *referenced later
 description              : &description "Personal website of Lyla Kiani"
 url                      : https://kianils.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
@@ -98,7 +98,7 @@ analytics:
 author:
   name             : *name # *name is a YAML reference pointing to the &anchor earlier
   avatar           : "assets/img/Screenshot 2026-01-07 at 5.54.53 PM.jpg"
-  bio              : "A senior committed to getting a digital fabrication minor"
+  bio              : "Computer Science student with a passion for digital fabrication and data science"
   location         : "Nashville, TN"
   hometown         : "Brooklyn, NY"
   links:

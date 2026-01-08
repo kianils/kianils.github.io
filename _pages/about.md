@@ -1,12 +1,10 @@
 ---
 
-title: "About Lyla Kiani"
+title: "About"
 
 ---
 
 ## Education
-
-My most prominent fields of expertise are additive manufacturing (i.e., 3D printing) and biotechnology. 
 
 * Vanderbilt University
   * Computer Science Major
