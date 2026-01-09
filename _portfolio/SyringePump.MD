@@ -41,7 +41,10 @@ This DIY syringe pump project demonstrates precision fluid handling capabilities
 
 ## CAD Model
 
-**[📐 Interactive CAD Model](https://a360.co/4boEFeP)**
+<iframe src="https://a360.co/4boEFeP?mode=embed" width="100%" height="600px" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen>
+  <p>Your browser does not support embedded CAD models. <a href="https://a360.co/4boEFeP">View CAD Model</a></p>
+</iframe>
+
 
 
 ## Design Features
