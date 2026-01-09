@@ -28,34 +28,34 @@ This DIY syringe pump project demonstrates precision fluid handling capabilities
 
 *Circuit diagram showing the electrical connections and control system for the syringe pump stepper motor control.*
 
-## Technical Drawings
+<details>
+<summary><h2>Technical Drawings</h2></summary>
 
-{% assign drawings_gallery = site.static_files | where: "path", "/assets/img/Syringepumpphotos/Drawing2.jpg" %}
 <div class="gallery">
   <div class="gallery__wrapper">
     <div class="gallery__item">
       <a href="/assets/img/Syringepumpphotos/Drawing2.jpg">
-        <img src="/assets/img/Syringepumpphotos/Drawing2.jpg" alt="Technical Drawing 2">
+        <img src="/assets/img/Syringepumpphotos/Drawing2.jpg" alt="Technical Drawing 2" style="width:100%; max-width:300px;">
       </a>
     </div>
     <div class="gallery__item">
       <a href="/assets/img/Syringepumpphotos/Drawing3.jpg">
-        <img src="/assets/img/Syringepumpphotos/Drawing3.jpg" alt="Technical Drawing 3">
+        <img src="/assets/img/Syringepumpphotos/Drawing3.jpg" alt="Technical Drawing 3" style="width:100%; max-width:300px;">
       </a>
     </div>
     <div class="gallery__item">
       <a href="/assets/img/Syringepumpphotos/Drawing4.jpg">
-        <img src="/assets/img/Syringepumpphotos/Drawing4.jpg" alt="Technical Drawing 4">
+        <img src="/assets/img/Syringepumpphotos/Drawing4.jpg" alt="Technical Drawing 4" style="width:100%; max-width:300px;">
       </a>
     </div>
     <div class="gallery__item">
       <a href="/assets/img/Syringepumpphotos/Drawing5.jpg">
-        <img src="/assets/img/Syringepumpphotos/Drawing5.jpg" alt="Technical Drawing 5">
+        <img src="/assets/img/Syringepumpphotos/Drawing5.jpg" alt="Technical Drawing 5" style="width:100%; max-width:300px;">
       </a>
     </div>
     <div class="gallery__item">
       <a href="/assets/img/Syringepumpphotos/Drawing6.jpg">
-        <img src="/assets/img/Syringepumpphotos/Drawing6.jpg" alt="Technical Drawing 6">
+        <img src="/assets/img/Syringepumpphotos/Drawing6.jpg" alt="Technical Drawing 6" style="width:100%; max-width:300px;">
       </a>
     </div>
   </div>
@@ -63,7 +63,10 @@ This DIY syringe pump project demonstrates precision fluid handling capabilities
 
 *Complete set of technical drawings showing detailed dimensions, assembly views, and component specifications.*
 
-## Off-the-Shelf Components
+</details>
+
+<details>
+<summary><h2>Off-the-Shelf Components</h2></summary>
 
 | Component | Part Number/Description | Quantity |
 |-----------|------------------------|----------|
@@ -80,7 +83,10 @@ This DIY syringe pump project demonstrates precision fluid handling capabilities
 | Motor Mount | motor mounting plate v8 | 1 |
 | Linear Rod | Linear-Rod-8mmx200mm v2 | 2 |
 
-## Arduino Code
+</details>
+
+<details>
+<summary><h2>Arduino Code</h2></summary>
 
 The syringe pump is controlled by an Arduino microcontroller running custom code that manages stepper motor control, flow rate calculations, and LED status indicators.
 
@@ -169,12 +175,7 @@ void updateLEDs() {
 }
 ```
 
-### Code Functionality:
-- **Flow Rate Calculation**: Converts desired mL/min to precise stepper motor steps per second
-- **Volume per Step**: Calculates exact volume delivered per motor step based on syringe geometry
-- **LED Feedback**: Visual indication of pump status (Blue = stopped, Green = running)
-- **Button Debouncing**: Clean on/off toggle functionality
-- **Microstepping**: 16x microstepping for smooth, precise motor control
+</details>
 
 ## CAD Model
 
@@ -206,5 +207,3 @@ This syringe pump is ideal for:
 <img src="/assets/img/Syringepumpphotos/homepage.jpg" alt="Completed Syringe Pump Assembly" style="width:100%; max-width:800px;"/>
 
 *The completed syringe pump showing the final assembled system ready for precision fluid handling applications.*
-
-{% include gallery caption="Syringe pump development process and final assembly" %}
