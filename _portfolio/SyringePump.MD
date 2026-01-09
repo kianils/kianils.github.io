@@ -1,9 +1,30 @@
 ---
 title: "Syringe Pump"
+layout: single
+classes: wide
 excerpt: "DIY syringe pump capable of 1 uL / min flow rate up to 10 mL / min"
 header:
   image: /assets/img/Syringepumpphotos/homepage.jpg
-  teaser: /assets/img/Syringepumpphotos/homepage.jpg
+  teaser: /assets/img/Syringepumpphotos/Drawing1.jpg
+drawings_gallery:
+  - url: /assets/img/Syringepumpphotos/Drawing1.jpg
+    image_path: /assets/img/Syringepumpphotos/Drawing1.jpg
+    alt: "Technical drawing 1"
+  - url: /assets/img/Syringepumpphotos/Drawing2.jpg
+    image_path: /assets/img/Syringepumpphotos/Drawing2.jpg
+    alt: "Technical drawing 2"
+  - url: /assets/img/Syringepumpphotos/Drawing3.jpg
+    image_path: /assets/img/Syringepumpphotos/Drawing3.jpg
+    alt: "Technical drawing 3"
+  - url: /assets/img/Syringepumpphotos/Drawing4.jpg
+    image_path: /assets/img/Syringepumpphotos/Drawing4.jpg
+    alt: "Technical drawing 4"
+  - url: /assets/img/Syringepumpphotos/Drawing5.jpg
+    image_path: /assets/img/Syringepumpphotos/Drawing5.jpg
+    alt: "Technical drawing 5"
+  - url: /assets/img/Syringepumpphotos/Drawing6.jpg
+    image_path: /assets/img/Syringepumpphotos/Drawing6.jpg
+    alt: "Technical drawing 6"
 ---
 
 ## Project Overview
@@ -17,6 +38,10 @@ This DIY syringe pump project demonstrates precision fluid handling capabilities
 - **Control System**: Programmable stepper motor control
 - **Syringe Compatibility**: Standard medical syringes
 - **Build Method**: 3D printed components with off-the-shelf hardware
+
+## Technical Drawings
+
+{% include gallery id="drawings_gallery" caption="Technical drawings and dimensioned views." %}
 
 ## Off-the-Shelf Components
 
