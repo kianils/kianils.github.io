@@ -39,6 +39,11 @@ This DIY syringe pump project demonstrates precision fluid handling capabilities
 | Motor Mount | motor mounting plate v8 | 1 |
 | Linear Rod | Linear-Rod-8mmx200mm v2 | 2 |
 
+## CAD Model
+
+**[📐 Interactive CAD Model](https://a360.co/4boEFeP)**
+
+
 ## Design Features
 
 The syringe pump incorporates several key design elements:
