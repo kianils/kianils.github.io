@@ -175,4 +175,3 @@ This syringe pump is ideal for:
 
 <img src="/assets/img/Syringepumpphotos/Homepage.jpg" alt="Completed Syringe Pump Assembly" style="width:100%; max-width:800px;"/>
 
-*The completed syringe pump showing the final assembled system ready for precision fluid handling applications.*
