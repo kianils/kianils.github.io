@@ -171,6 +171,26 @@ This syringe pump is ideal for:
 - Precise chemical dispensing
 - Laboratory automation
 
+## Operating Instructions
+
+The syringe pump should be operated by adhering to the following steps:
+
+1. Ensure that the power supply is connected to the syringe pump. The LED light should be blue.
+
+2. Place the syringe in the supports with the tip that outputs liquid at the far right end.
+
+3. Adjust the flow rate in the Arduino code at line 18.
+
+4. Input the size of syringe into the Arduino code at line 19.
+
+5. To begin dispensing liquid from the syringe, press the red power button to be lowered. This is placed at the bottom left of the front panel of the enclosure. The LED light should be green during liquid dispense.
+
+6. To pause the liquid dispense, press the power button again so it is raised. The LED light should show blue.
+
+7. To continue dispensing the liquid, press the power button again so it stays lowered.
+
+8. Once all liquid possible has been dispensed, the LED will turn red and the actuation will stop.
+
 ## Final Assembly
 
 <img src="/assets/img/Syringepumpphotos/Homepage.jpg" alt="Completed Syringe Pump Assembly" style="width:100%; max-width:800px;"/>
