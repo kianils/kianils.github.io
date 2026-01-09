@@ -9,6 +9,7 @@ header:
     - label: "My Projects"
       url: "/portfolio/"
 excerpt: "Senior at Vanderbilt University studying Computer Science with minors in Data Science and Digital Fabrication. Passionate about combining technology with hands-on creation."
+---
 # feature_row:
 #   - image_path: assets/img/CNC-Mill-Thumbnail.jpg
 #     alt: "CNC Mill"
@@ -23,5 +24,5 @@ excerpt: "Senior at Vanderbilt University studying Computer Science with minors 
 #     excerpt: "Multimaterial printing. "
 # ---
 
-{% include feature_row %}
+# {% include feature_row %}
 
