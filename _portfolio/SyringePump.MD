@@ -22,6 +22,23 @@ This DIY syringe pump project demonstrates precision fluid handling capabilities
 - **Syringe Compatibility**: Standard medical syringes
 - **Build Method**: 3D printed components with off-the-shelf hardware
 
+## Off-the-Shelf Components
+
+| Component | Part Number/Description | Quantity |
+|-----------|------------------------|----------|
+| Ball Bearing | F688ZZ-Flanged-Ball-Bearing v2 | 1 |
+| Lead Screw Collar | Lock-Collar-Lead-Screw v5 | 1 |
+| Stepper Motor | NEMA-17-Motor v1 | 1 |
+| Flexible Coupling | FLEXIBLE COUPLER v2 | 1 |
+| End Support | End-Support v8 | 1 |
+| Mounting Bolt (5mm) | M5x8mm-Bolt v2 | Multiple |
+| Mounting Bolt (3mm) | M3x6mm-Bolt v3 | Multiple |
+| Linear Bearing | LM8UU-Linear-Bearing v2 | 2 |
+| Mounting Bolt (3mm) | M3x10mm-Bolt v2 | Multiple |
+| Linear Rod Collar | Lock-Collar-Linear-Rod v5 | 2 |
+| Motor Mount | motor mounting plate v8 | 1 |
+| Linear Rod | Linear-Rod-8mmx200mm v2 | 2 |
+
 ## Design Features
 
 The syringe pump incorporates several key design elements:
@@ -38,14 +55,6 @@ This syringe pump is ideal for:
 - Microfluidics research
 - Precise chemical dispensing
 - Laboratory automation
-- Educational demonstrations
-- Prototype development
 
-## Skills Demonstrated
-
-- **CAD Design**: 3D modeling and mechanical design
-- **3D Printing**: Additive manufacturing techniques
-- **Electronics**: Motor control and programming
-- **System Integration**: Combining mechanical, electrical, and software components
 
 {% include gallery caption="Syringe pump development process and final assembly" %}
