@@ -9,6 +9,18 @@ header:
     - label: "My Projects"
       url: "/portfolio/"
 excerpt: "Senior at Vanderbilt University studying Computer Science with minors in Data Science and Digital Fabrication. Passionate about combining technology with hands-on creation."
+feature_row:
+  - image_path: assets/img/Syringepumpphotos/homepage.jpg
+    alt: "Syringe Pump"
+    title: "Syringe Pump"
+    excerpt: "DIY precision syringe pump capable of 1 μL/min to 10 mL/min flow rates with programmable control system."
+    url: "/portfolio/SyringePump/"
+    btn_label: "View Project"
+    btn_class: "btn--primary"
 ---
+
+## Recent Projects
+
+{% include feature_row type="left" %}
 
 

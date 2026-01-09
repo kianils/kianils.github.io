@@ -2,8 +2,8 @@
 title: "Syringe Pump"
 excerpt: "DIY syringe pump capable of 1 uL / min flow rate up to 10 mL / min"
 header:
-  image: /assets/img/LF3DP-Banner-2.jpg
-  teaser: /assets/img/Large-Format-3D-Printer-Thumbnail.png
+  image: /assets/img/Syringepumpphotos/homepage.jpg
+  teaser: /assets/img/Syringepumpphotos/homepage.jpg
 gallery:
   - image_path: assets/img/Slide-3.png
   - image_path: assets/img/Slide-2.png
@@ -22,6 +22,47 @@ This DIY syringe pump project demonstrates precision fluid handling capabilities
 - **Syringe Compatibility**: Standard medical syringes
 - **Build Method**: 3D printed components with off-the-shelf hardware
 
+## Circuit System
+
+<img src="/assets/img/Syringepumpphotos/Drawing1.jpg" alt="Syringe Pump Circuit System" style="width:100%; max-width:800px;"/>
+
+*Circuit diagram showing the electrical connections and control system for the syringe pump stepper motor control.*
+
+## Technical Drawings
+
+{% assign drawings_gallery = site.static_files | where: "path", "/assets/img/Syringepumpphotos/Drawing2.jpg" %}
+<div class="gallery">
+  <div class="gallery__wrapper">
+    <div class="gallery__item">
+      <a href="/assets/img/Syringepumpphotos/Drawing2.jpg">
+        <img src="/assets/img/Syringepumpphotos/Drawing2.jpg" alt="Technical Drawing 2">
+      </a>
+    </div>
+    <div class="gallery__item">
+      <a href="/assets/img/Syringepumpphotos/Drawing3.jpg">
+        <img src="/assets/img/Syringepumpphotos/Drawing3.jpg" alt="Technical Drawing 3">
+      </a>
+    </div>
+    <div class="gallery__item">
+      <a href="/assets/img/Syringepumpphotos/Drawing4.jpg">
+        <img src="/assets/img/Syringepumpphotos/Drawing4.jpg" alt="Technical Drawing 4">
+      </a>
+    </div>
+    <div class="gallery__item">
+      <a href="/assets/img/Syringepumpphotos/Drawing5.jpg">
+        <img src="/assets/img/Syringepumpphotos/Drawing5.jpg" alt="Technical Drawing 5">
+      </a>
+    </div>
+    <div class="gallery__item">
+      <a href="/assets/img/Syringepumpphotos/Drawing6.jpg">
+        <img src="/assets/img/Syringepumpphotos/Drawing6.jpg" alt="Technical Drawing 6">
+      </a>
+    </div>
+  </div>
+</div>
+
+*Complete set of technical drawings showing detailed dimensions, assembly views, and component specifications.*
+
 ## Off-the-Shelf Components
 
 | Component | Part Number/Description | Quantity |
@@ -38,6 +79,102 @@ This DIY syringe pump project demonstrates precision fluid handling capabilities
 | Linear Rod Collar | Lock-Collar-Linear-Rod v5 | 2 |
 | Motor Mount | motor mounting plate v8 | 1 |
 | Linear Rod | Linear-Rod-8mmx200mm v2 | 2 |
+
+## Arduino Code
+
+The syringe pump is controlled by an Arduino microcontroller running custom code that manages stepper motor control, flow rate calculations, and LED status indicators.
+
+### Key Features:
+- **Flow Rate Control**: Programmable flow rates from 1 μL/min to 10 mL/min
+- **LED Status Indicators**: Green (running), Blue (stopped), Red (error)
+- **Button Control**: Simple on/off toggle functionality
+- **Precision Control**: Microstepping for accurate flow delivery
+
+```cpp
+#include <AccelStepper.h>
+
+// Pin definitions
+#define stepPin 3 // gray
+#define directionPin 2 // orange
+#define redLED 5 // red
+#define greenLED 6 // green
+#define blueLED 7 // blue
+#define onOffButton 10 // pink
+
+// Stepper motor setup
+AccelStepper stepper(AccelStepper::DRIVER, stepPin, directionPin);
+
+// Variables
+bool onOffPressed = false; // Tracks the state of the system (on/off)
+float flowRate = 0.5; // mL/min
+float syringeDiameter = 19; //20 mL syringe
+float syringeRadius = syringeDiameter / 2;
+const float leadScrewLead = 8.0; // Lead screw lead in mm/rev
+const float stepsPerRevolution = 200.0; // Steps per revolution
+const float microsteps = 16.0; // Microstepping factor
+float stepsPerSecond = 0.0; // Calculated steps per second
+float volumePerStep;
+
+void setup() {
+  // Initialize pins
+  pinMode(redLED, OUTPUT);
+  pinMode(greenLED, OUTPUT);
+  pinMode(blueLED, OUTPUT);
+  pinMode(onOffButton, INPUT_PULLUP);
+  
+  // Stepper motor setup
+  stepper.setMaxSpeed(1000); // Maximum speed
+  stepper.setAcceleration(500); // Acceleration
+  
+  // Default LED status (blue for stopped)
+  updateLEDs();
+}
+
+void loop() {
+  float volumePerStep = (PI * pow(syringeRadius, 2) * leadScrewLead) /
+                        (stepsPerRevolution * microsteps * 1000);
+  stepsPerSecond = flowRate / volumePerStep / 60;
+  
+  // Check and handle the on/off button state
+  static bool previousState = HIGH;
+  bool currentState = digitalRead(onOffButton);
+  
+  if (previousState == HIGH && currentState == LOW) {
+    onOffPressed = !onOffPressed; // Toggle state
+    updateLEDs(); // Update LED based on state
+  }
+  previousState = currentState;
+  
+  // Control the motor based on the current state
+  if (onOffPressed) {
+    stepper.setSpeed(stepsPerSecond); // Set motor speed
+    stepper.runSpeed(); // Run the motor
+  } else {
+    stepper.stop(); // Stop the motor
+  }
+}
+
+void updateLEDs() {
+  if (onOffPressed) {
+    // Green LED ON for "ON" state
+    digitalWrite(redLED, LOW);
+    digitalWrite(greenLED, HIGH);
+    digitalWrite(blueLED, LOW);
+  } else {
+    // Blue LED ON for "OFF" state
+    digitalWrite(redLED, LOW);
+    digitalWrite(greenLED, LOW);
+    digitalWrite(blueLED, HIGH);
+  }
+}
+```
+
+### Code Functionality:
+- **Flow Rate Calculation**: Converts desired mL/min to precise stepper motor steps per second
+- **Volume per Step**: Calculates exact volume delivered per motor step based on syringe geometry
+- **LED Feedback**: Visual indication of pump status (Blue = stopped, Green = running)
+- **Button Debouncing**: Clean on/off toggle functionality
+- **Microstepping**: 16x microstepping for smooth, precise motor control
 
 ## CAD Model
 
@@ -64,5 +201,10 @@ This syringe pump is ideal for:
 - Precise chemical dispensing
 - Laboratory automation
 
+## Final Assembly
+
+<img src="/assets/img/Syringepumpphotos/homepage.jpg" alt="Completed Syringe Pump Assembly" style="width:100%; max-width:800px;"/>
+
+*The completed syringe pump showing the final assembled system ready for precision fluid handling applications.*
 
 {% include gallery caption="Syringe pump development process and final assembly" %}
