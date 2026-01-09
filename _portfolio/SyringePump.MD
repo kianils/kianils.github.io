@@ -4,7 +4,7 @@ layout: single
 classes: wide
 excerpt: "DIY syringe pump capable of 1 uL / min flow rate up to 10 mL / min"
 header:
-  image: /assets/img/Syringepumpphotos/homepage.jpg
+  image: /assets/img/Syringepumpphotos/Drawing1.jpg
   teaser: /assets/img/Syringepumpphotos/Drawing1.jpg
 drawings_gallery:
   - url: /assets/img/Syringepumpphotos/Drawing1.jpg
@@ -174,8 +174,4 @@ This syringe pump is ideal for:
 - Precise chemical dispensing
 - Laboratory automation
 
-## Final Assembly
-
-![Completed Syringe Pump Assembly](/assets/img/Syringepumpphotos/homepage.jpg){: .align-center width="800" }
-
-*The completed syringe pump showing the final assembled system ready for precision fluid handling applications.*
+![Syringe Pump](/assets/img/Syringepumpphotos/Drawing1.jpg){: .align-center width="800" }
