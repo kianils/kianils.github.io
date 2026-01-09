@@ -3,9 +3,6 @@ title: "Syringe Pump"
 layout: single
 classes: wide
 excerpt: "DIY syringe pump capable of 1 uL / min flow rate up to 10 mL / min"
-header:
-  image: /assets/img/Syringepumpphotos/Homepage.jpg
-  teaser: /assets/img/Syringepumpphotos/Homepage.jpg
 drawings_gallery:
   - url: /assets/img/Syringepumpphotos/Drawing1.jpg
     image_path: /assets/img/Syringepumpphotos/Drawing1.jpg
