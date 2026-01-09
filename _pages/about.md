@@ -45,10 +45,6 @@ I'm a Computer Science student at Vanderbilt University with minors in Data Scie
 *New York City, NY*
 - Created multi-platform-informed UI for an AI game dev platform (React, Flask); streamlined frontend and backend workflows and collaborated closely with backend data pipelines
 
-**Game Development Projects:**
-- **Survivor Game Simulator** | *Flash, ETL, ML*: Flash-based simulation with ML-driven title creation/dynamic challenges; integrated real-world datasets via a structured ETL pipeline
-- **UFC Match Predictor** | *Python, ML*: Engineered a pipeline to scrape fight data, preprocess statistics, and train ML models for outcome forecasting
-
 ## Technical Skills
 
 **Programming Languages:** Python, SQL, C++, C, Java, JavaScript, TypeScript, R, HTML/CSS
