@@ -1,0 +1,36 @@
+/* ==========================================================================
+   Midnight Blue skin – soothing black & blue dark mode
+   ========================================================================== */
+
+/* Colors */
+$background-color: #0a0e14 !default;
+$text-color: #e6edf3 !default;
+$primary-color: #58a6ff !default;
+$border-color: #30363d !default;
+$code-background-color: #161b22 !default;
+$code-background-color-dark: #0d1117 !default;
+$form-background-color: #161b22 !default;
+$footer-background-color: #0d1117 !default;
+$link-color: #79c0ff !default;
+$link-color-hover: #a5d6ff !default;
+$link-color-visited: #a371f7 !default;
+$masthead-link-color: $text-color !default;
+$masthead-link-color-hover: $primary-color !default;
+$navicon-link-color-hover: mix($primary-color, $background-color, 60%) !default;
+
+$gray: #8b949e !default;
+$dark-gray: #6e7681 !default;
+$darker-gray: #484f58 !default;
+$light-gray: #b1bac4 !default;
+$lighter-gray: #c9d1d9 !default;
+
+.author__urls.social-icons i,
+.author__urls.social-icons .svg-inline--fa,
+.page__footer-follow .social-icons i,
+.page__footer-follow .social-icons .svg-inline--fa {
+  color: inherit;
+}
+
+.ais-search-box .ais-search-box--input {
+  background-color: $form-background-color;
+}

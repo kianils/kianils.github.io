@@ -1,0 +1,60 @@
+{% assign gh = site.data.github_repos %}
+{% if gh %}
+  {% assign username = gh.username | default: site.github_username | default: "kianils" %}
+  {% assign repos = gh.repos %}
+  {% assign fetched = gh.fetched_at %}
+  {% assign includes_private = gh.includes_private | default: false %}
+{% else %}
+  {% assign username = site.github_username | default: "kianils" %}
+  {% assign repos = "" | split: "" %}
+  {% assign fetched = nil %}
+  {% assign includes_private = false %}
+{% endif %}
+
+<section class="github-contributions" aria-labelledby="github-contributions-title">
+  <h2 id="github-contributions-title" class="github-contributions__title">GitHub contributions</h2>
+  <p class="github-contributions__intro">
+    Repos pulled from <a href="https://github.com/{{ username }}" target="_blank" rel="noopener">@{{ username }}</a>
+    {% if includes_private %}(includes private){% endif %}
+    {% if fetched %} · Last fetched {{ fetched | date: "%b %d, %Y %H:%M" }} UTC{% endif %}
+  </p>
+
+  {% if repos and repos.size > 0 %}
+  <div class="github-contributions__grid">
+    {% for r in repos %}
+    <article class="github-contributions__card">
+      <div class="github-contributions__card-header">
+        <a href="{{ r.html_url }}" class="github-contributions__name" target="_blank" rel="noopener">{{ r.name }}</a>
+        {% if r.private %}
+        <span class="github-contributions__badge github-contributions__badge--private" title="Private repository">Private</span>
+        {% endif %}
+      </div>
+      {% if r.description != blank %}
+      <p class="github-contributions__desc">{{ r.description | truncate: 120 }}</p>
+      {% endif %}
+      <div class="github-contributions__meta">
+        {% if r.language != blank %}
+        <span class="github-contributions__lang">{{ r.language }}</span>
+        {% endif %}
+        {% if r.stargazers_count > 0 %}
+        <span class="github-contributions__stars" title="Stars">★ {{ r.stargazers_count }}</span>
+        {% endif %}
+        {% if r.pushed_at != blank %}
+        <span class="github-contributions__pushed">Updated {{ r.pushed_at | date: "%b %Y" }}</span>
+        {% endif %}
+      </div>
+      <a href="{{ r.html_url }}" class="github-contributions__link btn btn--small btn--primary" target="_blank" rel="noopener">View on GitHub</a>
+    </article>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="github-contributions__empty">
+    <p>No repos loaded yet. Repos are fetched by the <code>Fetch GitHub repos</code> workflow.</p>
+    <ul>
+      <li>Push to <code>main</code> or run the workflow manually to fetch <strong>public</strong> repos.</li>
+      <li>Add a <a href="https://github.com/settings/tokens" target="_blank" rel="noopener">Personal Access Token</a> as repo secret <code>GH_PAT</code> (scope: <code>repo</code>) to include <strong>private</strong> repos.</li>
+    </ul>
+    <p><a href="https://github.com/{{ username }}" class="btn btn--small btn--primary" target="_blank" rel="noopener">Open @{{ username }} on GitHub</a></p>
+  </div>
+  {% endif %}
+</section>

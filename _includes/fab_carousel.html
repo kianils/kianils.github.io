@@ -1,0 +1,96 @@
+{% assign projects = site.data.fab_projects %}
+{% if projects.size > 0 %}
+<section class="fab-carousel-section" aria-label="Digital fabrication &amp; CHBE projects">
+  <h2 class="fab-carousel__title">Digital Fabrication &amp; CHBE Projects</h2>
+  <div class="fab-carousel" data-carousel>
+    <button type="button" class="fab-carousel__btn fab-carousel__btn--prev" aria-label="Previous project" data-prev>‹</button>
+    <div class="fab-carousel__track-wrapper">
+      <div class="fab-carousel__track" data-track>
+        {% for p in projects %}
+        <div class="fab-carousel__slide" data-slide>
+          <div class="fab-carousel__card">
+            <div class="fab-carousel__media">
+              <img src="{{ p.image_path | relative_url }}" alt="{{ p.title }}" loading="lazy">
+            </div>
+            <div class="fab-carousel__body">
+              <h3 class="fab-carousel__heading">{{ p.title }}</h3>
+              <p class="fab-carousel__excerpt">{{ p.excerpt }}</p>
+              <a href="{{ p.url | relative_url }}" class="btn btn--primary">{{ p.btn_label | default: "View Project" }}</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <button type="button" class="fab-carousel__btn fab-carousel__btn--next" aria-label="Next project" data-next>›</button>
+  </div>
+  <div class="fab-carousel__dots" data-dots aria-hidden="true"></div>
+  <p class="fab-carousel__all"><a href="{{ '/portfolio/' | relative_url }}">View all portfolio projects →</a></p>
+</section>
+<script>
+(function() {
+  var carousel = document.querySelector('[data-carousel]');
+  if (!carousel) return;
+  var track = carousel.querySelector('[data-track]');
+  var prev = carousel.querySelector('[data-prev]');
+  var next = carousel.querySelector('[data-next]');
+  var dotsEl = carousel.querySelector('[data-dots]');
+  var slides = carousel.querySelectorAll('[data-slide]');
+  var n = slides.length;
+  if (n === 0) return;
+
+  function slideWidth() { return slides[0] ? slides[0].offsetWidth : track.offsetWidth; }
+
+  function buildDots() {
+    dotsEl.innerHTML = '';
+    for (var i = 0; i < n; i++) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+      b.dataset.index = i;
+      if (i === 0) b.classList.add('is-active');
+      dotsEl.appendChild(b);
+    }
+  }
+
+  function goTo(idx) {
+    idx = Math.max(0, Math.min(idx, n - 1));
+    var left = slides[idx].offsetLeft;
+    track.scrollTo({ left: left, behavior: 'smooth' });
+    dotsEl.querySelectorAll('button').forEach(function(b) {
+      b.classList.toggle('is-active', parseInt(b.dataset.index, 10) === idx);
+    });
+  }
+
+  function updateDotsFromScroll() {
+    var scrollLeft = track.scrollLeft;
+    var w = slideWidth();
+    var idx = w > 0 ? Math.round(scrollLeft / w) : 0;
+    idx = Math.min(Math.max(0, idx), n - 1);
+    dotsEl.querySelectorAll('button').forEach(function(b) {
+      b.classList.toggle('is-active', parseInt(b.dataset.index, 10) === idx);
+    });
+  }
+
+  buildDots();
+  prev.addEventListener('click', function() {
+    var w = slideWidth();
+    var idx = Math.floor(track.scrollLeft / w) || 0;
+    goTo(idx - 1);
+  });
+  next.addEventListener('click', function() {
+    var w = slideWidth();
+    var idx = Math.floor(track.scrollLeft / w) || 0;
+    goTo(idx + 1);
+  });
+  dotsEl.addEventListener('click', function(e) {
+    var b = e.target.closest('button[data-index]');
+    if (b) goTo(parseInt(b.dataset.index, 10));
+  });
+  track.addEventListener('scroll', function() {
+    clearTimeout(track._scrollT);
+    track._scrollT = setTimeout(updateDotsFromScroll, 80);
+  });
+})();
+</script>
+{% endif %}

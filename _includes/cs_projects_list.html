@@ -1,0 +1,60 @@
+{% assign data = site.data.cs_projects %}
+{% assign projects = data.projects | default: "" | split: "" %}
+{% assign skills_list = data.skills_list | default: "" | split: "" %}
+
+<div class="cs-projects">
+  {% if projects.size > 0 and skills_list.size > 0 %}
+  <div class="cs-projects__skills-bar">
+    <span class="cs-projects__skills-label">Filter by skill:</span>
+    <div class="cs-projects__skills-list">
+      <button type="button" class="cs-projects__skill-btn is-active" data-skill="*">All</button>
+      {% for s in skills_list %}
+      <button type="button" class="cs-projects__skill-btn" data-skill="{{ s | slugify }}">{{ s }}</button>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="cs-projects__grid" data-cs-grid>
+    {% for p in projects %}
+    <article class="cs-projects__card" data-skills="{% for s in p.skills %}{{ s | slugify }} {% endfor %}">
+      <h3 class="cs-projects__title">{{ p.title }}</h3>
+      <p class="cs-projects__desc">{{ p.description }}</p>
+      <div class="cs-projects__tags">
+        {% for s in p.skills %}
+        <span class="cs-projects__tag">{{ s }}</span>
+        {% endfor %}
+      </div>
+      {% if p.url %}
+      <a href="{{ p.url }}" class="cs-projects__link btn btn--small btn--primary" target="_blank" rel="noopener">{{ p.repo_label | default: "View" }}</a>
+      {% endif %}
+    </article>
+    {% endfor %}
+  </div>
+
+  {% unless projects.size > 0 %}
+  <p class="cs-projects__empty">No CS projects listed yet. Add entries to <code>_data/cs_projects.yml</code> under <code>projects:</code>.</p>
+  {% endunless %}
+</div>
+
+<script>
+(function() {
+  var grid = document.querySelector('[data-cs-grid]');
+  if (!grid) return;
+  var cards = grid.querySelectorAll('.cs-projects__card');
+  var btns = document.querySelectorAll('.cs-projects__skill-btn');
+  if (!btns.length || !cards.length) return;
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var skill = btn.dataset.skill;
+      btns.forEach(function(b) { b.classList.remove('is-active'); });
+      btn.classList.add('is-active');
+      cards.forEach(function(card) {
+        var skills = (card.dataset.skills || '').trim().split(/\s+/);
+        var show = skill === '*' || skills.indexOf(skill) !== -1;
+        card.style.display = show ? '' : 'none';
+      });
+    });
+  });
+})();
+</script>

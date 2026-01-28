@@ -1,0 +1,31 @@
+# CS projects with skills – easy to see which projects use which skills
+# Add more projects and skills as needed.
+# skills_list: used for the "Filter by skill" bar; add new skills here when you add projects.
+
+skills_list:
+  - Python
+  - Apache Spark
+  - Airflow
+  - SQL
+
+projects:
+- title: "Example Data Pipeline"
+  description: "Production-grade data pipeline using Spark and Airflow to transform terabytes of data."
+  skills:
+    - Python
+    - Apache Spark
+    - Airflow
+    - SQL
+  url: "https://github.com/kianils"
+  repo_label: "GitHub"
+
+# Add more entries under projects: like:
+# - title: "Project Name"
+#   description: "What it does."
+#   skills:
+#     - Python
+#     - React
+#     - etc.
+#   url: "https://..."
+#   repo_label: "GitHub"
+# And add any new skills to skills_list above.

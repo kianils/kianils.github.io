@@ -1,0 +1,42 @@
+# Fetch GitHub repos (public + private when GH_PAT is set) and update _data/github_repos.json.
+#
+# Setup:
+# - Public repos: workflow runs on push/schedule; no secrets needed.
+# - Private repos: add repo secret GH_PAT (Personal Access Token, scope: repo).
+# - Optional: set env GITHUB_USERNAME to override (default: repository owner).
+
+name: Fetch GitHub repos
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *"   # every 6 hours
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Fetch repos
+        env:
+          GITHUB_USERNAME: ${{ github.repository_owner }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: python3 scripts/fetch_github_repos.py
+
+      - name: Commit and push if changed
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add _data/github_repos.json
+          git diff --staged --quiet || (git commit -m "chore: update github_repos.json" && git push)

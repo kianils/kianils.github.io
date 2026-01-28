@@ -1,0 +1,12 @@
+# Digital fabrication + CHBE projects for homepage carousel
+- title: "Syringe Pump"
+  excerpt: "DIY precision syringe pump capable of 1 μL/min to 10 mL/min flow rates with programmable control system."
+  image_path: /assets/img/Syringepumpphotos/Homepage.jpg
+  url: /portfolio/SyringePump/
+  btn_label: "View Project"
+
+- title: "Multi-Material Plier Print"
+  excerpt: "Multi-material 3D-printed pliers. More details coming soon."
+  image_path: /assets/img/Slide-2.png
+  url: /portfolio/MultiMaterialPlierPrint/
+  btn_label: "View Project"
