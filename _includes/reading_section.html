@@ -190,6 +190,176 @@
     return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   }
 
+  function safeParseInt(x) {
+    var n = parseInt(x, 10);
+    return isNaN(n) ? null : n;
+  }
+
+  function pagesFromLogEntry(le) {
+    if (!le) return 0;
+    var sp = safeParseInt(le.start_page);
+    var ep = safeParseInt(le.end_page);
+    if (sp == null || ep == null) return 0;
+    if (ep < sp) return 0;
+    return (ep - sp + 1);
+  }
+
+  function normalizeLogs(logs) {
+    var out = (logs || []).filter(function(le) { return le && le.date; });
+    out.sort(function(a, b) {
+      var da = new Date(a.date);
+      var db = new Date(b.date);
+      return da - db;
+    });
+    return out;
+  }
+
+  function renderGraph(book) {
+    var wrap = document.querySelector('[data-reading-graph]');
+    if (!wrap) return;
+    wrap.innerHTML = '';
+
+    var logs = normalizeLogs(book.logs);
+    if (logs.length === 0) {
+      wrap.innerHTML = '<div class="reading-detail-graph__empty">No logged page ranges yet.</div>';
+      return;
+    }
+
+    // Aggregate pages per day from explicit logs.
+    var byDay = {};
+    logs.forEach(function(le) {
+      var pages = pagesFromLogEntry(le);
+      if (pages <= 0) return;
+      byDay[le.date] = (byDay[le.date] || 0) + pages;
+    });
+
+    // Build a compact last-14-days bar chart ending at last log date.
+    var end = new Date(logs[logs.length - 1].date);
+    end.setHours(0, 0, 0, 0);
+    var DAYS = 14;
+    var points = [];
+    var max = 1;
+    for (var i = DAYS - 1; i >= 0; i--) {
+      var d = new Date(end);
+      d.setDate(d.getDate() - i);
+      var key = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+      var v = byDay[key] || 0;
+      if (v > max) max = v;
+      points.push({ key: key, value: v });
+    }
+
+    var w = 520;
+    var h = 58;
+    var pad = 6;
+    var barGap = 4;
+    var barW = Math.floor((w - pad * 2 - barGap * (DAYS - 1)) / DAYS);
+
+    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+    svg.setAttribute('class', 'reading-detail-graph__svg');
+
+    points.forEach(function(p, idx) {
+      var bh = p.value <= 0 ? 2 : Math.max(4, Math.round((p.value / max) * (h - pad * 2 - 14)));
+      var x = pad + idx * (barW + barGap);
+      var y = h - pad - bh;
+
+      var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      rect.setAttribute('x', String(x));
+      rect.setAttribute('y', String(y));
+      rect.setAttribute('width', String(barW));
+      rect.setAttribute('height', String(bh));
+      rect.setAttribute('rx', '3');
+      rect.setAttribute('class', 'reading-detail-graph__bar' + (p.value > 0 ? ' is-active' : ''));
+      rect.setAttribute('data-date', p.key);
+      rect.setAttribute('data-pages', String(p.value));
+      rect.setAttribute('title', p.key + ': ' + p.value + ' page' + (p.value === 1 ? '' : 's'));
+      svg.appendChild(rect);
+    });
+
+    wrap.appendChild(svg);
+  }
+
+  function renderTimeline(book) {
+    var el = document.querySelector('[data-timeline]');
+    if (!el) return;
+    el.innerHTML = '';
+
+    var logs = normalizeLogs(book.logs);
+    var projected = calculateProjectedFinish(book);
+
+    function addMarker(kind, dateVal, title, subtitle) {
+      var m = document.createElement('div');
+      m.className = 'reading-timeline__marker reading-timeline__marker--' + kind;
+      var dot = document.createElement('div');
+      dot.className = 'reading-timeline__dot';
+      var body = document.createElement('div');
+      body.className = 'reading-timeline__marker-body';
+      var t = document.createElement('div');
+      t.className = 'reading-timeline__marker-title';
+      t.textContent = title;
+      var d = document.createElement('div');
+      d.className = 'reading-timeline__marker-date';
+      d.textContent = formatDate(dateVal);
+      body.appendChild(t);
+      body.appendChild(d);
+      if (subtitle) {
+        var s = document.createElement('div');
+        s.className = 'reading-timeline__marker-sub';
+        s.textContent = subtitle;
+        body.appendChild(s);
+      }
+      m.appendChild(dot);
+      m.appendChild(body);
+      el.appendChild(m);
+    }
+
+    // Start marker: prefer first log date, fallback to date_started.
+    var startDate = (logs.length > 0) ? logs[0].date : book.date_started;
+    addMarker('start', startDate, 'Started', book.date_started ? 'Tracking begins when you log a session.' : null);
+
+    if (logs.length === 0) {
+      var empty = document.createElement('div');
+      empty.className = 'reading-timeline__empty';
+      empty.textContent = 'No notes yet. Add your first note below.';
+      el.appendChild(empty);
+    } else {
+      logs.forEach(function(le, idx) {
+        var item = document.createElement('div');
+        item.className = 'reading-timeline__item ' + (idx % 2 === 0 ? 'is-left' : 'is-right');
+
+        var date = document.createElement('div');
+        date.className = 'reading-timeline__date';
+        date.textContent = formatDate(le.date);
+
+        var card = document.createElement('div');
+        card.className = 'reading-timeline__card';
+
+        var rangePages = pagesFromLogEntry(le);
+        if (rangePages > 0) {
+          var sp = safeParseInt(le.start_page);
+          var ep = safeParseInt(le.end_page);
+          var range = document.createElement('div');
+          range.className = 'reading-timeline__range';
+          range.textContent = 'pp. ' + sp + '–' + ep + ' (' + rangePages + ' pages)';
+          card.appendChild(range);
+        }
+
+        if (le.text) {
+          var text = document.createElement('div');
+          text.className = 'reading-timeline__text';
+          text.textContent = le.text;
+          card.appendChild(text);
+        }
+
+        item.appendChild(date);
+        item.appendChild(card);
+        el.appendChild(item);
+      });
+    }
+
+    addMarker('end', projected, 'Projected finish', projected ? null : 'Add more logged sessions to estimate.');
+  }
+
   function openModal(index) {
     var readingBooks = getReadingBooks();
     var book = readingBooks[index];
@@ -248,39 +418,8 @@
       showPlaceholder();
     }
 
-    var logsList = document.querySelector('[data-logs-list]');
-    logsList.innerHTML = '';
-    if (book.logs && book.logs.length > 0) {
-      book.logs.forEach(function(log) {
-        var item = document.createElement('div');
-        item.className = 'reading-detail-log-item';
-        var date = document.createElement('div');
-        date.className = 'reading-detail-log-date';
-        date.textContent = formatDate(log.date);
-        var range = document.createElement('div');
-        range.className = 'reading-detail-log-range';
-        var sp = (log && log.start_page != null) ? parseInt(log.start_page, 10) : NaN;
-        var ep = (log && log.end_page != null) ? parseInt(log.end_page, 10) : NaN;
-        if (!isNaN(sp) && !isNaN(ep)) {
-          range.textContent = 'pp. ' + sp + '–' + ep;
-        } else if (!isNaN(sp)) {
-          range.textContent = 'from p. ' + sp;
-        } else if (!isNaN(ep)) {
-          range.textContent = 'to p. ' + ep;
-        } else {
-          range.textContent = '';
-        }
-        var text = document.createElement('div');
-        text.className = 'reading-detail-log-text';
-        text.textContent = log.text;
-        item.appendChild(date);
-        if (range.textContent) item.appendChild(range);
-        item.appendChild(text);
-        logsList.appendChild(item);
-      });
-    } else {
-      logsList.innerHTML = '<p class="reading-detail-logs-empty">No notes yet. Add your first note below.</p>';
-    }
+    renderGraph(book);
+    renderTimeline(book);
 
     modal.setAttribute('aria-hidden', 'false');
     modal.classList.add('is-open');
@@ -292,10 +431,6 @@
     modal.classList.remove('is-open');
     document.body.style.overflow = '';
     currentBookIndex = -1;
-    var sp = document.querySelector('[data-log-start-page]');
-    var ep = document.querySelector('[data-log-end-page]');
-    if (sp) sp.value = '';
-    if (ep) ep.value = '';
     document.querySelector('[data-log-input]').value = '';
   }
 
@@ -320,12 +455,8 @@
   document.querySelector('[data-log-form]').addEventListener('submit', function(e) {
     e.preventDefault();
     var input = document.querySelector('[data-log-input]');
-    var startEl = document.querySelector('[data-log-start-page]');
-    var endEl = document.querySelector('[data-log-end-page]');
     var text = input.value.trim();
-    var startPage = startEl && startEl.value !== '' ? parseInt(startEl.value, 10) : null;
-    var endPage = endEl && endEl.value !== '' ? parseInt(endEl.value, 10) : null;
-    if ((!text && startPage == null && endPage == null) || currentBookIndex < 0) return;
+    if (!text || currentBookIndex < 0) return;
 
     var readingBooks = getReadingBooks();
     var book = readingBooks[currentBookIndex];
@@ -334,43 +465,12 @@
       date: new Date().toISOString().split('T')[0],
       text: text
     };
-    if (startPage != null && !isNaN(startPage)) newLog.start_page = startPage;
-    if (endPage != null && !isNaN(endPage)) newLog.end_page = endPage;
     book.logs.push(newLog);
 
-    var logsList = document.querySelector('[data-logs-list]');
-    if (logsList.querySelector('.reading-detail-logs-empty')) {
-      logsList.innerHTML = '';
-    }
-    var item = document.createElement('div');
-    item.className = 'reading-detail-log-item';
-    var date = document.createElement('div');
-    date.className = 'reading-detail-log-date';
-    date.textContent = formatDate(new Date());
-    if (startPage != null || endPage != null) {
-      var range = document.createElement('div');
-      range.className = 'reading-detail-log-range';
-      if (startPage != null && endPage != null) {
-        range.textContent = 'pp. ' + startPage + '–' + endPage;
-      } else if (startPage != null) {
-        range.textContent = 'from p. ' + startPage;
-      } else {
-        range.textContent = 'to p. ' + endPage;
-      }
-      item.appendChild(date);
-      item.appendChild(range);
-    } else {
-      item.appendChild(date);
-    }
-    var textEl = document.createElement('div');
-    textEl.className = 'reading-detail-log-text';
-    textEl.textContent = text;
-    item.appendChild(textEl);
-    logsList.appendChild(item);
+    renderGraph(book);
+    renderTimeline(book);
 
     input.value = '';
-    if (startEl) startEl.value = '';
-    if (endEl) endEl.value = '';
     
     console.log('Note added (not saved to file - edit _data/reading.yml to persist)');
   });
