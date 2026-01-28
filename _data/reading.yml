@@ -1,29 +1,14 @@
 # Reading tracker & book lists
-# - daily_log: "YYYY-MM-DD" => pages read (contribution-style grid, last 12 weeks)
+# - daily_log: "YYYY-MM-DD" => pages read (contribution-style grid, last 12 weeks).
+#   Generated from books' logs (start_page/end_page). Run scripts/generate_reading_log.py
+#   after editing logs; CI also runs it before each build.
 # - books: status = reading | to_read | completed
 #   Use isbn for auto cover (Open Library), or cover: "https://..." to override.
 #   reading: add progress_pages, total_pages. completed: add rating (1-5), completed_date.
 
 daily_log:
-  "2026-01-10": 6
-  "2026-01-11": 6
-  "2026-01-12": 6
-  "2026-01-13": 6
-  "2026-01-14": 6
-  "2026-01-15": 6
-  "2026-01-16": 7
-  "2026-01-17": 7
-  "2026-01-18": 7
-  "2026-01-19": 7
-  "2026-01-20": 7
-  "2026-01-21": 7
-  "2026-01-22": 8
-  "2026-01-23": 8
-  "2026-01-24": 8
-  "2026-01-25": 8
-  "2026-01-26": 8
-  "2026-01-27": 36
-  "2026-01-28": 25
+  "2026-01-27": 60
+  "2026-01-28": 110
 
 
 books:
@@ -99,7 +84,7 @@ books:
   - title : "The Counting House"
     author: "David Dabydeen"
     status: "reading"
-    isbn: "9781608012534"
+    isbn: "9781845230159"
     progress_pages: 50
     total_pages: 288
     date_started: "2026-01-28"
