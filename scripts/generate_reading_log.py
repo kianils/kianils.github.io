@@ -41,12 +41,14 @@ def date_key(dt: datetime) -> str:
 
 def generate_log_from_items(items: list[dict]) -> dict[str, int]:
     """
-    Generate daily log from books.
-    
-    For each item:
-    - Mark last_date_read as a reading day
-    - Mark log entry dates as reading days
-    - Distribute progress across days between date_started and last_date_read
+    Generate daily_log from books using explicit per-day logs.
+
+    Rules (to keep math correct and avoid "guessing" earlier dates):
+    - Only count days that have a log entry with a `date`.
+    - If the log entry includes `start_page` and `end_page`, pages read is
+      `end_page - start_page + 1` (only if both are valid ints and end>=start).
+    - If a log entry has no page range, it contributes 0 pages (ignored).
+    - No distribution/backfilling based on date_started / last_date_read.
     """
     log: dict[str, int] = defaultdict(int)
     today = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
@@ -55,52 +57,29 @@ def generate_log_from_items(items: list[dict]) -> dict[str, int]:
     for item in items:
         if item.get("status") not in ("reading", "completed"):
             continue
-        
-        date_started = parse_date(item.get("date_started"))
-        last_read = parse_date(item.get("last_date_read"))
-        
-        if not last_read:
-            continue
-        
-        # Skip if outside 12-week window
-        if last_read < twelve_weeks_ago:
-            continue
-        
-        # Mark last_date_read as a reading day
-        progress = item.get("progress_pages", 0) or 0
-        total = item.get("total_pages", 0) or 0
-        if progress > 0 and total > 0:
-            # Estimate pages read on last_date_read (small amount to show activity)
-            log[date_key(last_read)] += max(1, min(progress // 10, 30))
-        
-        # Mark log entry dates as reading days
-        for log_entry in item.get("logs", []):
+
+        for log_entry in item.get("logs", []) or []:
             log_date = parse_date(log_entry.get("date"))
-            if log_date and log_date >= twelve_weeks_ago:
-                log[date_key(log_date)] += max(1, min(10, 25))
-        
-        # Distribute progress across days between date_started and last_date_read
-        if date_started and last_read and date_started < last_read:
-            days_span = (last_read - date_started).days + 1
-            if days_span > 0:
-                progress = item.get("progress_pages", 0) or 0
-                if progress > 0:
-                    # Distribute pages across days (more on recent days)
-                    pages_per_day = max(1, progress // max(days_span, 1))
-                    current_date = date_started
-                    remaining_pages = progress
-                    day_num = 0
-                    
-                    while current_date <= last_read and remaining_pages > 0:
-                        if current_date >= twelve_weeks_ago:
-                            # More pages on later days
-                            weight = 1.0 + (day_num / max(days_span, 1)) * 0.5
-                            pages_today = min(int(pages_per_day * weight), remaining_pages, 40)
-                            if pages_today > 0:
-                                log[date_key(current_date)] += pages_today
-                                remaining_pages -= pages_today
-                        current_date += timedelta(days=1)
-                        day_num += 1
+            if not log_date or log_date < twelve_weeks_ago:
+                continue
+
+            sp_raw = log_entry.get("start_page")
+            ep_raw = log_entry.get("end_page")
+            try:
+                sp = int(sp_raw) if sp_raw is not None else None
+            except (TypeError, ValueError):
+                sp = None
+            try:
+                ep = int(ep_raw) if ep_raw is not None else None
+            except (TypeError, ValueError):
+                ep = None
+
+            pages = 0
+            if sp is not None and ep is not None and ep >= sp:
+                pages = ep - sp + 1
+
+            if pages > 0:
+                log[date_key(log_date)] += pages
     
     # Convert to regular dict with string keys, sorted by date
     result = {k: int(v) for k, v in sorted(log.items()) if v > 0}
