@@ -13,7 +13,10 @@
 <article class="reading-card{% if compact %} reading-card--compact{% endif %}{% if b.status == 'reading' %} reading-card--clickable{% endif %}"{% if b.status == 'reading' and include.book_index != nil %} data-book-index="{{ include.book_index }}" role="button" tabindex="0"{% endif %}>
   <div class="reading-card__cover-wrap">
     {% if img_src != blank %}
-      <img src="{{ img_src }}" alt="Cover: {{ b.title }}" class="reading-card__cover reading-card__cover-img" loading="lazy"
+      <img src="{{ img_src }}" alt="Cover: {{ b.title }}" class="reading-card__cover reading-card__cover-img"
+           loading="{% if b.status == 'reading' and compact != true %}eager{% else %}lazy{% endif %}"
+           decoding="async"
+           {% if b.status == 'reading' and compact != true %}fetchpriority="high"{% endif %}
            onerror="this.style.display='none'; var n=this.nextElementSibling; if(n){ n.style.display='flex'; n.setAttribute('aria-hidden','false'); }">
       <div class="reading-card__cover reading-card__cover--placeholder reading-card__cover-fallback" style="display:none" aria-hidden="true">{{ b.title | slice: 0 }}</div>
     {% else %}

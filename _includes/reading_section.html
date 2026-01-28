@@ -297,90 +297,45 @@
     wrap.appendChild(svg);
   }
 
-  function renderTimeline(book) {
-    var el = document.querySelector('[data-timeline]');
-    if (!el) return;
-    el.innerHTML = '';
+  function renderLogsList(book) {
+    var logsList = document.querySelector('[data-logs-list]');
+    if (!logsList) return;
+    logsList.innerHTML = '';
 
     var logs = normalizeLogs(book.logs);
-    var projected = calculateProjectedFinish(book);
-
-    function addMarker(kind, dateVal, title, subtitle) {
-      var m = document.createElement('div');
-      m.className = 'reading-timeline__marker reading-timeline__marker--' + kind;
-      var dot = document.createElement('div');
-      dot.className = 'reading-timeline__dot';
-      var body = document.createElement('div');
-      body.className = 'reading-timeline__marker-body';
-      var t = document.createElement('div');
-      t.className = 'reading-timeline__marker-title';
-      t.textContent = title;
-      var d = document.createElement('div');
-      d.className = 'reading-timeline__marker-date';
-      d.textContent = formatDate(dateVal);
-      body.appendChild(t);
-      body.appendChild(d);
-      if (subtitle) {
-        var s = document.createElement('div');
-        s.className = 'reading-timeline__marker-sub';
-        s.textContent = subtitle;
-        body.appendChild(s);
-      }
-      m.appendChild(dot);
-      m.appendChild(body);
-      el.appendChild(m);
-    }
-
-    // Start marker: prefer first log date, fallback to date_started.
-    var startDate = (logs.length > 0) ? logs[0].date : book.date_started;
-    addMarker('start', startDate, 'Started', book.date_started ? 'Tracking begins when you log a session.' : null);
-
     if (logs.length === 0) {
-      var empty = document.createElement('div');
-      empty.className = 'reading-timeline__empty';
-      empty.textContent = 'No notes yet. Add your first note below.';
-      el.appendChild(empty);
-    } else {
-      logs.forEach(function(le, idx) {
-        var item = document.createElement('div');
-        item.className = 'reading-timeline__item ' + (idx % 2 === 0 ? 'is-left' : 'is-right');
-
-        // Dot on the center line for every entry.
-        var dot = document.createElement('div');
-        dot.className = 'reading-timeline__dot';
-
-        var date = document.createElement('div');
-        date.className = 'reading-timeline__date';
-        date.textContent = formatDate(le.date);
-
-        var card = document.createElement('div');
-        card.className = 'reading-timeline__card';
-
-        var rangePages = pagesFromLogEntry(le);
-        if (rangePages > 0) {
-          var sp = safeParseInt(le.start_page);
-          var ep = safeParseInt(le.end_page);
-          var range = document.createElement('div');
-          range.className = 'reading-timeline__range';
-          range.textContent = 'pp. ' + sp + '–' + ep + ' (' + rangePages + ' pages)';
-          card.appendChild(range);
-        }
-
-        if (le.text) {
-          var text = document.createElement('div');
-          text.className = 'reading-timeline__text';
-          text.textContent = le.text;
-          card.appendChild(text);
-        }
-
-        item.appendChild(date);
-        item.appendChild(dot);
-        item.appendChild(card);
-        el.appendChild(item);
-      });
+      logsList.innerHTML = '<p class="reading-detail-logs-empty">No notes yet. Add your first note below.</p>';
+      return;
     }
 
-    addMarker('end', projected, 'Projected finish', projected ? null : 'Add more logged sessions to estimate.');
+    logs.forEach(function(log) {
+      var item = document.createElement('div');
+      item.className = 'reading-detail-log-item';
+
+      var date = document.createElement('div');
+      date.className = 'reading-detail-log-date';
+      date.textContent = formatDate(log.date);
+
+      var rangePages = pagesFromLogEntry(log);
+      var rangeEl = null;
+      if (rangePages > 0) {
+        var sp = safeParseInt(log.start_page);
+        var ep = safeParseInt(log.end_page);
+        rangeEl = document.createElement('div');
+        rangeEl.className = 'reading-detail-log-range';
+        rangeEl.textContent = 'pp. ' + sp + '–' + ep + ' (' + rangePages + ' pages)';
+      }
+
+      var text = document.createElement('div');
+      text.className = 'reading-detail-log-text';
+      text.textContent = log.text || '';
+
+      item.appendChild(date);
+      if (rangeEl) item.appendChild(rangeEl);
+      if (text.textContent) item.appendChild(text);
+
+      logsList.appendChild(item);
+    });
   }
 
   function openModal(index) {
@@ -442,7 +397,7 @@
     }
 
     renderGraph(book);
-    renderTimeline(book);
+    renderLogsList(book);
 
     modal.setAttribute('aria-hidden', 'false');
     modal.classList.add('is-open');
@@ -491,7 +446,7 @@
     book.logs.push(newLog);
 
     renderGraph(book);
-    renderTimeline(book);
+    renderLogsList(book);
 
     input.value = '';
     
