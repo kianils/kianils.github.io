@@ -117,6 +117,37 @@ Used by the **Fetch GitHub repos** workflow to include **private** repos in the 
 3. Name: `GH_PAT`, Value: your Personal Access Token (scope `repo`).
 4. Save. The workflow will use it automatically on the next run.
 
+## GitHub Pages deployment (site not updating after push)
+
+If you push to `main` but https://kianils.github.io still shows the old UI:
+
+### 1. Use GitHub Actions to build and deploy (recommended)
+
+This repo includes a workflow that builds Jekyll and deploys to Pages. You get clear build logs.
+
+1. On GitHub: **Settings → Pages**.
+2. Under **Build and deployment**, set **Source** to **GitHub Actions** (not “Deploy from a branch”).
+3. Save. No need to pick a branch or folder.
+4. Push a commit to `main` (or run the **“Deploy Jekyll site to Pages”** workflow from the **Actions** tab).
+5. Open the **Actions** tab → **Deploy Jekyll site to Pages** → latest run. Check that the **build** job succeeds. If it fails, the logs will show the error.
+
+### 2. If you use “Deploy from a branch”
+
+- **Source**: **Deploy from a branch**.
+- **Branch**: `main` (or the branch you push to).
+- **Folder**: `/ (root)`.
+- If **Branch** is `gh-pages`, the site is built from that branch. Pushing only to `main` will not update the site.
+
+### 3. Cache and CDN
+
+- Hard refresh: **Ctrl+Shift+R** (Windows/Linux) or **Cmd+Shift+R** (Mac).
+- Or try an **incognito/private** window, or another browser.
+
+### 4. Build failures
+
+- **Actions workflow**: **Actions** tab → **Deploy Jekyll site to Pages** → failed run → **build** job.
+- **Branch deployment**: **Settings → Pages** often shows build status; failed builds may also trigger an email.
+
 ## Troubleshooting
 
 - **`ffi requires ruby version >= 3.0`** or **`bundler: command not found: jekyll`** → You’re still on system Ruby 2.6. Run `eval "$(rbenv init -)"`, then `ruby -v`. Only after it shows 3.3.10, run `bundle install` and `bundle exec jekyll serve`.
