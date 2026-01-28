@@ -30,7 +30,9 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.3"
+          # GitHub's recommended baseline for Pages/Jekyll builds.
+          # Using Ruby 3.3 can cause dependency resolution failures with github-pages.
+          ruby-version: "3.1"
           bundler-cache: true
 
       - name: Setup Pages
