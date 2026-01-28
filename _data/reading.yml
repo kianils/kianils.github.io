@@ -1,0 +1,68 @@
+# Reading tracker & book lists
+# - daily_log: "YYYY-MM-DD" => pages read (contribution-style grid, last 12 weeks)
+# - books: status = reading | to_read | completed
+#   Use isbn for auto cover (Open Library), or cover: "https://..." to override.
+#   reading: add progress_pages, total_pages. completed: add rating (1-5), completed_date.
+
+daily_log:
+  "2026-01-10": 7
+  "2026-01-11": 7
+  "2026-01-12": 7
+  "2026-01-13": 7
+  "2026-01-14": 7
+  "2026-01-15": 18
+  "2026-01-16": 8
+  "2026-01-17": 8
+  "2026-01-18": 8
+  "2026-01-19": 8
+  "2026-01-20": 9
+  "2026-01-21": 9
+  "2026-01-22": 9
+  "2026-01-23": 9
+  "2026-01-24": 8
+  "2026-01-26": 11
+
+
+books:
+  - title: "How To Be More D&D"
+    author: "Kat Kruger"
+    status: "completed"
+    isbn: "9780762478873"
+    rating: 3.5
+    completed_date: "2026-01-27"
+
+  - title: "The Well of Ascension"
+    author: "Brandon Sanderson"
+    status: "to_read"
+    isbn: "9781250318572"
+    reread: true
+
+  - title: "The Hero of Ages"
+    author: "Brandon Sanderson"
+    status: "to_read"
+    isbn: "9780575089945"
+
+
+  - title: "The Knight and The Moth"
+    author: "Rachel Gillig"
+    status: "to_read"
+    isbn: "9780316582704"
+  
+  - title: "A Clash of Kings"
+    author: "George R.R. Martin"
+    status: "to_read"
+    isbn: "9781984821157"
+
+  - title: "The Vampire Lestat"
+    author: "Anne Rice"
+    status: "reading"
+    isbn: "9780345313867"
+    progress_pages: 119
+    total_pages: 512
+    date_started: "2026-01-10"
+    last_date_read: "2026-01-26"
+    reread: true
+    logs:
+      - date: "2026-01-15"
+        text: "Lestat's origin story is captivating. The transformation scene was intense."
+

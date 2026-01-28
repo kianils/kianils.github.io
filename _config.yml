@@ -52,8 +52,9 @@ reCaptcha:
 
 atom_feed:
   path                   : # blank (default) uses feed.xml
+  hide                   : true   # hide Feed link in footer
 
-search                   : true # true, false (default)
+search                   : false # true, false (default) — disabled; no content to search
 search_full_content      : true # true, false (default)
 search_provider          : algolia # lunr (default), algolia
 algolia:

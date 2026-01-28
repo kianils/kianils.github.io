@@ -11,13 +11,7 @@
   {% assign includes_private = false %}
 {% endif %}
 
-<section class="github-contributions" aria-labelledby="github-contributions-title">
-  <h2 id="github-contributions-title" class="github-contributions__title">GitHub contributions</h2>
-  <p class="github-contributions__intro">
-    Repos pulled from <a href="https://github.com/{{ username }}" target="_blank" rel="noopener">@{{ username }}</a>
-    {% if includes_private %}(includes private){% endif %}
-    {% if fetched %} · Last fetched {{ fetched | date: "%b %d, %Y %H:%M" }} UTC{% endif %}
-  </p>
+<section class="github-contributions" aria-label="GitHub repositories">
 
   {% if repos and repos.size > 0 %}
   <div class="github-contributions__grid">
@@ -49,8 +43,9 @@
   </div>
   {% else %}
   <div class="github-contributions__empty">
-    <p>No repos loaded yet. Repos are fetched by the <code>Fetch GitHub repos</code> workflow.</p>
+    <p>No repos loaded yet. Repos are fetched by the <code>Fetch GitHub repos</code> workflow, or you can run the script locally.</p>
     <ul>
+      <li><strong>Local:</strong> Run <code>./bin/fetch-repos</code> (or <code>GH_PAT=token ./bin/fetch-repos</code> for private), then rebuild.</li>
       <li>Push to <code>main</code> or run the workflow manually to fetch <strong>public</strong> repos.</li>
       <li>Add a <a href="https://github.com/settings/tokens" target="_blank" rel="noopener">Personal Access Token</a> as repo secret <code>GH_PAT</code> (scope: <code>repo</code>) to include <strong>private</strong> repos.</li>
     </ul>

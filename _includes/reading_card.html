@@ -1,0 +1,52 @@
+{% assign b = include.book %}
+{% assign compact = include.compact %}
+{% assign show_rating = include.show_rating %}
+{% if b.cover != blank %}
+  {% assign img_src = b.cover | strip %}
+{% elsif b.isbn != blank %}
+  {% assign isbn_str = b.isbn | strip | append: '' %}
+  {% assign img_src = 'https://covers.openlibrary.org/b/isbn/' | append: isbn_str | append: '-M.jpg' %}
+{% else %}
+  {% assign img_src = '' %}
+{% endif %}
+
+<article class="reading-card{% if compact %} reading-card--compact{% endif %}{% if b.status == 'reading' %} reading-card--clickable{% endif %}"{% if b.status == 'reading' and include.book_index != nil %} data-book-index="{{ include.book_index }}" role="button" tabindex="0"{% endif %}>
+  <div class="reading-card__cover-wrap">
+    {% if img_src != blank %}
+      <img src="{{ img_src }}" alt="Cover: {{ b.title }}" class="reading-card__cover reading-card__cover-img" loading="lazy"
+           onerror="this.style.display='none'; var n=this.nextElementSibling; if(n){ n.style.display='flex'; n.setAttribute('aria-hidden','false'); }">
+      <div class="reading-card__cover reading-card__cover--placeholder reading-card__cover-fallback" style="display:none" aria-hidden="true">{{ b.title | slice: 0 }}</div>
+    {% else %}
+      <div class="reading-card__cover reading-card__cover--placeholder" aria-hidden="true">{{ b.title | slice: 0 }}</div>
+    {% endif %}
+  </div>
+  <div class="reading-card__body">
+    <div class="reading-card__header">
+      <h3 class="reading-card__title">{{ b.title }}</h3>
+      {% if b.reread %}
+        <span class="reading-card__reread-badge" title="Reread">↻</span>
+      {% endif %}
+    </div>
+    <p class="reading-card__author">{{ b.author }}</p>
+    {% if b.status == "reading" and b.progress_pages and b.total_pages %}
+      <div class="reading-card__progress">
+        <div class="reading-card__progress-track">
+          <div class="reading-card__progress-bar" style="width: {{ b.progress_pages | times: 100 | divided_by: b.total_pages }}%"></div>
+        </div>
+        <span class="reading-card__progress-text">p. {{ b.progress_pages }} / {{ b.total_pages }}</span>
+      </div>
+    {% endif %}
+    {% if show_rating and b.rating %}
+      <div class="reading-card__rating" aria-label="Rating: {{ b.rating }} out of 5">
+        {% assign r = b.rating | round %}
+        {% for i in (1..5) %}
+          <span class="reading-card__star{% if i <= r %} reading-card__star--on{% endif %}">★</span>
+        {% endfor %}
+        <span class="reading-card__rating-num">{{ b.rating }}/5</span>
+      </div>
+    {% endif %}
+    {% if b.completed_date %}
+      <p class="reading-card__meta">Finished {{ b.completed_date | date: "%b %Y" }}</p>
+    {% endif %}
+  </div>
+</article>

@@ -1,0 +1,310 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Local Jekyll setup - Lyla Kiani</title>
+<meta name="description" content="Personal website of Lyla Kiani">
+
+
+  <meta name="author" content="Lyla Kiani">
+  
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Lyla Kiani">
+<meta property="og:title" content="Local Jekyll setup">
+<meta property="og:url" content="http://localhost:4000/LOCAL_SETUP/">
+
+
+  <meta property="og:description" content="Personal website of Lyla Kiani">
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/LOCAL_SETUP/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Lyla Kiani",
+      "url": "http://localhost:4000/",
+      "sameAs": ["https://www.instagram.com/dr.dflo"]
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<meta name="robots" content="noindex nofollow">
+<meta name="theme-color" content="#0a0e14">
+<meta name="color-scheme" content="dark">
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--default">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Lyla Kiani
+          <span class="site-subtitle">Digital Fabrication & Computer Science Portfolio</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/portfolio/">Prototyping</a>
+            </li><li class="masthead__menu-item">
+              <a href="/cs-projects/">CS Projects</a>
+            </li><li class="masthead__menu-item">
+              <a href="/reading/">Reading</a>
+            </li><li class="masthead__menu-item">
+              <a href="/about/">About</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      <h1 id="local-jekyll-setup">Local Jekyll setup</h1>
+
+<p>This site requires <strong>Ruby 3.3+</strong> (GitHub Pages and gems like <code class="language-plaintext highlighter-rouge">ffi</code> need it). The built-in Mac Ruby (2.6) is too old.</p>
+
+<h2 id="1-install-ruby-3310">1. Install Ruby 3.3.10</h2>
+
+<p><strong>Option A: rbenv (recommended on Mac)</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Install rbenv + ruby-build (if needed)</span>
+brew <span class="nb">install </span>rbenv ruby-build
+
+<span class="c"># Install Ruby 3.3.10 and use it in this project</span>
+<span class="c"># On Apple Silicon, YJIT often causes build failures; disable it:</span>
+<span class="nv">RUBY_CONFIGURE_OPTS</span><span class="o">=</span><span class="s2">"--disable-yjit"</span> rbenv <span class="nb">install </span>3.3.10
+rbenv <span class="nb">local </span>3.3.10
+
+<span class="c"># Make rbenv active in this shell (required before bundle/jekyll):</span>
+<span class="nb">eval</span> <span class="s2">"</span><span class="si">$(</span>rbenv init -<span class="si">)</span><span class="s2">"</span>
+
+<span class="c"># Optional: add to ~/.zshrc so it runs in every new terminal:</span>
+<span class="c"># echo 'eval "$(rbenv init -)"' &gt;&gt; ~/.zshrc</span>
+</code></pre></div></div>
+
+<p><strong>Option B: Homebrew Ruby</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>ruby
+<span class="c"># Add Homebrew Ruby to your PATH (see `brew info ruby`).</span>
+<span class="c"># Then ensure you're using it: `which ruby` → /opt/homebrew/opt/ruby/...</span>
+</code></pre></div></div>
+
+<h2 id="2-use-rbenvs-ruby-important">2. Use rbenv’s Ruby (important)</h2>
+
+<p>If you use rbenv, your shell must load it <strong>before</strong> running bundle/jekyll:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">eval</span> <span class="s2">"</span><span class="si">$(</span>rbenv init -<span class="si">)</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<p>Then check you’re on 3.3.x:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruby <span class="nt">-v</span>    <span class="c"># should show 3.3.10, not 2.6.x</span>
+which ruby <span class="c"># should be ~/.rbenv/shims/ruby, not /usr/bin/ruby</span>
+</code></pre></div></div>
+
+<p>If you still see 2.6, add <code class="language-plaintext highlighter-rouge">eval "$(rbenv init -)"</code> to <code class="language-plaintext highlighter-rouge">~/.zshrc</code>, <strong>above</strong> any conda initialization, then open a new terminal.</p>
+
+<h2 id="3-install-gems-and-run-jekyll">3. Install gems and run Jekyll</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /path/to/kianils.github.io   <span class="c"># your repo path</span>
+bundle <span class="nb">install
+</span>bundle <span class="nb">exec </span>jekyll serve
+</code></pre></div></div>
+
+<p>Open http://localhost:4000.</p>
+
+<h2 id="4-fetch-github-repos-contributions-section">4. Fetch GitHub repos (contributions section)</h2>
+
+<p>The “GitHub contributions” block on the CS Projects page reads from <code class="language-plaintext highlighter-rouge">_data/github_repos.json</code>. To populate it <strong>locally</strong>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./bin/fetch-repos
+</code></pre></div></div>
+
+<p>Then restart Jekyll (or let it regenerate). Uses <strong>public</strong> repos only. For <strong>private</strong> repos:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">GH_PAT</span><span class="o">=</span>ghp_yourToken ./bin/fetch-repos
+</code></pre></div></div>
+
+<p>Optional: <code class="language-plaintext highlighter-rouge">GITHUB_USERNAME=youruser ./bin/fetch-repos</code> if different from <code class="language-plaintext highlighter-rouge">kianils</code>.</p>
+
+<h2 id="tokens-optional">Tokens (optional)</h2>
+
+<h3 id="jekyll--github-metadata-jekyll_github_token">Jekyll / GitHub Metadata (<code class="language-plaintext highlighter-rouge">JEKYLL_GITHUB_TOKEN</code>)</h3>
+
+<p>Removes the “No GitHub API authentication could be found” warning and lets the theme use GitHub API data.</p>
+
+<p><strong>Where to add it:</strong> as an <strong>environment variable</strong> when you run Jekyll. Never put the token in <code class="language-plaintext highlighter-rouge">_config.yml</code> or commit it.</p>
+
+<p><strong>Option A – one-off when starting the server:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">JEKYLL_GITHUB_TOKEN</span><span class="o">=</span>ghp_yourTokenHere bundle <span class="nb">exec </span>jekyll serve
+</code></pre></div></div>
+
+<p><strong>Option B – export in the same terminal, then run Jekyll:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">JEKYLL_GITHUB_TOKEN</span><span class="o">=</span>ghp_yourTokenHere
+bundle <span class="nb">exec </span>jekyll serve
+</code></pre></div></div>
+
+<p><strong>Option C – in your shell profile (e.g. <code class="language-plaintext highlighter-rouge">~/.zshrc</code>):</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">JEKYLL_GITHUB_TOKEN</span><span class="o">=</span>ghp_yourTokenHere
+</code></pre></div></div>
+
+<p>Restart the terminal, then run <code class="language-plaintext highlighter-rouge">bundle exec jekyll serve</code> as usual. Don’t commit <code class="language-plaintext highlighter-rouge">~/.zshrc</code> if it contains the token.</p>
+
+<p>Create a token at <a href="https://github.com/settings/tokens">GitHub → Settings → Developer settings → Personal access tokens</a>. For public repos only, no scope is needed; for private repo metadata, use the <code class="language-plaintext highlighter-rouge">repo</code> scope.</p>
+
+<hr />
+
+<h3 id="github-contributions--private-repos-gh_pat">GitHub Contributions / private repos (<code class="language-plaintext highlighter-rouge">GH_PAT</code>)</h3>
+
+<p>Used by the <strong>Fetch GitHub repos</strong> workflow to include <strong>private</strong> repos in the “GitHub contributions” section.</p>
+
+<p><strong>Where to add it:</strong> as a <strong>GitHub Actions secret</strong> in your repo.</p>
+
+<ol>
+  <li>Open your repo on GitHub → <strong>Settings</strong> → <strong>Secrets and variables</strong> → <strong>Actions</strong>.</li>
+  <li>Click <strong>New repository secret</strong>.</li>
+  <li>Name: <code class="language-plaintext highlighter-rouge">GH_PAT</code>, Value: your Personal Access Token (scope <code class="language-plaintext highlighter-rouge">repo</code>).</li>
+  <li>Save. The workflow will use it automatically on the next run.</li>
+</ol>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">ffi requires ruby version &gt;= 3.0</code></strong> or <strong><code class="language-plaintext highlighter-rouge">bundler: command not found: jekyll</code></strong> → You’re still on system Ruby 2.6. Run <code class="language-plaintext highlighter-rouge">eval "$(rbenv init -)"</code>, then <code class="language-plaintext highlighter-rouge">ruby -v</code>. Only after it shows 3.3.10, run <code class="language-plaintext highlighter-rouge">bundle install</code> and <code class="language-plaintext highlighter-rouge">bundle exec jekyll serve</code>.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">(base)</code> in prompt</strong> → Conda can override PATH. Run <code class="language-plaintext highlighter-rouge">conda deactivate</code>, then <code class="language-plaintext highlighter-rouge">eval "$(rbenv init -)"</code>, then retry.</li>
+</ul>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/kianils" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+          <li><a href="https://www.linkedin.com/in/lyla-kiani/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+    
+
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2026 Lyla Kiani. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

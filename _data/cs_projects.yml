@@ -1,31 +1,59 @@
 # CS projects with skills – easy to see which projects use which skills
-# Add more projects and skills as needed.
 # skills_list: used for the "Filter by skill" bar; add new skills here when you add projects.
 
 skills_list:
   - Python
-  - Apache Spark
-  - Airflow
-  - SQL
+  - Flask
+  - Machine Learning
+  - Pandas
+  - NLTK
+  - NLP
+  - Kaggle
+  - Azure Cosmos DB
+  - Azure Functions
+  - JavaScript
+  - Graph databases
+  - RAG
+  - OpenAI API
 
 projects:
-- title: "Example Data Pipeline"
-  description: "Production-grade data pipeline using Spark and Airflow to transform terabytes of data."
+- title: "LLM Text Attribution & Temporal Style Tracker"
+  description: "LLM-based text attribution system using prompt engineering and RAG to assess authenticity across writing styles. Tracks version history, style drift detection, and timeline visualizations of authenticity scores."
   skills:
     - Python
-    - Apache Spark
-    - Airflow
-    - SQL
+    - OpenAI API
+    - RAG
+    - NLP
   url: "https://github.com/kianils"
   repo_label: "GitHub"
 
-# Add more entries under projects: like:
-# - title: "Project Name"
-#   description: "What it does."
-#   skills:
-#     - Python
-#     - React
-#     - etc.
-#   url: "https://..."
-#   repo_label: "GitHub"
-# And add any new skills to skills_list above.
+- title: "Survivor Simulator"
+  description: "Survivor game simulator using real True Dork Times data. Flask web app with tribal councils, alliances, challenges, and ML models (Perceptron, MLP) for outcome prediction."
+  skills:
+    - Python
+    - Flask
+    - Machine Learning
+    - Pandas
+  url: "https://github.com/kianils"
+  repo_label: "GitHub"
+
+- title: "Movie Transcripts Lexical Analysis"
+  description: "Lexical algorithms and research using the Movie Transcripts 59k Kaggle dataset. NLTK-based exploration, statistics, and analysis of movie dialogue."
+  skills:
+    - Python
+    - NLTK
+    - NLP
+    - Kaggle
+  url: "https://github.com/kianils"
+  repo_label: "GitHub"
+
+- title: "Comic Universe Graph"
+  description: "Knowledge graph of comic characters, series, and crossovers. Azure Cosmos DB (Gremlin), Azure Functions API, and interactive frontend (Cytoscape.js / D3) for path finding and timeline exploration."
+  skills:
+    - Python
+    - Azure Cosmos DB
+    - Azure Functions
+    - JavaScript
+    - Graph databases
+  url: "https://github.com/kianils"
+  repo_label: "GitHub"

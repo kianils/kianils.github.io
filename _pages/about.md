@@ -1,7 +1,7 @@
 ---
-
 title: "About"
-
+permalink: /about/
+layout: single
 ---
 
 I'm a Computer Science student at Vanderbilt University with minors in Data Science and Digital Fabrication, graduating in May 2026. Originally from Brooklyn, NY, I'm passionate about combining data-driven insights with hands-on digital fabrication.

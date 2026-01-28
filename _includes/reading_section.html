@@ -1,0 +1,343 @@
+{% assign data = site.data.reading %}
+{% assign log = data.daily_log %}
+{% if data.books %}
+  {% assign books = data.books %}
+{% else %}
+  {% assign books = "" | split: "" %}
+{% endif %}
+
+<script type="application/json" id="reading-daily-log">{% if log %}{{ log | jsonify }}{% else %}{}{% endif %}</script>
+<script type="application/json" id="reading-books-data">{% if books %}{{ books | jsonify }}{% else %}[]{% endif %}</script>
+
+{% include reading_book_detail.html daily_log=log %}
+
+<div class="reading-lists">
+  <div class="reading-top-section">
+    <section class="reading-list reading-list--current" aria-labelledby="reading-current-title">
+      <h2 id="reading-current-title" class="reading-list__title">Currently reading</h2>
+      <div class="reading-cards">
+        {% assign reading_index = 0 %}
+        {% for b in books %}
+          {% if b.status == "reading" %}
+            {% include reading_card.html book=b book_index=reading_index %}
+            {% assign reading_index = reading_index | plus: 1 %}
+          {% endif %}
+        {% endfor %}
+      </div>
+      {% assign current = books | where: "status", "reading" %}
+      {% if current.size == 0 %}
+        <p class="reading-list__empty">Nothing in progress.</p>
+      {% endif %}
+    </section>
+
+    <section class="reading-list reading-list--tracker" aria-label="Reading tracker">
+      <h2 class="reading-list__title">Reading tracker</h2>
+      <p class="reading__sub">Pages read per day. Hover over a cell to see date and pages.</p>
+      <div id="reading-tracker" class="reading-tracker"></div>
+      <div class="reading-tracker-legend">
+        <span class="reading-tracker-legend__label">Less</span>
+        <span class="reading-tracker-legend__cell" data-level="0"></span>
+        <span class="reading-tracker-legend__cell" data-level="1"></span>
+        <span class="reading-tracker-legend__cell" data-level="2"></span>
+        <span class="reading-tracker-legend__cell" data-level="3"></span>
+        <span class="reading-tracker-legend__label">More</span>
+      </div>
+    </section>
+  </div>
+
+  <section class="reading-list" aria-labelledby="reading-tbr-title">
+    <h2 id="reading-tbr-title" class="reading-list__title">To read</h2>
+    <div class="reading-cards reading-cards--compact">
+      {% for b in books %}
+        {% if b.status == "to_read" %}
+          {% include reading_card.html book=b compact=true %}
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% assign tbr = books | where: "status", "to_read" %}
+    {% if tbr.size == 0 %}
+      <p class="reading-list__empty">No books on your list yet.</p>
+    {% endif %}
+  </section>
+
+  <section class="reading-list" aria-labelledby="reading-done-title">
+    <h2 id="reading-done-title" class="reading-list__title">Completed</h2>
+    <div class="reading-cards">
+      {% for b in books %}
+        {% if b.status == "completed" %}
+          {% include reading_card.html book=b show_rating=true %}
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% assign done = books | where: "status", "completed" %}
+    {% if done.size == 0 %}
+      <p class="reading-list__empty">No completed books yet.</p>
+    {% endif %}
+  </section>
+</div>
+
+<script>
+(function() {
+  var el = document.getElementById('reading-tracker');
+  var jsonEl = document.getElementById('reading-daily-log');
+  if (!el) return;
+  var log = {};
+  try {
+    if (jsonEl && jsonEl.textContent) {
+      var p = JSON.parse(jsonEl.textContent);
+      if (p && typeof p === 'object' && !Array.isArray(p)) log = p;
+    }
+  } catch (e) {}
+  var DAYS = 84;
+  var today = new Date();
+  today.setHours(0, 0, 0, 0);
+  var maxPages = 1;
+  Object.keys(log).forEach(function(k) { var n = parseInt(log[k], 10); if (n > maxPages) maxPages = n; });
+  var levels = [0, Math.max(1, Math.floor(maxPages / 4)), Math.max(2, Math.floor(maxPages / 2)), maxPages];
+  function level(p) {
+    if (!p || p <= 0) return 0;
+    if (p <= levels[1]) return 1;
+    if (p <= levels[2]) return 2;
+    return 3;
+  }
+  var wrap = document.createElement('div');
+  wrap.className = 'reading-tracker__grid';
+  for (var i = DAYS - 1; i >= 0; i--) {
+    var d = new Date(today);
+    d.setDate(d.getDate() - i);
+    var key = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    var pages = log[key] ? parseInt(log[key], 10) : 0;
+    var cell = document.createElement('div');
+    cell.className = 'reading-tracker__cell reading-tracker__cell--' + level(pages);
+    cell.setAttribute('data-date', key);
+    cell.setAttribute('data-pages', pages);
+    cell.setAttribute('title', key + ': ' + pages + ' page' + (pages !== 1 ? 's' : '') + ' read');
+    wrap.appendChild(cell);
+  }
+  el.appendChild(wrap);
+
+  var tip = document.createElement('div');
+  tip.className = 'reading-tracker-tooltip';
+  tip.setAttribute('role', 'tooltip');
+  tip.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(tip);
+  function showTip(c, e) {
+    var date = c.getAttribute('data-date');
+    var pages = c.getAttribute('data-pages');
+    tip.textContent = date + ': ' + pages + ' page' + (pages !== '1' ? 's' : '') + ' read';
+    tip.style.display = 'block';
+    tip.setAttribute('aria-hidden', 'false');
+    tip.style.left = (e.clientX + 12) + 'px';
+    tip.style.top = (e.clientY + 8) + 'px';
+  }
+  wrap.querySelectorAll('.reading-tracker__cell').forEach(function(c) {
+    c.addEventListener('mouseenter', function(e) { showTip(c, e); });
+    c.addEventListener('mouseleave', function() {
+      tip.style.display = 'none';
+      tip.setAttribute('aria-hidden', 'true');
+    });
+    c.addEventListener('mousemove', function(e) {
+      tip.style.left = (e.clientX + 12) + 'px';
+      tip.style.top = (e.clientY + 8) + 'px';
+    });
+  });
+})();
+</script>
+
+<script>
+(function() {
+  var allBooks = [];
+  var dailyLog = {};
+  var modal = document.getElementById('reading-detail-modal');
+  var currentBookIndex = -1;
+
+  try {
+    var booksEl = document.getElementById('reading-books-data');
+    var logEl = document.getElementById('reading-daily-log');
+    if (booksEl) allBooks = JSON.parse(booksEl.textContent) || [];
+    if (logEl) dailyLog = JSON.parse(logEl.textContent) || {};
+  } catch (e) {}
+
+  function getReadingBooks() {
+    return allBooks.filter(function(b) { return b && b.status === 'reading'; });
+  }
+
+  function calculateProjectedFinish(book) {
+    if (!book.progress_pages || !book.total_pages || !book.date_started) return null;
+    var remaining = book.total_pages - book.progress_pages;
+    if (remaining <= 0) return null;
+
+    var startDate = new Date(book.date_started);
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    var daysElapsed = Math.max(1, Math.floor((today - startDate) / (1000 * 60 * 60 * 24)));
+    var pagesPerDay = book.progress_pages / daysElapsed;
+    if (pagesPerDay <= 0) return null;
+    var daysRemaining = Math.ceil(remaining / pagesPerDay);
+    var finishDate = new Date(today);
+    finishDate.setDate(finishDate.getDate() + daysRemaining);
+    return finishDate;
+  }
+
+  function getLastReadDate(book) {
+    if (!book.last_date_read) return null;
+    return new Date(book.last_date_read);
+  }
+
+  function formatDate(d) {
+    if (!d) return '—';
+    if (typeof d === 'string') d = new Date(d);
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  }
+
+  function openModal(index) {
+    var readingBooks = getReadingBooks();
+    var book = readingBooks[index];
+    if (!book) return;
+    currentBookIndex = index;
+
+    var progress = book.progress_pages && book.total_pages ? (book.progress_pages / book.total_pages * 100) : 0;
+    document.querySelector('[data-progress-bar]').style.width = progress + '%';
+    document.querySelector('[data-progress-text]').textContent = 
+      (book.progress_pages || 0) + ' / ' + (book.total_pages || 0) + ' pages';
+    document.querySelector('[data-book-title]').textContent = book.title || '';
+    document.querySelector('[data-book-author]').textContent = book.author || '';
+    document.querySelector('[data-date-started]').textContent = formatDate(book.date_started);
+    document.querySelector('[data-date-last]').textContent = formatDate(book.last_date_read);
+    document.querySelector('[data-date-projected]').textContent = formatDate(calculateProjectedFinish(book));
+    
+    var rereadBadge = document.querySelector('[data-reread-badge]');
+    if (book.reread) {
+      rereadBadge.style.display = 'inline-flex';
+    } else {
+      rereadBadge.style.display = 'none';
+    }
+
+    // Set cover image
+    var coverImg = document.querySelector('[data-cover-img]');
+    var coverPlaceholder = document.querySelector('[data-cover-placeholder]');
+    var titleFirstLetter = (book.title || '?').charAt(0).toUpperCase();
+    
+    function showPlaceholder() {
+      coverImg.style.display = 'none';
+      coverPlaceholder.style.display = 'flex';
+      coverPlaceholder.textContent = titleFirstLetter;
+    }
+    
+    function showImage(url) {
+      coverImg.src = url;
+      coverImg.alt = 'Cover: ' + (book.title || '');
+      coverImg.style.display = 'block';
+      coverPlaceholder.style.display = 'none';
+      coverImg.onerror = function() {
+        showPlaceholder();
+      };
+    }
+    
+    if (book.cover) {
+      showImage(book.cover);
+    } else if (book.isbn) {
+      var isbnStr = String(book.isbn).trim();
+      if (isbnStr) {
+        var coverUrl = 'https://covers.openlibrary.org/b/isbn/' + isbnStr + '-L.jpg';
+        showImage(coverUrl);
+      } else {
+        showPlaceholder();
+      }
+    } else {
+      showPlaceholder();
+    }
+
+    var logsList = document.querySelector('[data-logs-list]');
+    logsList.innerHTML = '';
+    if (book.logs && book.logs.length > 0) {
+      book.logs.forEach(function(log) {
+        var item = document.createElement('div');
+        item.className = 'reading-detail-log-item';
+        var date = document.createElement('div');
+        date.className = 'reading-detail-log-date';
+        date.textContent = formatDate(log.date);
+        var text = document.createElement('div');
+        text.className = 'reading-detail-log-text';
+        text.textContent = log.text;
+        item.appendChild(date);
+        item.appendChild(text);
+        logsList.appendChild(item);
+      });
+    } else {
+      logsList.innerHTML = '<p class="reading-detail-logs-empty">No notes yet. Add your first note below.</p>';
+    }
+
+    modal.setAttribute('aria-hidden', 'false');
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.setAttribute('aria-hidden', 'true');
+    modal.classList.remove('is-open');
+    document.body.style.overflow = '';
+    currentBookIndex = -1;
+    document.querySelector('[data-log-input]').value = '';
+  }
+
+  document.querySelectorAll('.reading-card--clickable').forEach(function(card) {
+    card.addEventListener('click', function() {
+      var idx = parseInt(card.getAttribute('data-book-index'), 10);
+      if (!isNaN(idx)) openModal(idx);
+    });
+    card.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        var idx = parseInt(card.getAttribute('data-book-index'), 10);
+        if (!isNaN(idx)) openModal(idx);
+      }
+    });
+  });
+
+  document.querySelectorAll('[data-close-modal]').forEach(function(btn) {
+    btn.addEventListener('click', closeModal);
+  });
+
+  document.querySelector('[data-log-form]').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var input = document.querySelector('[data-log-input]');
+    var text = input.value.trim();
+    if (!text || currentBookIndex < 0) return;
+
+    var readingBooks = getReadingBooks();
+    var book = readingBooks[currentBookIndex];
+    if (!book.logs) book.logs = [];
+    book.logs.push({
+      date: new Date().toISOString().split('T')[0],
+      text: text
+    });
+
+    var logsList = document.querySelector('[data-logs-list]');
+    if (logsList.querySelector('.reading-detail-logs-empty')) {
+      logsList.innerHTML = '';
+    }
+    var item = document.createElement('div');
+    item.className = 'reading-detail-log-item';
+    var date = document.createElement('div');
+    date.className = 'reading-detail-log-date';
+    date.textContent = formatDate(new Date());
+    var textEl = document.createElement('div');
+    textEl.className = 'reading-detail-log-text';
+    textEl.textContent = text;
+    item.appendChild(date);
+    item.appendChild(textEl);
+    logsList.appendChild(item);
+
+    input.value = '';
+    
+    console.log('Note added (not saved to file - edit _data/reading.yml to persist)');
+  });
+
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal || e.target.classList.contains('reading-detail-overlay')) {
+      closeModal();
+    }
+  });
+})();
+</script>

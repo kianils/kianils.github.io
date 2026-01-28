@@ -1,6 +1,14 @@
 {% assign data = site.data.cs_projects %}
-{% assign projects = data.projects | default: "" | split: "" %}
-{% assign skills_list = data.skills_list | default: "" | split: "" %}
+{% if data.projects %}
+  {% assign projects = data.projects %}
+{% else %}
+  {% assign projects = "" | split: "" %}
+{% endif %}
+{% if data.skills_list %}
+  {% assign skills_list = data.skills_list %}
+{% else %}
+  {% assign skills_list = "" | split: "" %}
+{% endif %}
 
 <div class="cs-projects">
   {% if projects.size > 0 and skills_list.size > 0 %}
@@ -17,14 +25,18 @@
 
   <div class="cs-projects__grid" data-cs-grid>
     {% for p in projects %}
-    <article class="cs-projects__card" data-skills="{% for s in p.skills %}{{ s | slugify }} {% endfor %}">
+    <article class="cs-projects__card" data-skills="{% if p.skills %}{% for s in p.skills %}{{ s | slugify }} {% endfor %}{% endif %}">
       <h3 class="cs-projects__title">{{ p.title }}</h3>
-      <p class="cs-projects__desc">{{ p.description }}</p>
+      {% if p.description != blank %}
+      <p class="cs-projects__desc">{{ p.description | truncate: 140 }}</p>
+      {% endif %}
+      {% if p.skills and p.skills.size > 0 %}
       <div class="cs-projects__tags">
         {% for s in p.skills %}
         <span class="cs-projects__tag">{{ s }}</span>
         {% endfor %}
       </div>
+      {% endif %}
       {% if p.url %}
       <a href="{{ p.url }}" class="cs-projects__link btn btn--small btn--primary" target="_blank" rel="noopener">{{ p.repo_label | default: "View" }}</a>
       {% endif %}

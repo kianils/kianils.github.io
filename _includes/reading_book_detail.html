@@ -1,0 +1,68 @@
+{% assign b = include.book %}
+{% assign log = include.daily_log %}
+{% if b.cover != blank %}
+  {% assign img_src = b.cover | strip %}
+{% elsif b.isbn != blank %}
+  {% assign isbn_str = b.isbn | strip | append: '' %}
+  {% assign img_src = 'https://covers.openlibrary.org/b/isbn/' | append: isbn_str | append: '-L.jpg' %}
+{% else %}
+  {% assign img_src = '' %}
+{% endif %}
+
+<div class="reading-detail-modal" id="reading-detail-modal" role="dialog" aria-labelledby="reading-detail-title" aria-hidden="true">
+  <div class="reading-detail-overlay" data-close-modal></div>
+  <div class="reading-detail-content">
+    <button class="reading-detail-close" aria-label="Close" data-close-modal>×</button>
+    
+    <div class="reading-detail-header">
+      <div class="reading-detail-progress">
+        <div class="reading-detail-progress-track">
+          <div class="reading-detail-progress-bar" data-progress-bar></div>
+        </div>
+        <span class="reading-detail-progress-text" data-progress-text></span>
+      </div>
+    </div>
+
+    <div class="reading-detail-body">
+      <div class="reading-detail-main">
+        <div class="reading-detail-info">
+          <div class="reading-detail-title-wrap">
+            <h2 id="reading-detail-title" class="reading-detail-title" data-book-title></h2>
+            <span class="reading-detail-reread-badge" data-reread-badge style="display:none" title="Reread">↻ Reread</span>
+          </div>
+          <p class="reading-detail-author" data-book-author></p>
+          
+          <div class="reading-detail-dates">
+            <div class="reading-detail-date-item">
+              <span class="reading-detail-date-label">Started:</span>
+              <span class="reading-detail-date-value" data-date-started></span>
+            </div>
+            <div class="reading-detail-date-item">
+              <span class="reading-detail-date-label">Last read:</span>
+              <span class="reading-detail-date-value" data-date-last></span>
+            </div>
+            <div class="reading-detail-date-item">
+              <span class="reading-detail-date-label">Projected finish:</span>
+              <span class="reading-detail-date-value" data-date-projected></span>
+            </div>
+          </div>
+
+          <div class="reading-detail-logs">
+            <h3 class="reading-detail-logs-title">Reading notes</h3>
+            <div class="reading-detail-logs-list" data-logs-list></div>
+            <form class="reading-detail-log-form" data-log-form>
+              <textarea class="reading-detail-log-input" placeholder="Add a note or thought..." rows="3" data-log-input></textarea>
+              <button type="submit" class="reading-detail-log-submit btn btn--small btn--primary">Add note</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+      <div class="reading-detail-cover">
+        <img src="" alt="" class="reading-detail-cover-img" data-cover-img style="display:none;" loading="lazy"
+             onerror="this.style.display='none'; var n=this.nextElementSibling; if(n) n.style.display='flex';">
+        <div class="reading-detail-cover-placeholder" data-cover-placeholder style="display:flex;">?</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,9 +1,11 @@
 # main links
 main:
-  - title: "Portfolio"
+  - title: "Prototyping"
     url: /portfolio/
   - title: "CS Projects"
     url: /cs-projects/
+  - title: "Reading"
+    url: /reading/
   - title: "About"
     url: /about/
   # - title: "Sample Posts"

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Generate reading logs from book/comic progress
+# Usage: ./bin/generate-reading-log
+
+set -e
+cd "$(dirname "$0")/.."
+python3 scripts/generate_reading_log.py

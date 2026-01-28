@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Fetch GitHub repos into _data/github_repos.json (public only without GH_PAT).
+# Usage: ./bin/fetch-repos
+# Optional: GH_PAT=token ./bin/fetch-repos  (for private repos)
+
+set -e
+cd "$(dirname "$0")/.."
+export GITHUB_USERNAME="${GITHUB_USERNAME:-kianils}"
+python3 scripts/fetch_github_repos.py
