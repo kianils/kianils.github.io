@@ -186,8 +186,21 @@
 
   function formatDate(d) {
     if (!d) return '—';
-    if (typeof d === 'string') d = new Date(d);
+    if (typeof d === 'string') d = parseYMD(d) || new Date(d);
     return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  }
+
+  // Parse "YYYY-MM-DD" as a *local* date (avoids UTC->local off-by-one).
+  function parseYMD(s) {
+    if (!s || typeof s !== 'string') return null;
+    var m = s.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (!m) return null;
+    var y = parseInt(m[1], 10);
+    var mo = parseInt(m[2], 10) - 1;
+    var da = parseInt(m[3], 10);
+    var dt = new Date(y, mo, da);
+    dt.setHours(0, 0, 0, 0);
+    return dt;
   }
 
   function safeParseInt(x) {
@@ -207,8 +220,8 @@
   function normalizeLogs(logs) {
     var out = (logs || []).filter(function(le) { return le && le.date; });
     out.sort(function(a, b) {
-      var da = new Date(a.date);
-      var db = new Date(b.date);
+      var da = parseYMD(a.date) || new Date(a.date);
+      var db = parseYMD(b.date) || new Date(b.date);
       return da - db;
     });
     return out;
@@ -234,7 +247,7 @@
     });
 
     // Build a compact last-14-days bar chart ending at last log date.
-    var end = new Date(logs[logs.length - 1].date);
+    var end = parseYMD(logs[logs.length - 1].date) || new Date(logs[logs.length - 1].date);
     end.setHours(0, 0, 0, 0);
     var DAYS = 14;
     var points = [];
