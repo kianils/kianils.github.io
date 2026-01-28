@@ -66,6 +66,12 @@ books:
         start_page: 1
         end_page: 41
         text: "Dunk just sold his horse, its a barer version of the first two episodes of the show"
+      - date: "2026-01-28"
+        start_page: 41
+        end_page: 100
+        text: "Dunk the hedgeknight fr"
+
+    
 
   - title: "The Autobiography of Malcom X"
     author: "Malcom X"
