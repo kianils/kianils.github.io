@@ -5,22 +5,7 @@
 #   reading: add progress_pages, total_pages. completed: add rating (1-5), completed_date.
 
 daily_log:
-  "2026-01-10": 7
-  "2026-01-11": 7
-  "2026-01-12": 7
-  "2026-01-13": 7
-  "2026-01-14": 7
-  "2026-01-15": 18
-  "2026-01-16": 8
-  "2026-01-17": 8
-  "2026-01-18": 8
-  "2026-01-19": 8
-  "2026-01-20": 9
-  "2026-01-21": 9
-  "2026-01-22": 9
-  "2026-01-23": 9
-  "2026-01-24": 8
-  "2026-01-26": 11
+  "2026-01-27": 60
 
 
 books:
@@ -60,9 +45,45 @@ books:
     progress_pages: 119
     total_pages: 512
     date_started: "2026-01-10"
-    last_date_read: "2026-01-26"
+    last_date_read: "2026-01-27"
     reread: true
     logs:
-      - date: "2026-01-15"
-        text: "Lestat's origin story is captivating. The transformation scene was intense."
+      - date: "2026-01-27"
+        start_page: 101
+        end_page: 119
+        text: "alot of blood-sucking, given that we are following lestat for the first time after his trsnformation"
+
+  - title: "A Knight of the Seven Kingdoms"
+    author: "George R.R. Martin"
+    status: "reading"
+    progress_pages: 41
+    total_pages: 368
+    isbn: "9781101965887"
+    date_started: "2026-01-27"
+    last_date_read: "2026-01-27"
+    logs:
+      - date: "2026-01-27"
+        start_page: 1
+        end_page: 41
+        text: "Dunk just sold his horse, its a barer version of the first two episodes of the show"
+
+  - title: "The Autobiography of Malcom X"
+    author: "Malcom X"
+    status: "to_read"
+    isbn: "9780345350688"
+
+  - title : "The Counting House"
+    author: "David Dabydeen"
+    status: "reading"
+    isbn: "9781608012534"
+    progress_pages: 50
+    total_pages: 288
+    date_started: "2026-01-28"
+    last_date_read: "2026-01-28"
+    logs:
+      - date: "2026-01-28"
+        start_page: 1
+        end_page: 50
+        text: "Hard read given the subject matter, I really like how they do not shy away from the paralells between Rohini's condition after marriage and the existenstential threat of her country,
+         the looming promise of Guyana, and I love how they show the British first trying to seperate the people along racial or religious lines"
 

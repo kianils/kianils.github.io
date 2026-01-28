@@ -257,10 +257,24 @@
         var date = document.createElement('div');
         date.className = 'reading-detail-log-date';
         date.textContent = formatDate(log.date);
+        var range = document.createElement('div');
+        range.className = 'reading-detail-log-range';
+        var sp = (log && log.start_page != null) ? parseInt(log.start_page, 10) : NaN;
+        var ep = (log && log.end_page != null) ? parseInt(log.end_page, 10) : NaN;
+        if (!isNaN(sp) && !isNaN(ep)) {
+          range.textContent = 'pp. ' + sp + '–' + ep;
+        } else if (!isNaN(sp)) {
+          range.textContent = 'from p. ' + sp;
+        } else if (!isNaN(ep)) {
+          range.textContent = 'to p. ' + ep;
+        } else {
+          range.textContent = '';
+        }
         var text = document.createElement('div');
         text.className = 'reading-detail-log-text';
         text.textContent = log.text;
         item.appendChild(date);
+        if (range.textContent) item.appendChild(range);
         item.appendChild(text);
         logsList.appendChild(item);
       });
@@ -278,6 +292,10 @@
     modal.classList.remove('is-open');
     document.body.style.overflow = '';
     currentBookIndex = -1;
+    var sp = document.querySelector('[data-log-start-page]');
+    var ep = document.querySelector('[data-log-end-page]');
+    if (sp) sp.value = '';
+    if (ep) ep.value = '';
     document.querySelector('[data-log-input]').value = '';
   }
 
@@ -302,16 +320,23 @@
   document.querySelector('[data-log-form]').addEventListener('submit', function(e) {
     e.preventDefault();
     var input = document.querySelector('[data-log-input]');
+    var startEl = document.querySelector('[data-log-start-page]');
+    var endEl = document.querySelector('[data-log-end-page]');
     var text = input.value.trim();
-    if (!text || currentBookIndex < 0) return;
+    var startPage = startEl && startEl.value !== '' ? parseInt(startEl.value, 10) : null;
+    var endPage = endEl && endEl.value !== '' ? parseInt(endEl.value, 10) : null;
+    if ((!text && startPage == null && endPage == null) || currentBookIndex < 0) return;
 
     var readingBooks = getReadingBooks();
     var book = readingBooks[currentBookIndex];
     if (!book.logs) book.logs = [];
-    book.logs.push({
+    var newLog = {
       date: new Date().toISOString().split('T')[0],
       text: text
-    });
+    };
+    if (startPage != null && !isNaN(startPage)) newLog.start_page = startPage;
+    if (endPage != null && !isNaN(endPage)) newLog.end_page = endPage;
+    book.logs.push(newLog);
 
     var logsList = document.querySelector('[data-logs-list]');
     if (logsList.querySelector('.reading-detail-logs-empty')) {
@@ -322,14 +347,30 @@
     var date = document.createElement('div');
     date.className = 'reading-detail-log-date';
     date.textContent = formatDate(new Date());
+    if (startPage != null || endPage != null) {
+      var range = document.createElement('div');
+      range.className = 'reading-detail-log-range';
+      if (startPage != null && endPage != null) {
+        range.textContent = 'pp. ' + startPage + '–' + endPage;
+      } else if (startPage != null) {
+        range.textContent = 'from p. ' + startPage;
+      } else {
+        range.textContent = 'to p. ' + endPage;
+      }
+      item.appendChild(date);
+      item.appendChild(range);
+    } else {
+      item.appendChild(date);
+    }
     var textEl = document.createElement('div');
     textEl.className = 'reading-detail-log-text';
     textEl.textContent = text;
-    item.appendChild(date);
     item.appendChild(textEl);
     logsList.appendChild(item);
 
     input.value = '';
+    if (startEl) startEl.value = '';
+    if (endEl) endEl.value = '';
     
     console.log('Note added (not saved to file - edit _data/reading.yml to persist)');
   });

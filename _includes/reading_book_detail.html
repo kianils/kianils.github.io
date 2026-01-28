@@ -51,6 +51,16 @@
             <h3 class="reading-detail-logs-title">Reading notes</h3>
             <div class="reading-detail-logs-list" data-logs-list></div>
             <form class="reading-detail-log-form" data-log-form>
+              <div class="reading-detail-log-pages">
+                <label class="reading-detail-log-pages__label">
+                  <span class="reading-detail-log-pages__label-text">Start page</span>
+                  <input class="reading-detail-log-pages__input" type="number" min="0" inputmode="numeric" placeholder="e.g. 120" data-log-start-page>
+                </label>
+                <label class="reading-detail-log-pages__label">
+                  <span class="reading-detail-log-pages__label-text">End page</span>
+                  <input class="reading-detail-log-pages__input" type="number" min="0" inputmode="numeric" placeholder="e.g. 145" data-log-end-page>
+                </label>
+              </div>
               <textarea class="reading-detail-log-input" placeholder="Add a note or thought..." rows="3" data-log-input></textarea>
               <button type="submit" class="reading-detail-log-submit btn btn--small btn--primary">Add note</button>
             </form>
