@@ -285,7 +285,12 @@
       rect.setAttribute('class', 'reading-detail-graph__bar' + (p.value > 0 ? ' is-active' : ''));
       rect.setAttribute('data-date', p.key);
       rect.setAttribute('data-pages', String(p.value));
-      rect.setAttribute('title', p.key + ': ' + p.value + ' page' + (p.value === 1 ? '' : 's'));
+
+      // SVG tooltips work reliably via a <title> child (not a title attribute).
+      var title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+      title.textContent = p.key + ': ' + p.value + ' page' + (p.value === 1 ? '' : 's');
+      rect.appendChild(title);
+
       svg.appendChild(rect);
     });
 
@@ -340,6 +345,10 @@
         var item = document.createElement('div');
         item.className = 'reading-timeline__item ' + (idx % 2 === 0 ? 'is-left' : 'is-right');
 
+        // Dot on the center line for every entry.
+        var dot = document.createElement('div');
+        dot.className = 'reading-timeline__dot';
+
         var date = document.createElement('div');
         date.className = 'reading-timeline__date';
         date.textContent = formatDate(le.date);
@@ -365,6 +374,7 @@
         }
 
         item.appendChild(date);
+        item.appendChild(dot);
         item.appendChild(card);
         el.appendChild(item);
       });
