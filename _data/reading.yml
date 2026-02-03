@@ -5,26 +5,10 @@
 #   reading: add progress_pages, total_pages. completed: add rating (1-5), completed_date.
 
 daily_log:
-  "2026-01-10": 6
-  "2026-01-11": 6
-  "2026-01-12": 6
-  "2026-01-13": 6
-  "2026-01-14": 6
-  "2026-01-15": 6
-  "2026-01-16": 7
-  "2026-01-17": 7
-  "2026-01-18": 7
-  "2026-01-19": 7
-  "2026-01-20": 7
-  "2026-01-21": 7
-  "2026-01-22": 8
-  "2026-01-23": 8
-  "2026-01-24": 8
-  "2026-01-25": 8
-  "2026-01-26": 8
-  "2026-01-27": 36
-  "2026-01-28": 25
-
+  "2026-01-27": 60
+  "2026-01-28": 110
+  "2026-01-31": 45
+  "2026-02-01": 130
 
 books:
   - title: "How To Be More D&D"
@@ -33,6 +17,23 @@ books:
     isbn: "9780762478873"
     rating: 3.5
     completed_date: "2026-01-27"
+
+  - title: "The Hedge Knight"
+    author: "George R.R. Martin"
+    status: "completed"
+    isbn: "9781932796063"
+    total_pages: 368
+    rating: 4
+    completed_date: "2026-01-31"
+    logs:
+      - date: "2026-01-27"
+        start_page: 1
+        end_page: 41
+        text: "Dunk just sold his horse, its a barer version of the first two episodes of the show"
+      - date: "2026-01-28"
+        start_page: 41
+        end_page: 100
+        text: "Dunk the hedgeknight fr"
 
   - title: "The Well of Ascension"
     author: "Brandon Sanderson"
@@ -45,16 +46,24 @@ books:
     status: "to_read"
     isbn: "9780575089945"
 
-
   - title: "The Knight and The Moth"
     author: "Rachel Gillig"
     status: "to_read"
     isbn: "9780316582704"
-  
+
   - title: "A Clash of Kings"
     author: "George R.R. Martin"
-    status: "to_read"
+    status: "reading"
     isbn: "9781984821157"
+    progress_pages: 120
+    total_pages: 761
+    date_started: "2026-02-01"
+    last_date_read: "2026-02-01"
+    logs:
+      - date: "2026-02-01"
+        start_page: 1
+        end_page: 120
+        text: ""
 
   - title: "The Vampire Lestat"
     author: "Anne Rice"
@@ -71,44 +80,25 @@ books:
         end_page: 119
         text: "alot of blood-sucking, given that we are following lestat for the first time after his trsnformation"
 
-  - title: "A Knight of the Seven Kingdoms"
-    author: "George R.R. Martin"
-    status: "reading"
-    progress_pages: 41
-    total_pages: 368
-    isbn: "9781101965887"
-    date_started: "2026-01-27"
-    last_date_read: "2026-01-27"
-    logs:
-      - date: "2026-01-27"
-        start_page: 1
-        end_page: 41
-        text: "Dunk just sold his horse, its a barer version of the first two episodes of the show"
-      - date: "2026-01-28"
-        start_page: 41
-        end_page: 100
-        text: "Dunk the hedgeknight fr"
-
-    
-
   - title: "The Autobiography of Malcom X"
     author: "Malcom X"
     status: "to_read"
     isbn: "9780345350688"
 
-  - title : "The Counting House"
+  - title: "The Counting House"
     author: "David Dabydeen"
     status: "reading"
-    isbn: "9781608012534"
-    progress_pages: 50
+    isbn: "9781845230159"
+    progress_pages: 100
     total_pages: 288
     date_started: "2026-01-28"
-    last_date_read: "2026-01-28"
+    last_date_read: "2026-02-01"
     logs:
       - date: "2026-01-28"
         start_page: 1
         end_page: 50
-        text: "Hard read given the subject matter, I really like how they do not shy away from the paralells between Rohini's condition after marriage and the existenstential threat of her country,
-         the looming promise of Guyana, and I love how they show the British first trying to seperate the people along racial or religious lines"
-
-
+        text: "Hard read given the subject matter, I really like how they do not shy away from the paralells between Rohini's condition after marriage and the existenstential threat of her country, the looming promise of Guyana, and I love how they show the British first trying to seperate the people along racial or religious lines"
+      - date: "2026-02-01"
+        start_page: 51
+        end_page: 100
+        text: ""
