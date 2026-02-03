@@ -1,5 +1,7 @@
 # Reading tracker & book lists
-# - daily_log: "YYYY-MM-DD" => pages read (contribution-style grid, last 12 weeks)
+# - daily_log: "YYYY-MM-DD" => pages read (contribution-style grid, last 12 weeks).
+#   Generated from books' logs (start_page/end_page). Run scripts/generate_reading_log.py
+#   after editing logs; CI also runs it before each build.
 # - books: status = reading | to_read | completed
 #   Use isbn for auto cover (Open Library), or cover: "https://..." to override.
 #   reading: add progress_pages, total_pages. completed: add rating (1-5), completed_date.

@@ -89,9 +89,6 @@
 <meta name="theme-color" content="#0a0e14">
 <meta name="color-scheme" content="dark">
 
-<!-- Speed up book cover loads (Open Library Covers API) -->
-<link rel="preconnect" href="https://covers.openlibrary.org" crossorigin>
-
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
 
 <!-- end custom head snippets -->
@@ -150,8 +147,8 @@
 
 
 
-<script type="application/json" id="reading-daily-log">{"2026-01-27":60}</script>
-<script type="application/json" id="reading-books-data">[{"title":"How To Be More D&D","author":"Kat Kruger","status":"completed","isbn":"9780762478873","rating":3.5,"completed_date":"2026-01-27"},{"title":"The Well of Ascension","author":"Brandon Sanderson","status":"to_read","isbn":"9781250318572","reread":true},{"title":"The Hero of Ages","author":"Brandon Sanderson","status":"to_read","isbn":"9780575089945"},{"title":"The Knight and The Moth","author":"Rachel Gillig","status":"to_read","isbn":"9780316582704"},{"title":"A Clash of Kings","author":"George R.R. Martin","status":"to_read","isbn":"9781984821157"},{"title":"The Vampire Lestat","author":"Anne Rice","status":"reading","isbn":"9780345313867","progress_pages":119,"total_pages":512,"date_started":"2026-01-10","last_date_read":"2026-01-27","reread":true,"logs":[{"date":"2026-01-27","start_page":101,"end_page":119,"text":"alot of blood-sucking, given that we are following lestat for the first time after his trsnformation"}]},{"title":"A Knight of the Seven Kingdoms","author":"George R.R. Martin","status":"reading","progress_pages":41,"total_pages":368,"isbn":"9781101965887","date_started":"2026-01-27","last_date_read":"2026-01-27","logs":[{"date":"2026-01-27","start_page":1,"end_page":41,"text":"Dunk just sold his horse, its a barer version of the first two episodes of the show"},{"date":"2026-01-28","start_page":41,"end_page":100,"text":"Dunk the hedgeknight fr"}]},{"title":"The Autobiography of Malcom X","author":"Malcom X","status":"to_read","isbn":"9780345350688"},{"title":"The Counting House","author":"David Dabydeen","status":"reading","isbn":"9781608012534","progress_pages":50,"total_pages":288,"date_started":"2026-01-28","last_date_read":"2026-01-28","logs":[{"date":"2026-01-28","start_page":1,"end_page":50,"text":"Hard read given the subject matter, I really like how they do not shy away from the paralells between Rohini's condition after marriage and the existenstential threat of her country, the looming promise of Guyana, and I love how they show the British first trying to seperate the people along racial or religious lines"}]}]</script>
+<script type="application/json" id="reading-daily-log">{"2026-01-10":7,"2026-01-11":7,"2026-01-12":7,"2026-01-13":7,"2026-01-14":7,"2026-01-15":18,"2026-01-16":8,"2026-01-17":8,"2026-01-18":8,"2026-01-19":8,"2026-01-20":9,"2026-01-21":9,"2026-01-22":9,"2026-01-23":9,"2026-01-24":8,"2026-01-26":11}</script>
+<script type="application/json" id="reading-books-data">[{"title":"How To Be More D&D","author":"Kat Kruger","status":"completed","isbn":"9780762478873","rating":3.5,"completed_date":"2026-01-27"},{"title":"The Well of Ascension","author":"Brandon Sanderson","status":"to_read","isbn":"9781250318572","reread":true},{"title":"The Hero of Ages","author":"Brandon Sanderson","status":"to_read","isbn":"9780575089945"},{"title":"The Knight and The Moth","author":"Rachel Gillig","status":"to_read","isbn":"9780316582704"},{"title":"A Clash of Kings","author":"George R.R. Martin","status":"to_read","isbn":"9781984821157"},{"title":"The Vampire Lestat","author":"Anne Rice","status":"reading","isbn":"9780345313867","progress_pages":119,"total_pages":512,"date_started":"2026-01-10","last_date_read":"2026-01-26","reread":true,"logs":[{"date":"2026-01-15","text":"Lestat's origin story is captivating. The transformation scene was intense."}]}]</script>
 
 
 
@@ -193,12 +190,6 @@
               <span class="reading-detail-date-label">Projected finish:</span>
               <span class="reading-detail-date-value" data-date-projected=""></span>
             </div>
-          </div>
-
-          <div class="reading-detail-graph" aria-label="Reading graph">
-            <div class="reading-detail-graph__title">Reading pace</div>
-            <div class="reading-detail-graph__sub">Pages per day from your logged sessions.</div>
-            <div class="reading-detail-graph__wrap" data-reading-graph=""></div>
           </div>
 
           <div class="reading-detail-logs">
@@ -247,7 +238,7 @@
 <article class="reading-card reading-card--clickable" data-book-index="0" role="button" tabindex="0">
   <div class="reading-card__cover-wrap">
     
-      <img src="https://covers.openlibrary.org/b/isbn/9780345313867-M.jpg" alt="Cover: The Vampire Lestat" class="reading-card__cover reading-card__cover-img" loading="eager" decoding="async" fetchpriority="high" onerror="this.style.display='none'; var n=this.nextElementSibling; if(n){ n.style.display='flex'; n.setAttribute('aria-hidden','false'); }" />
+      <img src="https://covers.openlibrary.org/b/isbn/9780345313867-M.jpg" alt="Cover: The Vampire Lestat" class="reading-card__cover reading-card__cover-img" loading="lazy" onerror="this.style.display='none'; var n=this.nextElementSibling; if(n){ n.style.display='flex'; n.setAttribute('aria-hidden','false'); }" />
       <div class="reading-card__cover reading-card__cover--placeholder reading-card__cover-fallback" style="display:none" aria-hidden="true">T</div>
     
   </div>
@@ -265,78 +256,6 @@
           <div class="reading-card__progress-bar" style="width: 23%"></div>
         </div>
         <span class="reading-card__progress-text">p. 119 / 512</span>
-      </div>
-    
-    
-    
-  </div>
-</article>
-
-            
-          
-        
-          
-            
-
-
-
-
-<article class="reading-card reading-card--clickable" data-book-index="1" role="button" tabindex="0">
-  <div class="reading-card__cover-wrap">
-    
-      <img src="https://covers.openlibrary.org/b/isbn/9781101965887-M.jpg" alt="Cover: A Knight of the Seven Kingdoms" class="reading-card__cover reading-card__cover-img" loading="eager" decoding="async" fetchpriority="high" onerror="this.style.display='none'; var n=this.nextElementSibling; if(n){ n.style.display='flex'; n.setAttribute('aria-hidden','false'); }" />
-      <div class="reading-card__cover reading-card__cover--placeholder reading-card__cover-fallback" style="display:none" aria-hidden="true">A</div>
-    
-  </div>
-  <div class="reading-card__body">
-    <div class="reading-card__header">
-      <h3 class="reading-card__title">A Knight of the Seven Kingdoms</h3>
-      
-    </div>
-    <p class="reading-card__author">George R.R. Martin</p>
-    
-      <div class="reading-card__progress">
-        <div class="reading-card__progress-track">
-          <div class="reading-card__progress-bar" style="width: 11%"></div>
-        </div>
-        <span class="reading-card__progress-text">p. 41 / 368</span>
-      </div>
-    
-    
-    
-  </div>
-</article>
-
-            
-          
-        
-          
-        
-          
-            
-
-
-
-
-<article class="reading-card reading-card--clickable" data-book-index="2" role="button" tabindex="0">
-  <div class="reading-card__cover-wrap">
-    
-      <img src="https://covers.openlibrary.org/b/isbn/9781608012534-M.jpg" alt="Cover: The Counting House" class="reading-card__cover reading-card__cover-img" loading="eager" decoding="async" fetchpriority="high" onerror="this.style.display='none'; var n=this.nextElementSibling; if(n){ n.style.display='flex'; n.setAttribute('aria-hidden','false'); }" />
-      <div class="reading-card__cover reading-card__cover--placeholder reading-card__cover-fallback" style="display:none" aria-hidden="true">T</div>
-    
-  </div>
-  <div class="reading-card__body">
-    <div class="reading-card__header">
-      <h3 class="reading-card__title">The Counting House</h3>
-      
-    </div>
-    <p class="reading-card__author">David Dabydeen</p>
-    
-      <div class="reading-card__progress">
-        <div class="reading-card__progress-track">
-          <div class="reading-card__progress-bar" style="width: 17%"></div>
-        </div>
-        <span class="reading-card__progress-text">p. 50 / 288</span>
       </div>
     
     
@@ -382,7 +301,7 @@
 <article class="reading-card reading-card--compact">
   <div class="reading-card__cover-wrap">
     
-      <img src="https://covers.openlibrary.org/b/isbn/9781250318572-M.jpg" alt="Cover: The Well of Ascension" class="reading-card__cover reading-card__cover-img" loading="lazy" decoding="async" onerror="this.style.display='none'; var n=this.nextElementSibling; if(n){ n.style.display='flex'; n.setAttribute('aria-hidden','false'); }" />
+      <img src="https://covers.openlibrary.org/b/isbn/9781250318572-M.jpg" alt="Cover: The Well of Ascension" class="reading-card__cover reading-card__cover-img" loading="lazy" onerror="this.style.display='none'; var n=this.nextElementSibling; if(n){ n.style.display='flex'; n.setAttribute('aria-hidden','false'); }" />
       <div class="reading-card__cover reading-card__cover--placeholder reading-card__cover-fallback" style="display:none" aria-hidden="true">T</div>
     
   </div>
@@ -411,7 +330,7 @@
 <article class="reading-card reading-card--compact">
   <div class="reading-card__cover-wrap">
     
-      <img src="https://covers.openlibrary.org/b/isbn/9780575089945-M.jpg" alt="Cover: The Hero of Ages" class="reading-card__cover reading-card__cover-img" loading="lazy" decoding="async" onerror="this.style.display='none'; var n=this.nextElementSibling; if(n){ n.style.display='flex'; n.setAttribute('aria-hidden','false'); }" />
+      <img src="https://covers.openlibrary.org/b/isbn/9780575089945-M.jpg" alt="Cover: The Hero of Ages" class="reading-card__cover reading-card__cover-img" loading="lazy" onerror="this.style.display='none'; var n=this.nextElementSibling; if(n){ n.style.display='flex'; n.setAttribute('aria-hidden','false'); }" />
       <div class="reading-card__cover reading-card__cover--placeholder reading-card__cover-fallback" style="display:none" aria-hidden="true">T</div>
     
   </div>
@@ -438,7 +357,7 @@
 <article class="reading-card reading-card--compact">
   <div class="reading-card__cover-wrap">
     
-      <img src="https://covers.openlibrary.org/b/isbn/9780316582704-M.jpg" alt="Cover: The Knight and The Moth" class="reading-card__cover reading-card__cover-img" loading="lazy" decoding="async" onerror="this.style.display='none'; var n=this.nextElementSibling; if(n){ n.style.display='flex'; n.setAttribute('aria-hidden','false'); }" />
+      <img src="https://covers.openlibrary.org/b/isbn/9780316582704-M.jpg" alt="Cover: The Knight and The Moth" class="reading-card__cover reading-card__cover-img" loading="lazy" onerror="this.style.display='none'; var n=this.nextElementSibling; if(n){ n.style.display='flex'; n.setAttribute('aria-hidden','false'); }" />
       <div class="reading-card__cover reading-card__cover--placeholder reading-card__cover-fallback" style="display:none" aria-hidden="true">T</div>
     
   </div>
@@ -465,7 +384,7 @@
 <article class="reading-card reading-card--compact">
   <div class="reading-card__cover-wrap">
     
-      <img src="https://covers.openlibrary.org/b/isbn/9781984821157-M.jpg" alt="Cover: A Clash of Kings" class="reading-card__cover reading-card__cover-img" loading="lazy" decoding="async" onerror="this.style.display='none'; var n=this.nextElementSibling; if(n){ n.style.display='flex'; n.setAttribute('aria-hidden','false'); }" />
+      <img src="https://covers.openlibrary.org/b/isbn/9781984821157-M.jpg" alt="Cover: A Clash of Kings" class="reading-card__cover reading-card__cover-img" loading="lazy" onerror="this.style.display='none'; var n=this.nextElementSibling; if(n){ n.style.display='flex'; n.setAttribute('aria-hidden','false'); }" />
       <div class="reading-card__cover reading-card__cover--placeholder reading-card__cover-fallback" style="display:none" aria-hidden="true">A</div>
     
   </div>
@@ -475,37 +394,6 @@
       
     </div>
     <p class="reading-card__author">George R.R. Martin</p>
-    
-    
-    
-  </div>
-</article>
-
-        
-      
-        
-      
-        
-      
-        
-          
-
-
-
-
-<article class="reading-card reading-card--compact">
-  <div class="reading-card__cover-wrap">
-    
-      <img src="https://covers.openlibrary.org/b/isbn/9780345350688-M.jpg" alt="Cover: The Autobiography of Malcom X" class="reading-card__cover reading-card__cover-img" loading="lazy" decoding="async" onerror="this.style.display='none'; var n=this.nextElementSibling; if(n){ n.style.display='flex'; n.setAttribute('aria-hidden','false'); }" />
-      <div class="reading-card__cover reading-card__cover--placeholder reading-card__cover-fallback" style="display:none" aria-hidden="true">T</div>
-    
-  </div>
-  <div class="reading-card__body">
-    <div class="reading-card__header">
-      <h3 class="reading-card__title">The Autobiography of Malcom X</h3>
-      
-    </div>
-    <p class="reading-card__author">Malcom X</p>
     
     
     
@@ -534,7 +422,7 @@
 <article class="reading-card">
   <div class="reading-card__cover-wrap">
     
-      <img src="https://covers.openlibrary.org/b/isbn/9780762478873-M.jpg" alt="Cover: How To Be More D&amp;D" class="reading-card__cover reading-card__cover-img" loading="lazy" decoding="async" onerror="this.style.display='none'; var n=this.nextElementSibling; if(n){ n.style.display='flex'; n.setAttribute('aria-hidden','false'); }" />
+      <img src="https://covers.openlibrary.org/b/isbn/9780762478873-M.jpg" alt="Cover: How To Be More D&amp;D" class="reading-card__cover reading-card__cover-img" loading="lazy" onerror="this.style.display='none'; var n=this.nextElementSibling; if(n){ n.style.display='flex'; n.setAttribute('aria-hidden','false'); }" />
       <div class="reading-card__cover reading-card__cover--placeholder reading-card__cover-fallback" style="display:none" aria-hidden="true">H</div>
     
   </div>
@@ -568,12 +456,6 @@
   </div>
 </article>
 
-        
-      
-        
-      
-        
-      
         
       
         
@@ -702,156 +584,8 @@
 
   function formatDate(d) {
     if (!d) return '—';
-    if (typeof d === 'string') d = parseYMD(d) || new Date(d);
+    if (typeof d === 'string') d = new Date(d);
     return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-  }
-
-  // Parse "YYYY-MM-DD" as a *local* date (avoids UTC->local off-by-one).
-  function parseYMD(s) {
-    if (!s || typeof s !== 'string') return null;
-    var m = s.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-    if (!m) return null;
-    var y = parseInt(m[1], 10);
-    var mo = parseInt(m[2], 10) - 1;
-    var da = parseInt(m[3], 10);
-    var dt = new Date(y, mo, da);
-    dt.setHours(0, 0, 0, 0);
-    return dt;
-  }
-
-  function safeParseInt(x) {
-    var n = parseInt(x, 10);
-    return isNaN(n) ? null : n;
-  }
-
-  function pagesFromLogEntry(le) {
-    if (!le) return 0;
-    var sp = safeParseInt(le.start_page);
-    var ep = safeParseInt(le.end_page);
-    if (sp == null || ep == null) return 0;
-    if (ep < sp) return 0;
-    return (ep - sp + 1);
-  }
-
-  function normalizeLogs(logs) {
-    var out = (logs || []).filter(function(le) { return le && le.date; });
-    out.sort(function(a, b) {
-      var da = parseYMD(a.date) || new Date(a.date);
-      var db = parseYMD(b.date) || new Date(b.date);
-      return da - db;
-    });
-    return out;
-  }
-
-  function renderGraph(book) {
-    var wrap = document.querySelector('[data-reading-graph]');
-    if (!wrap) return;
-    wrap.innerHTML = '';
-
-    var logs = normalizeLogs(book.logs);
-    if (logs.length === 0) {
-      wrap.innerHTML = '<div class="reading-detail-graph__empty">No logged page ranges yet.</div>';
-      return;
-    }
-
-    // Aggregate pages per day from explicit logs.
-    var byDay = {};
-    logs.forEach(function(le) {
-      var pages = pagesFromLogEntry(le);
-      if (pages <= 0) return;
-      byDay[le.date] = (byDay[le.date] || 0) + pages;
-    });
-
-    // Build a compact last-14-days bar chart ending at last log date.
-    var end = parseYMD(logs[logs.length - 1].date) || new Date(logs[logs.length - 1].date);
-    end.setHours(0, 0, 0, 0);
-    var DAYS = 14;
-    var points = [];
-    var max = 1;
-    for (var i = DAYS - 1; i >= 0; i--) {
-      var d = new Date(end);
-      d.setDate(d.getDate() - i);
-      var key = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
-      var v = byDay[key] || 0;
-      if (v > max) max = v;
-      points.push({ key: key, value: v });
-    }
-
-    var w = 520;
-    var h = 58;
-    var pad = 6;
-    var barGap = 4;
-    var barW = Math.floor((w - pad * 2 - barGap * (DAYS - 1)) / DAYS);
-
-    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
-    svg.setAttribute('class', 'reading-detail-graph__svg');
-
-    points.forEach(function(p, idx) {
-      var bh = p.value <= 0 ? 2 : Math.max(4, Math.round((p.value / max) * (h - pad * 2 - 14)));
-      var x = pad + idx * (barW + barGap);
-      var y = h - pad - bh;
-
-      var rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-      rect.setAttribute('x', String(x));
-      rect.setAttribute('y', String(y));
-      rect.setAttribute('width', String(barW));
-      rect.setAttribute('height', String(bh));
-      rect.setAttribute('rx', '3');
-      rect.setAttribute('class', 'reading-detail-graph__bar' + (p.value > 0 ? ' is-active' : ''));
-      rect.setAttribute('data-date', p.key);
-      rect.setAttribute('data-pages', String(p.value));
-
-      // SVG tooltips work reliably via a <title> child (not a title attribute).
-      var title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
-      title.textContent = p.key + ': ' + p.value + ' page' + (p.value === 1 ? '' : 's');
-      rect.appendChild(title);
-
-      svg.appendChild(rect);
-    });
-
-    wrap.appendChild(svg);
-  }
-
-  function renderLogsList(book) {
-    var logsList = document.querySelector('[data-logs-list]');
-    if (!logsList) return;
-    logsList.innerHTML = '';
-
-    var logs = normalizeLogs(book.logs);
-    if (logs.length === 0) {
-      logsList.innerHTML = '<p class="reading-detail-logs-empty">No notes yet. Add your first note below.</p>';
-      return;
-    }
-
-    logs.forEach(function(log) {
-      var item = document.createElement('div');
-      item.className = 'reading-detail-log-item';
-
-      var date = document.createElement('div');
-      date.className = 'reading-detail-log-date';
-      date.textContent = formatDate(log.date);
-
-      var rangePages = pagesFromLogEntry(log);
-      var rangeEl = null;
-      if (rangePages > 0) {
-        var sp = safeParseInt(log.start_page);
-        var ep = safeParseInt(log.end_page);
-        rangeEl = document.createElement('div');
-        rangeEl.className = 'reading-detail-log-range';
-        rangeEl.textContent = 'pp. ' + sp + '–' + ep + ' (' + rangePages + ' pages)';
-      }
-
-      var text = document.createElement('div');
-      text.className = 'reading-detail-log-text';
-      text.textContent = log.text || '';
-
-      item.appendChild(date);
-      if (rangeEl) item.appendChild(rangeEl);
-      if (text.textContent) item.appendChild(text);
-
-      logsList.appendChild(item);
-    });
   }
 
   function openModal(index) {
@@ -912,8 +646,25 @@
       showPlaceholder();
     }
 
-    renderGraph(book);
-    renderLogsList(book);
+    var logsList = document.querySelector('[data-logs-list]');
+    logsList.innerHTML = '';
+    if (book.logs && book.logs.length > 0) {
+      book.logs.forEach(function(log) {
+        var item = document.createElement('div');
+        item.className = 'reading-detail-log-item';
+        var date = document.createElement('div');
+        date.className = 'reading-detail-log-date';
+        date.textContent = formatDate(log.date);
+        var text = document.createElement('div');
+        text.className = 'reading-detail-log-text';
+        text.textContent = log.text;
+        item.appendChild(date);
+        item.appendChild(text);
+        logsList.appendChild(item);
+      });
+    } else {
+      logsList.innerHTML = '<p class="reading-detail-logs-empty">No notes yet. Add your first note below.</p>';
+    }
 
     modal.setAttribute('aria-hidden', 'false');
     modal.classList.add('is-open');
@@ -955,14 +706,26 @@
     var readingBooks = getReadingBooks();
     var book = readingBooks[currentBookIndex];
     if (!book.logs) book.logs = [];
-    var newLog = {
+    book.logs.push({
       date: new Date().toISOString().split('T')[0],
       text: text
-    };
-    book.logs.push(newLog);
+    });
 
-    renderGraph(book);
-    renderLogsList(book);
+    var logsList = document.querySelector('[data-logs-list]');
+    if (logsList.querySelector('.reading-detail-logs-empty')) {
+      logsList.innerHTML = '';
+    }
+    var item = document.createElement('div');
+    item.className = 'reading-detail-log-item';
+    var date = document.createElement('div');
+    date.className = 'reading-detail-log-date';
+    date.textContent = formatDate(new Date());
+    var textEl = document.createElement('div');
+    textEl.className = 'reading-detail-log-text';
+    textEl.textContent = text;
+    item.appendChild(date);
+    item.appendChild(textEl);
+    logsList.appendChild(item);
 
     input.value = '';
     
