@@ -19,6 +19,8 @@ skills_list:
 projects:
 - title: "LLM Text Attribution & Temporal Style Tracker"
   description: "LLM-based text attribution system using prompt engineering and RAG to assess authenticity across writing styles. Tracks version history, style drift detection, and timeline visualizations of authenticity scores."
+  permalink: "/cs-projects/LLM-Text-Attribution/"
+  overview: "An LLM-based system that uses prompt engineering and RAG (Retrieval-Augmented Generation) to assess text authenticity across different writing styles. Includes version history tracking, style drift detection, and timeline visualizations of authenticity scores over time."
   skills:
     - Python
     - OpenAI API
@@ -29,6 +31,8 @@ projects:
 
 - title: "Survivor Simulator"
   description: "Survivor game simulator using real True Dork Times data. Flask web app with tribal councils, alliances, challenges, and ML models (Perceptron, MLP) for outcome prediction."
+  permalink: "/cs-projects/SurvivorSimulator/"
+  overview: "A full-stack simulation of the Survivor TV show built with Flask. Uses scraped data from True Dork Times for contestants, seasons, and tribal council outcomes. Features include alliance tracking, challenge simulations, and ML models (Perceptron and Multi-Layer Perceptron) to predict elimination outcomes. The web app lets users run seasons, view tribal councils, and explore the data interactively."
   skills:
     - Python
     - Flask
@@ -39,6 +43,8 @@ projects:
 
 - title: "Movie Transcripts Lexical Analysis"
   description: "Lexical algorithms and research using the Movie Transcripts 59k Kaggle dataset. NLTK-based exploration, statistics, and analysis of movie dialogue."
+  permalink: "/cs-projects/Movie-Transcripts-Lexical-Analysis/"
+  overview: "Research project analyzing the Movie Transcripts 59k Kaggle dataset. Uses NLTK for lexical exploration, statistics, and analysis of movie dialogue. Explores patterns in word usage, character speech, and genre differences across thousands of film scripts."
   skills:
     - Python
     - NLTK
@@ -49,6 +55,8 @@ projects:
 
 - title: "Comic Universe Graph"
   description: "Knowledge graph of comic characters, series, and crossovers. Azure Cosmos DB (Gremlin), Azure Functions API, and interactive frontend (Cytoscape.js / D3) for path finding and timeline exploration."
+  permalink: "/cs-projects/Comic-Universe-Graph/"
+  overview: "A knowledge graph built with Azure Cosmos DB (Gremlin API) modeling comic characters, series, and crossovers. Includes an Azure Functions backend API and an interactive frontend using Cytoscape.js and D3 for path finding between characters and timeline exploration across the comic universe."
   skills:
     - Python
     - Azure Cosmos DB

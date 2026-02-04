@@ -458,5 +458,16 @@
       closeModal();
     }
   });
+
+  // Open modal from URL ?book=N (e.g. from homepage reading carousel)
+  var params = new URLSearchParams(window.location.search);
+  var bookParam = params.get('book');
+  if (bookParam !== null) {
+    var idx = parseInt(bookParam, 10);
+    if (!isNaN(idx) && idx >= 0) {
+      var readingBooks = getReadingBooks();
+      if (idx < readingBooks.length) openModal(idx);
+    }
+  }
 })();
 </script>

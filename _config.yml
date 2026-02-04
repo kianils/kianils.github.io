@@ -183,6 +183,9 @@ collections:
   portfolio:
     output: true
     permalink: /:collection/:path/
+  cs_projects:
+    output: true
+    permalink: /cs-projects/:path/
 
 
 # Defaults
@@ -209,6 +212,14 @@ defaults:
   - scope:
       path: "_portfolio"
       type: portfolio
+    values:
+      layout: single
+      author_profile: false
+      share: true
+  # _cs_projects
+  - scope:
+      path: "_cs_projects"
+      type: cs_projects
     values:
       layout: single
       author_profile: false

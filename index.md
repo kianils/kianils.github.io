@@ -15,4 +15,4 @@ excerpt: "Senior at Vanderbilt University studying Computer Science with minors 
 
 {% include fab_carousel.html %}
 
-
+{% include reading_carousel.html %}

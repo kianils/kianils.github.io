@@ -1,7 +1,5 @@
 # Reading tracker & book lists
-# - daily_log: "YYYY-MM-DD" => pages read (contribution-style grid, last 12 weeks).
-#   Generated from books' logs (start_page/end_page). Run scripts/generate_reading_log.py
-#   after editing logs; CI also runs it before each build.
+# - daily_log: "YYYY-MM-DD" => pages read (contribution-style grid, last 12 weeks)
 # - books: status = reading | to_read | completed
 #   Use isbn for auto cover (Open Library), or cover: "https://..." to override.
 #   reading: add progress_pages, total_pages. completed: add rating (1-5), completed_date.
@@ -11,6 +9,7 @@ daily_log:
   "2026-01-28": 110
   "2026-01-31": 45
   "2026-02-01": 130
+  "2026-02-03": 26
 
 books:
   - title: "How To Be More D&D"
@@ -24,7 +23,7 @@ books:
     author: "George R.R. Martin"
     status: "completed"
     isbn: "9781932796063"
-    total_pages: 368
+    total_pages: 172
     rating: 4
     completed_date: "2026-01-31"
     logs:
@@ -34,7 +33,7 @@ books:
         text: "Dunk just sold his horse, its a barer version of the first two episodes of the show"
       - date: "2026-01-28"
         start_page: 41
-        end_page: 100
+        end_page: 172
         text: "Dunk the hedgeknight fr"
 
   - title: "The Well of Ascension"
@@ -57,15 +56,19 @@ books:
     author: "George R.R. Martin"
     status: "reading"
     isbn: "9781984821157"
-    progress_pages: 120
+    progress_pages: 146
     total_pages: 761
     date_started: "2026-02-01"
-    last_date_read: "2026-02-01"
+    last_date_read: "2026-02-03"
     logs:
       - date: "2026-02-01"
         start_page: 1
         end_page: 120
         text: ""
+      - date: "2026-02-03"
+        start_page: 121
+        end_page: 146
+        text: "arya chapter, rob just sent theon to treat with his family"
 
   - title: "The Vampire Lestat"
     author: "Anne Rice"

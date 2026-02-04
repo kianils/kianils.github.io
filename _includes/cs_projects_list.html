@@ -10,6 +10,8 @@
   {% assign skills_list = "" | split: "" %}
 {% endif %}
 
+{% include cs_project_detail.html %}
+
 <div class="cs-projects">
   {% if projects.size > 0 and skills_list.size > 0 %}
   <div class="cs-projects__skills-bar">
@@ -25,7 +27,23 @@
 
   <div class="cs-projects__grid" data-cs-grid>
     {% for p in projects %}
-    <article class="cs-projects__card" data-skills="{% if p.skills %}{% for s in p.skills %}{{ s | slugify }} {% endfor %}{% endif %}">
+    {% if p.permalink %}
+    <a href="{{ p.permalink | relative_url }}" class="cs-projects__card cs-projects__card--link" data-skills="{% if p.skills %}{% for s in p.skills %}{{ s | slugify }} {% endfor %}{% endif %}">
+      <h3 class="cs-projects__title">{{ p.title }}</h3>
+      {% if p.description != blank %}
+      <p class="cs-projects__desc">{{ p.description | truncate: 140 }}</p>
+      {% endif %}
+      {% if p.skills and p.skills.size > 0 %}
+      <div class="cs-projects__tags">
+        {% for s in p.skills %}
+        <span class="cs-projects__tag">{{ s }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <span class="cs-projects__link btn btn--small btn--primary">View Project</span>
+    </a>
+    {% else %}
+    <article class="cs-projects__card cs-projects__card--clickable" data-skills="{% if p.skills %}{% for s in p.skills %}{{ s | slugify }} {% endfor %}{% endif %}" data-cs-project="{{ p | jsonify | strip_newlines | escape }}" role="button" tabindex="0">
       <h3 class="cs-projects__title">{{ p.title }}</h3>
       {% if p.description != blank %}
       <p class="cs-projects__desc">{{ p.description | truncate: 140 }}</p>
@@ -38,9 +56,10 @@
       </div>
       {% endif %}
       {% if p.url %}
-      <a href="{{ p.url }}" class="cs-projects__link btn btn--small btn--primary" target="_blank" rel="noopener">{{ p.repo_label | default: "View" }}</a>
+      <a href="{{ p.url }}" class="cs-projects__link btn btn--small btn--primary" target="_blank" rel="noopener" onclick="event.stopPropagation()">{{ p.repo_label | default: "View" }}</a>
       {% endif %}
     </article>
+    {% endif %}
     {% endfor %}
   </div>
 
@@ -53,20 +72,85 @@
 (function() {
   var grid = document.querySelector('[data-cs-grid]');
   if (!grid) return;
-  var cards = grid.querySelectorAll('.cs-projects__card');
+  var cards = grid.querySelectorAll('.cs-projects__card, .cs-projects__card--link');
   var btns = document.querySelectorAll('.cs-projects__skill-btn');
-  if (!btns.length || !cards.length) return;
-  btns.forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var skill = btn.dataset.skill;
-      btns.forEach(function(b) { b.classList.remove('is-active'); });
-      btn.classList.add('is-active');
-      cards.forEach(function(card) {
-        var skills = (card.dataset.skills || '').trim().split(/\s+/);
-        var show = skill === '*' || skills.indexOf(skill) !== -1;
-        card.style.display = show ? '' : 'none';
-      });
+  var modal = document.getElementById('cs-project-modal');
+  var titleEl = modal && modal.querySelector('[data-cs-title]');
+  var descEl = modal && modal.querySelector('[data-cs-desc]');
+  var tagsEl = modal && modal.querySelector('[data-cs-tags]');
+  var linkEl = modal && modal.querySelector('[data-cs-link]');
+
+  function openModal(project) {
+    if (!modal || !project) return;
+    if (titleEl) titleEl.textContent = project.title || '';
+    if (descEl) descEl.textContent = (project.overview || project.description || '').trim();
+    if (tagsEl) {
+      tagsEl.innerHTML = '';
+      if (project.skills && project.skills.length) {
+        project.skills.forEach(function(s) {
+          var span = document.createElement('span');
+          span.className = 'cs-projects__tag';
+          span.textContent = s;
+          tagsEl.appendChild(span);
+        });
+      }
+    }
+    if (linkEl) {
+      linkEl.href = project.url || '#';
+      linkEl.textContent = project.repo_label || 'View on GitHub';
+      linkEl.style.display = project.url ? '' : 'none';
+    }
+    modal.setAttribute('aria-hidden', 'false');
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.setAttribute('aria-hidden', 'true');
+    modal.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  cards.forEach(function(card) {
+    if (!card.classList.contains('cs-projects__card--clickable')) return;
+    var json = card.dataset.csProject;
+    if (!json) return;
+    try {
+      var project = JSON.parse(json);
+    } catch (e) { return; }
+    card.addEventListener('click', function(e) {
+      if (e.target.closest('a')) return;
+      openModal(project);
+    });
+    card.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openModal(project);
+      }
     });
   });
+
+  document.querySelectorAll('[data-cs-close-modal]').forEach(function(btn) {
+    btn.addEventListener('click', closeModal);
+  });
+  modal && modal.addEventListener('click', function(e) {
+    if (e.target === modal || e.target.classList.contains('cs-project-modal__overlay')) closeModal();
+  });
+
+  if (btns.length && cards.length) {
+    btns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var skill = btn.dataset.skill;
+        btns.forEach(function(b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        cards.forEach(function(card) {
+          var skills = (card.dataset.skills || '').trim().split(/\s+/);
+          var show = skill === '*' || skills.indexOf(skill) !== -1;
+          card.style.display = show ? '' : 'none';
+        });
+      });
+    });
+  }
 })();
 </script>

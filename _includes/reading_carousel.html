@@ -1,0 +1,87 @@
+{% assign data = site.data.reading %}
+{% if data.books %}
+  {% assign reading_books = data.books | where: "status", "reading" %}
+{% else %}
+  {% assign reading_books = "" | split: "" %}
+{% endif %}
+
+{% if reading_books.size > 0 %}
+<section class="reading-carousel-section" aria-label="Currently reading">
+  <h2 class="reading-carousel__title">Currently Reading</h2>
+  <div class="reading-carousel" data-reading-carousel>
+    <button type="button" class="reading-carousel__btn reading-carousel__btn--prev" aria-label="Previous" data-reading-prev>‹</button>
+    <div class="reading-carousel__track-wrapper">
+      <div class="reading-carousel__track" data-reading-track>
+        {% assign reading_idx = 0 %}
+        {% for b in reading_books %}
+          {% if b.isbn %}
+            {% assign img_src = 'https://covers.openlibrary.org/b/isbn/' | append: b.isbn | strip | append: '-M.jpg' %}
+          {% elsif b.cover %}
+            {% assign img_src = b.cover | strip %}
+          {% else %}
+            {% assign img_src = '' %}
+          {% endif %}
+        <div class="reading-carousel__slide" data-reading-slide>
+          <a href="{{ '/reading/' | relative_url }}?book={{ reading_idx }}" class="reading-carousel__card">
+            <div class="reading-carousel__cover">
+              {% if img_src != blank %}
+                <img src="{{ img_src }}" alt="Cover: {{ b.title }}" loading="lazy" decoding="async"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="reading-carousel__placeholder" style="display:none">{{ b.title | slice: 0 }}</div>
+              {% else %}
+                <div class="reading-carousel__placeholder">{{ b.title | slice: 0 }}</div>
+              {% endif %}
+            </div>
+            <div class="reading-carousel__body">
+              <h3 class="reading-carousel__heading">{{ b.title }}</h3>
+              <p class="reading-carousel__author">{{ b.author }}</p>
+              {% if b.progress_pages and b.total_pages %}
+                <div class="reading-carousel__progress">
+                  <div class="reading-carousel__progress-bar" style="width: {{ b.progress_pages | times: 100 | divided_by: b.total_pages }}%"></div>
+                </div>
+                <span class="reading-carousel__pages">p. {{ b.progress_pages }} / {{ b.total_pages }}</span>
+              {% endif %}
+            </div>
+          </a>
+        </div>
+        {% assign reading_idx = reading_idx | plus: 1 %}
+        {% endfor %}
+      </div>
+    </div>
+    <button type="button" class="reading-carousel__btn reading-carousel__btn--next" aria-label="Next" data-reading-next>›</button>
+  </div>
+  <p class="reading-carousel__all"><a href="{{ '/reading/' | relative_url }}">View reading list & tracker →</a></p>
+</section>
+
+<script>
+(function() {
+  var carousel = document.querySelector('[data-reading-carousel]');
+  if (!carousel) return;
+  var track = carousel.querySelector('[data-reading-track]');
+  var prev = carousel.querySelector('[data-reading-prev]');
+  var next = carousel.querySelector('[data-reading-next]');
+  var slides = carousel.querySelectorAll('[data-reading-slide]');
+  var n = slides.length;
+  if (n === 0) return;
+
+  function slideWidth() { return slides[0] ? slides[0].offsetWidth : 0; }
+
+  function goTo(idx) {
+    idx = Math.max(0, Math.min(idx, n - 1));
+    var left = slides[idx] ? slides[idx].offsetLeft : 0;
+    track.scrollTo({ left: left, behavior: 'smooth' });
+  }
+
+  prev.addEventListener('click', function() {
+    var w = slideWidth();
+    var idx = w > 0 ? Math.floor(track.scrollLeft / w) : 0;
+    goTo(idx - 1);
+  });
+  next.addEventListener('click', function() {
+    var w = slideWidth();
+    var idx = w > 0 ? Math.floor(track.scrollLeft / w) : 0;
+    goTo(idx + 1);
+  });
+})();
+</script>
+{% endif %}
