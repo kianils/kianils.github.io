@@ -10,6 +10,8 @@ daily_log:
   "2026-01-31": 45
   "2026-02-01": 130
   "2026-02-03": 26
+  "2026-02-04": 100
+  "2026-02-05": 10
 
 books:
   - title: "How To Be More D&D"
@@ -56,10 +58,10 @@ books:
     author: "George R.R. Martin"
     status: "reading"
     isbn: "9781984821157"
-    progress_pages: 146
+    progress_pages: 156
     total_pages: 761
     date_started: "2026-02-01"
-    last_date_read: "2026-02-03"
+    last_date_read: "2026-02-05"
     logs:
       - date: "2026-02-01"
         start_page: 1
@@ -69,6 +71,10 @@ books:
         start_page: 121
         end_page: 146
         text: "arya chapter, rob just sent theon to treat with his family"
+      - date: "2026-02-05"
+        start_page: 147
+        end_page: 156
+        text: ""
 
   - title: "The Vampire Lestat"
     author: "Anne Rice"
@@ -97,7 +103,7 @@ books:
     progress_pages: 100
     total_pages: 288
     date_started: "2026-01-28"
-    last_date_read: "2026-02-01"
+    last_date_read: "2026-02-04"
     logs:
       - date: "2026-01-28"
         start_page: 1
@@ -107,3 +113,7 @@ books:
         start_page: 51
         end_page: 100
         text: ""
+      - date: "2026-02-04"
+        start_page: 1
+        end_page: 100
+        text: "re-read"
