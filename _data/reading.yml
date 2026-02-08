@@ -59,7 +59,7 @@ books:
     author: "George R.R. Martin"
     status: "reading"
     isbn: "9781984821157"
-    progress_pages: 156
+    progress_pages: 150
     total_pages: 761
     date_started: "2026-02-01"
     last_date_read: "2026-02-05"
@@ -74,7 +74,7 @@ books:
         text: "arya chapter, rob just sent theon to treat with his family"
       - date: "2026-02-05"
         start_page: 147
-        end_page: 156
+        end_page: 150
         text: ""
 
   - title: "The Vampire Lestat"
