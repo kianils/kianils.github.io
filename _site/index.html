@@ -91,6 +91,9 @@
 <meta name="theme-color" content="#0a0e14">
 <meta name="color-scheme" content="dark">
 
+<!-- Speed up book cover loads (Open Library Covers API) -->
+<link rel="preconnect" href="https://covers.openlibrary.org" crossorigin>
+
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
 
 <!-- end custom head snippets -->
@@ -174,9 +177,11 @@
       
         <p>
         
-          <a href="/portfolio/" class="btn btn--light-outline btn--large">Digital Fabrication & CHBE</a>
+          <a href="/portfolio/" class="btn btn--light-outline btn--large">Digital Fabrication</a>
         
           <a href="/cs-projects/" class="btn btn--light-outline btn--large">CS Projects</a>
+        
+          <a href="/reading/" class="btn btn--light-outline btn--large">Reading</a>
         
       
     </div>
@@ -194,7 +199,24 @@
     
 
     <section class="page__content" itemprop="text">
-      
+      <section class="follow-me-section" aria-label="Follow me">
+  <h2 class="follow-me__title">Follow Me</h2>
+  <div class="follow-me__links">
+    <a href="https://github.com/kianils" class="follow-me__link follow-me__link--github" target="_blank" rel="noopener" aria-label="GitHub">
+      <svg class="follow-me__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+      </svg>
+      <span class="follow-me__label">GitHub</span>
+    </a>
+    <a href="https://www.linkedin.com/in/lyla-kiani/" class="follow-me__link follow-me__link--linkedin" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <svg class="follow-me__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+      </svg>
+      <span class="follow-me__label">LinkedIn</span>
+    </a>
+  </div>
+</section>
+
 <section class="fab-carousel-section" aria-label="Recent projects">
   <h2 class="fab-carousel__title">Recent Projects</h2>
   <div class="fab-carousel" data-carousel="">
@@ -298,6 +320,268 @@
   track.addEventListener('scroll', function() {
     clearTimeout(track._scrollT);
     track._scrollT = setTimeout(updateDotsFromScroll, 80);
+  });
+})();
+</script>
+
+<section class="cs-carousel-section" aria-label="CS projects">
+  <h2 class="cs-carousel__title">CS Projects</h2>
+  <div class="cs-carousel" data-cs-carousel="">
+    <button type="button" class="cs-carousel__btn cs-carousel__btn--prev" aria-label="Previous" data-cs-prev="">‹</button>
+    <div class="cs-carousel__track-wrapper">
+      <div class="cs-carousel__track" data-cs-track="">
+        
+        <div class="cs-carousel__slide" data-cs-slide="">
+          <div class="cs-carousel__card">
+            <div class="cs-carousel__body">
+              <h3 class="cs-carousel__heading">LLM Text Attribution &amp; Temporal Style Tracker</h3>
+              <p class="cs-carousel__excerpt">LLM-based text attribution system using prompt engineering and RAG to assess authenticity across writing styles. Trac...</p>
+              
+              <div class="cs-carousel__tags">
+                
+                <span class="cs-carousel__tag">Python</span>
+                
+                <span class="cs-carousel__tag">OpenAI API</span>
+                
+                <span class="cs-carousel__tag">RAG</span>
+                
+                <span class="cs-carousel__tag">NLP</span>
+                
+              </div>
+              
+              
+              <a href="/cs-projects/LLM-Text-Attribution/" class="btn btn--primary btn--small">View Project</a>
+              
+            </div>
+          </div>
+        </div>
+        
+        <div class="cs-carousel__slide" data-cs-slide="">
+          <div class="cs-carousel__card">
+            <div class="cs-carousel__body">
+              <h3 class="cs-carousel__heading">Survivor Simulator</h3>
+              <p class="cs-carousel__excerpt">Survivor game simulator using real True Dork Times data. Flask web app with tribal councils, alliances, challenges, a...</p>
+              
+              <div class="cs-carousel__tags">
+                
+                <span class="cs-carousel__tag">Python</span>
+                
+                <span class="cs-carousel__tag">Flask</span>
+                
+                <span class="cs-carousel__tag">Machine Learning</span>
+                
+                <span class="cs-carousel__tag">Pandas</span>
+                
+              </div>
+              
+              
+              <a href="/cs-projects/SurvivorSimulator/" class="btn btn--primary btn--small">View Project</a>
+              
+            </div>
+          </div>
+        </div>
+        
+        <div class="cs-carousel__slide" data-cs-slide="">
+          <div class="cs-carousel__card">
+            <div class="cs-carousel__body">
+              <h3 class="cs-carousel__heading">Movie Transcripts Lexical Analysis</h3>
+              <p class="cs-carousel__excerpt">Lexical algorithms and research using the Movie Transcripts 59k Kaggle dataset. NLTK-based exploration, statistics, a...</p>
+              
+              <div class="cs-carousel__tags">
+                
+                <span class="cs-carousel__tag">Python</span>
+                
+                <span class="cs-carousel__tag">NLTK</span>
+                
+                <span class="cs-carousel__tag">NLP</span>
+                
+                <span class="cs-carousel__tag">Kaggle</span>
+                
+              </div>
+              
+              
+              <a href="/cs-projects/Movie-Transcripts-Lexical-Analysis/" class="btn btn--primary btn--small">View Project</a>
+              
+            </div>
+          </div>
+        </div>
+        
+        <div class="cs-carousel__slide" data-cs-slide="">
+          <div class="cs-carousel__card">
+            <div class="cs-carousel__body">
+              <h3 class="cs-carousel__heading">Comic Universe Graph</h3>
+              <p class="cs-carousel__excerpt">Knowledge graph of comic characters, series, and crossovers. Azure Cosmos DB (Gremlin), Azure Functions API, and inte...</p>
+              
+              <div class="cs-carousel__tags">
+                
+                <span class="cs-carousel__tag">Python</span>
+                
+                <span class="cs-carousel__tag">Azure Cosmos DB</span>
+                
+                <span class="cs-carousel__tag">Azure Functions</span>
+                
+                <span class="cs-carousel__tag">JavaScript</span>
+                
+              </div>
+              
+              
+              <a href="/cs-projects/Comic-Universe-Graph/" class="btn btn--primary btn--small">View Project</a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <button type="button" class="cs-carousel__btn cs-carousel__btn--next" aria-label="Next" data-cs-next="">›</button>
+  </div>
+  <p class="cs-carousel__all"><a href="/cs-projects/">View all CS projects →</a></p>
+</section>
+
+<script>
+(function() {
+  var carousel = document.querySelector('[data-cs-carousel]');
+  if (!carousel) return;
+  var track = carousel.querySelector('[data-cs-track]');
+  var prev = carousel.querySelector('[data-cs-prev]');
+  var next = carousel.querySelector('[data-cs-next]');
+  var slides = carousel.querySelectorAll('[data-cs-slide]');
+  var n = slides.length;
+  if (n === 0) return;
+
+  function slideWidth() { return slides[0] ? slides[0].offsetWidth : track.offsetWidth; }
+
+  function goTo(idx) {
+    idx = Math.max(0, Math.min(idx, n - 1));
+    var left = slides[idx] ? slides[idx].offsetLeft : 0;
+    track.scrollTo({ left: left, behavior: 'smooth' });
+  }
+
+  prev.addEventListener('click', function() {
+    var w = slideWidth();
+    var idx = w > 0 ? Math.floor(track.scrollLeft / w) : 0;
+    goTo(idx - 1);
+  });
+  next.addEventListener('click', function() {
+    var w = slideWidth();
+    var idx = w > 0 ? Math.floor(track.scrollLeft / w) : 0;
+    goTo(idx + 1);
+  });
+})();
+</script>
+
+<section class="reading-carousel-section" aria-label="Reading">
+  <h2 class="reading-carousel__title">Reading</h2>
+  <div class="reading-carousel" data-reading-carousel="">
+    <button type="button" class="reading-carousel__btn reading-carousel__btn--prev" aria-label="Previous" data-reading-prev="">‹</button>
+    <div class="reading-carousel__track-wrapper">
+      <div class="reading-carousel__track" data-reading-track="">
+        
+        
+          
+        <div class="reading-carousel__slide" data-reading-slide="">
+          <a href="/reading/?book=0" class="reading-carousel__card">
+            <div class="reading-carousel__cover">
+              
+                <img src="https://covers.openlibrary.org/b/isbn/9781984821157-M.jpg" alt="Cover: A Clash of Kings" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="reading-carousel__placeholder" style="display:none">A</div>
+              
+            </div>
+            <div class="reading-carousel__body">
+              <h3 class="reading-carousel__heading">A Clash of Kings</h3>
+              <p class="reading-carousel__author">George R.R. Martin</p>
+              
+                <div class="reading-carousel__progress">
+                  <div class="reading-carousel__progress-bar" style="width: 20%"></div>
+                </div>
+                <span class="reading-carousel__pages">p. 156 / 761</span>
+              
+            </div>
+          </a>
+        </div>
+        
+        
+          
+        <div class="reading-carousel__slide" data-reading-slide="">
+          <a href="/reading/?book=1" class="reading-carousel__card">
+            <div class="reading-carousel__cover">
+              
+                <img src="https://covers.openlibrary.org/b/isbn/9780345313867-M.jpg" alt="Cover: The Vampire Lestat" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="reading-carousel__placeholder" style="display:none">T</div>
+              
+            </div>
+            <div class="reading-carousel__body">
+              <h3 class="reading-carousel__heading">The Vampire Lestat</h3>
+              <p class="reading-carousel__author">Anne Rice</p>
+              
+                <div class="reading-carousel__progress">
+                  <div class="reading-carousel__progress-bar" style="width: 23%"></div>
+                </div>
+                <span class="reading-carousel__pages">p. 119 / 512</span>
+              
+            </div>
+          </a>
+        </div>
+        
+        
+          
+        <div class="reading-carousel__slide" data-reading-slide="">
+          <a href="/reading/?book=2" class="reading-carousel__card">
+            <div class="reading-carousel__cover">
+              
+                <img src="https://covers.openlibrary.org/b/isbn/9781845230159-M.jpg" alt="Cover: The Counting House" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                <div class="reading-carousel__placeholder" style="display:none">T</div>
+              
+            </div>
+            <div class="reading-carousel__body">
+              <h3 class="reading-carousel__heading">The Counting House</h3>
+              <p class="reading-carousel__author">David Dabydeen</p>
+              
+                <div class="reading-carousel__progress">
+                  <div class="reading-carousel__progress-bar" style="width: 34%"></div>
+                </div>
+                <span class="reading-carousel__pages">p. 100 / 288</span>
+              
+            </div>
+          </a>
+        </div>
+        
+        
+      </div>
+    </div>
+    <button type="button" class="reading-carousel__btn reading-carousel__btn--next" aria-label="Next" data-reading-next="">›</button>
+  </div>
+  <p class="reading-carousel__all"><a href="/reading/">View reading list &amp; tracker →</a></p>
+</section>
+
+<script>
+(function() {
+  var carousel = document.querySelector('[data-reading-carousel]');
+  if (!carousel) return;
+  var track = carousel.querySelector('[data-reading-track]');
+  var prev = carousel.querySelector('[data-reading-prev]');
+  var next = carousel.querySelector('[data-reading-next]');
+  var slides = carousel.querySelectorAll('[data-reading-slide]');
+  var n = slides.length;
+  if (n === 0) return;
+
+  function slideWidth() { return slides[0] ? slides[0].offsetWidth : 0; }
+
+  function goTo(idx) {
+    idx = Math.max(0, Math.min(idx, n - 1));
+    var left = slides[idx] ? slides[idx].offsetLeft : 0;
+    track.scrollTo({ left: left, behavior: 'smooth' });
+  }
+
+  prev.addEventListener('click', function() {
+    var w = slideWidth();
+    var idx = w > 0 ? Math.floor(track.scrollLeft / w) : 0;
+    goTo(idx - 1);
+  });
+  next.addEventListener('click', function() {
+    var w = slideWidth();
+    var idx = w > 0 ? Math.floor(track.scrollLeft / w) : 0;
+    goTo(idx + 1);
   });
 })();
 </script>

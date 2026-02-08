@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>http://localhost:4000/cs-projects/Comic-Universe-Graph/</loc>
+<lastmod>2026-02-05T15:03:44-06:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/cs-projects/LLM-Text-Attribution/</loc>
+<lastmod>2026-02-05T15:03:44-06:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/cs-projects/Movie-Transcripts-Lexical-Analysis/</loc>
+<lastmod>2026-02-05T15:03:44-06:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/cs-projects/SurvivorSimulator/</loc>
+<lastmod>2026-02-05T15:03:44-06:00</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/portfolio/MultiMaterialPlierPrint/</loc>
-<lastmod>2026-01-27T20:45:48-06:00</lastmod>
+<lastmod>2026-02-05T15:03:44-06:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/portfolio/SyringePump/</loc>
-<lastmod>2026-01-27T20:45:48-06:00</lastmod>
+<lastmod>2026-02-05T15:03:44-06:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/about/</loc>

@@ -89,6 +89,9 @@
 <meta name="theme-color" content="#0a0e14">
 <meta name="color-scheme" content="dark">
 
+<!-- Speed up book cover loads (Open Library Covers API) -->
+<link rel="preconnect" href="https://covers.openlibrary.org" crossorigin>
+
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
 
 <!-- end custom head snippets -->
@@ -285,6 +288,24 @@
     
     <article class="github-contributions__card">
       <div class="github-contributions__card-header">
+        <a href="https://github.com/kianils/kianils.github.io" class="github-contributions__name" target="_blank" rel="noopener">kianils.github.io</a>
+        
+      </div>
+      
+      <div class="github-contributions__meta">
+        
+        <span class="github-contributions__lang">JavaScript</span>
+        
+        
+        
+        <span class="github-contributions__pushed">Updated Feb 2026</span>
+        
+      </div>
+      <a href="https://github.com/kianils/kianils.github.io" class="github-contributions__link btn btn--small btn--primary" target="_blank" rel="noopener">View on GitHub</a>
+    </article>
+    
+    <article class="github-contributions__card">
+      <div class="github-contributions__card-header">
         <a href="https://github.com/kianils/style-tracker" class="github-contributions__name" target="_blank" rel="noopener">style-tracker</a>
         
       </div>
@@ -323,29 +344,24 @@
       <a href="https://github.com/kianils/SurvivorSimulator" class="github-contributions__link btn btn--small btn--primary" target="_blank" rel="noopener">View on GitHub</a>
     </article>
     
-    <article class="github-contributions__card">
-      <div class="github-contributions__card-header">
-        <a href="https://github.com/kianils/kianils.github.io" class="github-contributions__name" target="_blank" rel="noopener">kianils.github.io</a>
-        
-      </div>
-      
-      <div class="github-contributions__meta">
-        
-        <span class="github-contributions__lang">JavaScript</span>
-        
-        
-        
-        <span class="github-contributions__pushed">Updated Jan 2026</span>
-        
-      </div>
-      <a href="https://github.com/kianils/kianils.github.io" class="github-contributions__link btn btn--small btn--primary" target="_blank" rel="noopener">View on GitHub</a>
-    </article>
-    
   </div>
   
 </section>
 
 <p>Projects below are tagged with <strong>skills</strong> so you can quickly see which technologies each uses. Use the filter to show only projects that use a given skill.</p>
+
+<div class="cs-project-modal" id="cs-project-modal" role="dialog" aria-labelledby="cs-project-modal-title" aria-hidden="true">
+  <div class="cs-project-modal__overlay" data-cs-close-modal=""></div>
+  <div class="cs-project-modal__content">
+    <button class="cs-project-modal__close" aria-label="Close" data-cs-close-modal="">×</button>
+    <div class="cs-project-modal__body">
+      <h2 id="cs-project-modal-title" class="cs-project-modal__title" data-cs-title=""></h2>
+      <p class="cs-project-modal__desc" data-cs-desc=""></p>
+      <div class="cs-project-modal__tags" data-cs-tags=""></div>
+      <a href="#" class="btn btn--primary cs-project-modal__link" data-cs-link="" target="_blank" rel="noopener">View on GitHub</a>
+    </div>
+  </div>
+</div>
 
 <div class="cs-projects">
   
@@ -386,7 +402,8 @@
 
   <div class="cs-projects__grid" data-cs-grid="">
     
-    <article class="cs-projects__card" data-skills="python openai-api rag nlp ">
+    
+    <a href="/cs-projects/LLM-Text-Attribution/" class="cs-projects__card cs-projects__card--link" data-skills="python openai-api rag nlp ">
       <h3 class="cs-projects__title">LLM Text Attribution &amp; Temporal Style Tracker</h3>
       
       <p class="cs-projects__desc">LLM-based text attribution system using prompt engineering and RAG to assess authenticity across writing styles. Tracks version history, ...</p>
@@ -404,12 +421,12 @@
         
       </div>
       
-      
-      <a href="https://github.com/kianils" class="cs-projects__link btn btn--small btn--primary" target="_blank" rel="noopener">GitHub</a>
-      
-    </article>
+      <span class="cs-projects__link btn btn--small btn--primary">View Project</span>
+    </a>
     
-    <article class="cs-projects__card" data-skills="python flask machine-learning pandas ">
+    
+    
+    <a href="/cs-projects/SurvivorSimulator/" class="cs-projects__card cs-projects__card--link" data-skills="python flask machine-learning pandas ">
       <h3 class="cs-projects__title">Survivor Simulator</h3>
       
       <p class="cs-projects__desc">Survivor game simulator using real True Dork Times data. Flask web app with tribal councils, alliances, challenges, and ML models (Percep...</p>
@@ -427,12 +444,12 @@
         
       </div>
       
-      
-      <a href="https://github.com/kianils" class="cs-projects__link btn btn--small btn--primary" target="_blank" rel="noopener">GitHub</a>
-      
-    </article>
+      <span class="cs-projects__link btn btn--small btn--primary">View Project</span>
+    </a>
     
-    <article class="cs-projects__card" data-skills="python nltk nlp kaggle ">
+    
+    
+    <a href="/cs-projects/Movie-Transcripts-Lexical-Analysis/" class="cs-projects__card cs-projects__card--link" data-skills="python nltk nlp kaggle ">
       <h3 class="cs-projects__title">Movie Transcripts Lexical Analysis</h3>
       
       <p class="cs-projects__desc">Lexical algorithms and research using the Movie Transcripts 59k Kaggle dataset. NLTK-based exploration, statistics, and analysis of movie...</p>
@@ -450,12 +467,12 @@
         
       </div>
       
-      
-      <a href="https://github.com/kianils" class="cs-projects__link btn btn--small btn--primary" target="_blank" rel="noopener">GitHub</a>
-      
-    </article>
+      <span class="cs-projects__link btn btn--small btn--primary">View Project</span>
+    </a>
     
-    <article class="cs-projects__card" data-skills="python azure-cosmos-db azure-functions javascript graph-databases ">
+    
+    
+    <a href="/cs-projects/Comic-Universe-Graph/" class="cs-projects__card cs-projects__card--link" data-skills="python azure-cosmos-db azure-functions javascript graph-databases ">
       <h3 class="cs-projects__title">Comic Universe Graph</h3>
       
       <p class="cs-projects__desc">Knowledge graph of comic characters, series, and crossovers. Azure Cosmos DB (Gremlin), Azure Functions API, and interactive frontend (Cy...</p>
@@ -475,10 +492,9 @@
         
       </div>
       
-      
-      <a href="https://github.com/kianils" class="cs-projects__link btn btn--small btn--primary" target="_blank" rel="noopener">GitHub</a>
-      
-    </article>
+      <span class="cs-projects__link btn btn--small btn--primary">View Project</span>
+    </a>
+    
     
   </div>
 
@@ -489,21 +505,86 @@
 (function() {
   var grid = document.querySelector('[data-cs-grid]');
   if (!grid) return;
-  var cards = grid.querySelectorAll('.cs-projects__card');
+  var cards = grid.querySelectorAll('.cs-projects__card, .cs-projects__card--link');
   var btns = document.querySelectorAll('.cs-projects__skill-btn');
-  if (!btns.length || !cards.length) return;
-  btns.forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var skill = btn.dataset.skill;
-      btns.forEach(function(b) { b.classList.remove('is-active'); });
-      btn.classList.add('is-active');
-      cards.forEach(function(card) {
-        var skills = (card.dataset.skills || '').trim().split(/\s+/);
-        var show = skill === '*' || skills.indexOf(skill) !== -1;
-        card.style.display = show ? '' : 'none';
-      });
+  var modal = document.getElementById('cs-project-modal');
+  var titleEl = modal && modal.querySelector('[data-cs-title]');
+  var descEl = modal && modal.querySelector('[data-cs-desc]');
+  var tagsEl = modal && modal.querySelector('[data-cs-tags]');
+  var linkEl = modal && modal.querySelector('[data-cs-link]');
+
+  function openModal(project) {
+    if (!modal || !project) return;
+    if (titleEl) titleEl.textContent = project.title || '';
+    if (descEl) descEl.textContent = (project.overview || project.description || '').trim();
+    if (tagsEl) {
+      tagsEl.innerHTML = '';
+      if (project.skills && project.skills.length) {
+        project.skills.forEach(function(s) {
+          var span = document.createElement('span');
+          span.className = 'cs-projects__tag';
+          span.textContent = s;
+          tagsEl.appendChild(span);
+        });
+      }
+    }
+    if (linkEl) {
+      linkEl.href = project.url || '#';
+      linkEl.textContent = project.repo_label || 'View on GitHub';
+      linkEl.style.display = project.url ? '' : 'none';
+    }
+    modal.setAttribute('aria-hidden', 'false');
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.setAttribute('aria-hidden', 'true');
+    modal.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  cards.forEach(function(card) {
+    if (!card.classList.contains('cs-projects__card--clickable')) return;
+    var json = card.dataset.csProject;
+    if (!json) return;
+    try {
+      var project = JSON.parse(json);
+    } catch (e) { return; }
+    card.addEventListener('click', function(e) {
+      if (e.target.closest('a')) return;
+      openModal(project);
+    });
+    card.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openModal(project);
+      }
     });
   });
+
+  document.querySelectorAll('[data-cs-close-modal]').forEach(function(btn) {
+    btn.addEventListener('click', closeModal);
+  });
+  modal && modal.addEventListener('click', function(e) {
+    if (e.target === modal || e.target.classList.contains('cs-project-modal__overlay')) closeModal();
+  });
+
+  if (btns.length && cards.length) {
+    btns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var skill = btn.dataset.skill;
+        btns.forEach(function(b) { b.classList.remove('is-active'); });
+        btn.classList.add('is-active');
+        cards.forEach(function(card) {
+          var skills = (card.dataset.skills || '').trim().split(/\s+/);
+          var show = skill === '*' || skills.indexOf(skill) !== -1;
+          card.style.display = show ? '' : 'none';
+        });
+      });
+    });
+  }
 })();
 </script>
 

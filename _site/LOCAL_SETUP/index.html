@@ -89,6 +89,9 @@
 <meta name="theme-color" content="#0a0e14">
 <meta name="color-scheme" content="dark">
 
+<!-- Speed up book cover loads (Open Library Covers API) -->
+<link rel="preconnect" href="https://covers.openlibrary.org" crossorigin>
+
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
 
 <!-- end custom head snippets -->
@@ -251,6 +254,45 @@ bundle <span class="nb">exec </span>jekyll serve
   <li>Name: <code class="language-plaintext highlighter-rouge">GH_PAT</code>, Value: your Personal Access Token (scope <code class="language-plaintext highlighter-rouge">repo</code>).</li>
   <li>Save. The workflow will use it automatically on the next run.</li>
 </ol>
+
+<h2 id="github-pages-deployment-site-not-updating-after-push">GitHub Pages deployment (site not updating after push)</h2>
+
+<p>If you push to <code class="language-plaintext highlighter-rouge">main</code> but https://kianils.github.io still shows the old UI:</p>
+
+<h3 id="1-use-github-actions-to-build-and-deploy-recommended">1. Use GitHub Actions to build and deploy (recommended)</h3>
+
+<p>This repo includes a workflow that builds Jekyll and deploys to Pages. You get clear build logs.</p>
+
+<ol>
+  <li>On GitHub: <strong>Settings → Pages</strong>.</li>
+  <li>Under <strong>Build and deployment</strong>, set <strong>Source</strong> to <strong>GitHub Actions</strong> (not “Deploy from a branch”).</li>
+  <li>Save. No need to pick a branch or folder.</li>
+  <li>Push a commit to <code class="language-plaintext highlighter-rouge">main</code> (or run the <strong>“Deploy Jekyll site to Pages”</strong> workflow from the <strong>Actions</strong> tab).</li>
+  <li>Open the <strong>Actions</strong> tab → <strong>Deploy Jekyll site to Pages</strong> → latest run. Check that the <strong>build</strong> job succeeds. If it fails, the logs will show the error.</li>
+</ol>
+
+<h3 id="2-if-you-use-deploy-from-a-branch">2. If you use “Deploy from a branch”</h3>
+
+<ul>
+  <li><strong>Source</strong>: <strong>Deploy from a branch</strong>.</li>
+  <li><strong>Branch</strong>: <code class="language-plaintext highlighter-rouge">main</code> (or the branch you push to).</li>
+  <li><strong>Folder</strong>: <code class="language-plaintext highlighter-rouge">/ (root)</code>.</li>
+  <li>If <strong>Branch</strong> is <code class="language-plaintext highlighter-rouge">gh-pages</code>, the site is built from that branch. Pushing only to <code class="language-plaintext highlighter-rouge">main</code> will not update the site.</li>
+</ul>
+
+<h3 id="3-cache-and-cdn">3. Cache and CDN</h3>
+
+<ul>
+  <li>Hard refresh: <strong>Ctrl+Shift+R</strong> (Windows/Linux) or <strong>Cmd+Shift+R</strong> (Mac).</li>
+  <li>Or try an <strong>incognito/private</strong> window, or another browser.</li>
+</ul>
+
+<h3 id="4-build-failures">4. Build failures</h3>
+
+<ul>
+  <li><strong>Actions workflow</strong>: <strong>Actions</strong> tab → <strong>Deploy Jekyll site to Pages</strong> → failed run → <strong>build</strong> job.</li>
+  <li><strong>Branch deployment</strong>: <strong>Settings → Pages</strong> often shows build status; failed builds may also trigger an email.</li>
+</ul>
 
 <h2 id="troubleshooting">Troubleshooting</h2>
 
