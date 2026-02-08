@@ -12,6 +12,7 @@ daily_log:
   "2026-02-03": 26
   "2026-02-04": 100
   "2026-02-05": 10
+  "2026-02-07": 188
 
 books:
   - title: "How To Be More D&D"
@@ -98,12 +99,11 @@ books:
 
   - title: "The Counting House"
     author: "David Dabydeen"
-    status: "reading"
+    status: "completed"
     isbn: "9781845230159"
-    progress_pages: 100
     total_pages: 288
-    date_started: "2026-01-28"
-    last_date_read: "2026-02-04"
+    rating: 4
+    completed_date: "2026-02-07"
     logs:
       - date: "2026-01-28"
         start_page: 1
@@ -117,3 +117,7 @@ books:
         start_page: 1
         end_page: 100
         text: "re-read"
+      - date: "2026-02-07"
+        start_page: 101
+        end_page: 288
+        text: "Finished"

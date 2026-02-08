@@ -1,0 +1,75 @@
+{% assign data = site.data.cs_projects %}
+{% if data.projects %}
+  {% assign projects = data.projects %}
+{% else %}
+  {% assign projects = "" | split: "" %}
+{% endif %}
+
+{% if projects.size > 0 %}
+<section class="cs-carousel-section" aria-label="CS projects">
+  <h2 class="cs-carousel__title">CS Projects</h2>
+  <div class="cs-carousel" data-cs-carousel>
+    <button type="button" class="cs-carousel__btn cs-carousel__btn--prev" aria-label="Previous" data-cs-prev>‹</button>
+    <div class="cs-carousel__track-wrapper">
+      <div class="cs-carousel__track" data-cs-track>
+        {% for p in projects %}
+        <div class="cs-carousel__slide" data-cs-slide>
+          <div class="cs-carousel__card">
+            <div class="cs-carousel__body">
+              <h3 class="cs-carousel__heading">{{ p.title }}</h3>
+              <p class="cs-carousel__excerpt">{{ p.description | truncate: 120 }}</p>
+              {% if p.skills and p.skills.size > 0 %}
+              <div class="cs-carousel__tags">
+                {% for s in p.skills limit: 4 %}
+                <span class="cs-carousel__tag">{{ s }}</span>
+                {% endfor %}
+              </div>
+              {% endif %}
+              {% if p.permalink %}
+              <a href="{{ p.permalink | relative_url }}" class="btn btn--primary btn--small">{{ p.btn_label | default: "View Project" }}</a>
+              {% elsif p.url %}
+              <a href="{{ p.url }}" class="btn btn--primary btn--small" target="_blank" rel="noopener">{{ p.repo_label | default: "GitHub" }}</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <button type="button" class="cs-carousel__btn cs-carousel__btn--next" aria-label="Next" data-cs-next>›</button>
+  </div>
+  <p class="cs-carousel__all"><a href="{{ '/cs-projects/' | relative_url }}">View all CS projects →</a></p>
+</section>
+
+<script>
+(function() {
+  var carousel = document.querySelector('[data-cs-carousel]');
+  if (!carousel) return;
+  var track = carousel.querySelector('[data-cs-track]');
+  var prev = carousel.querySelector('[data-cs-prev]');
+  var next = carousel.querySelector('[data-cs-next]');
+  var slides = carousel.querySelectorAll('[data-cs-slide]');
+  var n = slides.length;
+  if (n === 0) return;
+
+  function slideWidth() { return slides[0] ? slides[0].offsetWidth : track.offsetWidth; }
+
+  function goTo(idx) {
+    idx = Math.max(0, Math.min(idx, n - 1));
+    var left = slides[idx] ? slides[idx].offsetLeft : 0;
+    track.scrollTo({ left: left, behavior: 'smooth' });
+  }
+
+  prev.addEventListener('click', function() {
+    var w = slideWidth();
+    var idx = w > 0 ? Math.floor(track.scrollLeft / w) : 0;
+    goTo(idx - 1);
+  });
+  next.addEventListener('click', function() {
+    var w = slideWidth();
+    var idx = w > 0 ? Math.floor(track.scrollLeft / w) : 0;
+    goTo(idx + 1);
+  });
+})();
+</script>
+{% endif %}
