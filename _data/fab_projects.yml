@@ -6,7 +6,7 @@
   btn_label: "View Project"
 
 - title: "Multi-Material Plier Print"
-  excerpt: "Multi-material 3D-printed pliers. More details coming soon."
-  image_path: /assets/img/Slide-2.png
+  excerpt: "Multi-material 3D-printed functional pliers, designed and iterated for deformation handling and modularity."
+  image_path: /assets/img/pliers/final.jpg
   url: /portfolio/MultiMaterialPlierPrint/
   btn_label: "View Project"

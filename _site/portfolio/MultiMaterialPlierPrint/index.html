@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Multi-Material Plier Print - Lyla Kiani</title>
-<meta name="description" content="Multi-material 3D-printed pliers. More details coming soon.">
+<meta name="description" content="Multi-material 3D-printed functional pliers with dovetail join and TPU buffer.">
 
 
   <meta name="author" content="Lyla Kiani">
@@ -23,31 +23,31 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Lyla Kiani">
 <meta property="og:title" content="Multi-Material Plier Print">
-<meta property="og:url" content="http://localhost:4000/portfolio/MultiMaterialPlierPrint/">
+<meta property="og:url" content="https://kianils.github.io/portfolio/MultiMaterialPlierPrint/">
 
 
-  <meta property="og:description" content="Multi-material 3D-printed pliers. More details coming soon.">
-
-
-
-  <meta property="og:image" content="http://localhost:4000/assets/img/Slide-2.png">
+  <meta property="og:description" content="Multi-material 3D-printed functional pliers with dovetail join and TPU buffer.">
 
 
 
-
-
-  <meta property="article:published_time" content="2026-02-05T15:03:44-06:00">
+  <meta property="og:image" content="https://kianils.github.io/assets/img/pliers/final.jpg">
 
 
 
 
 
-  
+  <meta property="article:published_time" content="2026-02-16T18:17:26-06:00">
+
+
+
+
 
   
 
+  
 
-<link rel="canonical" href="http://localhost:4000/portfolio/MultiMaterialPlierPrint/">
+
+<link rel="canonical" href="https://kianils.github.io/portfolio/MultiMaterialPlierPrint/">
 
 
 
@@ -58,7 +58,7 @@
     
       "@type": "Person",
       "name": "Lyla Kiani",
-      "url": "http://localhost:4000/",
+      "url": "https://kianils.github.io/",
       "sameAs": ["https://www.instagram.com/dr.dflo"]
     
   }
@@ -160,7 +160,7 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Multi-Material Plier Print">
-    <meta itemprop="description" content="Multi-material 3D-printed pliers. More details coming soon.">
+    <meta itemprop="description" content="Multi-material 3D-printed functional pliers with dovetail join and TPU buffer.">
     
     
 
@@ -179,11 +179,79 @@
         
         <h2 id="project-overview">Project Overview</h2>
 
-<p><em>Details to be added.</em></p>
+<p>This project explores multi-material 3D printing for functional pliers. The pliers combine rigid PLA/PETG handles and jaws with a flexible TPU buffer that acts as a print-in-place element—printed as part of the same build without separate assembly. The design was iterated twice to handle deformation under load, improve modularity, and integrate that buffer for reliable grip and release.</p>
 
-<h2 id="multi-material-plier-print">Multi-Material Plier Print</h2>
+<p><strong>Print-in-place</strong> means parts that move relative to each other are fabricated in one print job, with no post-print assembly. The flexible buffer in this project is a print-in-place component: it is printed between the rigid pieces and provides the return force that opens the jaws. Multi-material printers (e.g., dual-extrusion) can switch between rigid and flexible filaments in the same layer, so hinges, buffers, and similar elements can be integrated directly.</p>
 
-<p>This project explores multi-material 3D printing for functional tools. More information will be added soon.</p>
+<p>Print-in-place has been used in many other applications. <a href="https://arxiv.org/abs/2305.17029">InstaGrasp</a> is an entirely 3D-printed adaptive robotic gripper using PLA and TPU, with printed tendons, flexure joints, and finger pads—assembly in under 10 minutes. <a href="https://arxiv.org/html/2509.08459v1">Printegrated Circuits</a> embed PCBs into 3D prints and create electrical connections through the printing process. <a href="https://www.nature.com/articles/s43246-021-00165-8">4D-printed deployable stents</a> use print-in-place reconfigurable structures that change shape when activated. These examples show that print-in-place is valuable wherever integrated, low-assembly functional objects are needed.</p>
+
+<p><strong>What I learned from this assignment:</strong> (1) <strong>Material must drive iteration.</strong> Early on I did not account for TPU in the design. The buffer needs to flex; rigid geometry and rigid assumptions led to failure. Iterating with material behavior in mind—how TPU deforms, where stress concentrates—fixed the design. (2) <strong>Diagnose at the source, one issue at a time.</strong> When the buffer was too stiff, I could have tweaked several things at once. Instead I traced it to base layers in the slicer, fixed that, then addressed fillets, then angles. Fixing one root cause before moving on kept the process clear and avoidable mistakes to a minimum.</p>
+
+<p><strong><a href="/assets/files/MultiMaterial-Pliers-V2.pdf">Design PDF (V2)</a></strong></p>
+
+<hr />
+
+<h2 id="iteration-one-plier-base-design">Iteration One: Plier Base Design</h2>
+
+<p>The first iteration defined the core body and jaw geometry. It was modeled as a single, rigid assembly. At this stage I did not yet account for how the material would deform when gripping objects, or how to make the design modular for easier printing and assembly.</p>
+
+<p><img src="/assets/img/pliers/iteration-1-pliers.png" alt="Iteration 1 pliers" style="width:100%; max-width:800px;" />
+<em>Iteration 1 pliers</em></p>
+
+<hr />
+
+<h2 id="iteration-two-dovetail-join-and-deformation-buffer">Iteration Two: Dovetail Join and Deformation Buffer</h2>
+
+<p>The second iteration addressed the main gaps in the first design.</p>
+
+<p><strong>Dovetail join</strong> — I switched to a dovetail joint to connect the handle and jaw components. This gives a strong mechanical connection without fasteners and makes parts easy to swap or reprint.</p>
+
+<p><strong>Buffer for 3D printing</strong> — The buffer is the part that returns the jaws to an open position. I redesigned it specifically for 3D printing and for deformation: it is meant to be printed in TPU so it can flex and absorb strain instead of cracking. The geometry was sized so the flexible buffer would allow the pliers to grip and release reliably over many cycles.</p>
+
+<hr />
+
+<h2 id="cad-models">CAD Models</h2>
+
+<h3 id="iteration-one">Iteration One</h3>
+
+<iframe src="https://a360.co/4aCrW6i?mode=embed" width="100%" height="600px" frameborder="0" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="">
+  <p>Your browser does not support embedded CAD models. <a href="https://a360.co/4aCrW6i">View CAD Model</a></p>
+</iframe>
+
+<h3 id="iteration-two">Iteration Two</h3>
+
+<iframe src="https://a360.co/40bFa5d?mode=embed" width="100%" height="600px" frameborder="0" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="">
+  <p>Your browser does not support embedded CAD models. <a href="https://a360.co/40bFa5d">View CAD Model</a></p>
+</iframe>
+
+<hr />
+
+<h2 id="errors-and-lessons-learned">Errors and Lessons Learned</h2>
+
+<ol>
+  <li>
+    <p><strong>TPU oversight</strong> — The first design did not consider flexible materials. The buffer needs TPU to function correctly.</p>
+  </li>
+  <li>
+    <p><strong>Base layers</strong> — I forgot to turn off base layers in the slicer. The buffer printed solid and was too stiff to move.</p>
+  </li>
+  <li>
+    <p><strong>Fillets</strong> — I added fillets to reduce stress concentrations and slow degradation from repeated flexing.</p>
+  </li>
+</ol>
+
+<p><img src="/assets/img/pliers/b4fillet.jpg" alt="Buffer before fillets" style="width:100%; max-width:800px;" /></p>
+
+<ol>
+  <li><strong>Angles</strong> — I adjusted the angles so the handles and jaws return to position more consistently after each squeeze.</li>
+</ol>
+
+<hr />
+
+<h2 id="final-assembly">Final Assembly</h2>
+
+<p><img src="/assets/img/pliers/final.jpg" alt="Final prototype" style="width:100%; max-width:800px;" />
+<em>Final prototype</em></p>
 
         
       </section>
@@ -202,11 +270,11 @@
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Multi-Material+Plier+Print%20http%3A%2F%2Flocalhost%3A4000%2Fportfolio%2FMultiMaterialPlierPrint%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Multi-Material+Plier+Print%20https%3A%2F%2Fkianils.github.io%2Fportfolio%2FMultiMaterialPlierPrint%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fportfolio%2FMultiMaterialPlierPrint%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkianils.github.io%2Fportfolio%2FMultiMaterialPlierPrint%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fportfolio%2FMultiMaterialPlierPrint%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkianils.github.io%2Fportfolio%2FMultiMaterialPlierPrint%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
