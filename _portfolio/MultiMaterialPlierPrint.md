@@ -37,6 +37,25 @@ The second iteration addressed the main gaps in the first design.
 
 ---
 
+## Demonstration
+
+<video controls style="width:100%; max-width:720px; border-radius:8px;" preload="metadata">
+  <source src="/assets/img/pliers/demo-update.mp4" type="video/mp4">
+  Your browser does not support the video tag. <a href="/assets/img/pliers/demo-update.mp4">Download video</a>.
+</video>
+
+---
+
+## Drawings
+
+| Drawing | Link |
+|--------|------|
+| Pliers base design (v1) | [PDF](/assets/img/pliers/plier-drawing/Pliers-base-design%20Drawing%20v1.pdf) |
+| PLA print (v1) | [PDF](/assets/img/pliers/plier-drawing/pla-print-wednesday%20Drawing%20v1.pdf) |
+| TPU print (v1) | [PDF](/assets/img/pliers/plier-drawing/tpu-print-wednesday%20Drawing%20v1.pdf) |
+
+---
+
 ## CAD Models
 
 ### Iteration One
