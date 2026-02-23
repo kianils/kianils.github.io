@@ -19,12 +19,14 @@
         {% assign reading_index = 0 %}
         {% for b in books %}
           {% if b.status == "reading" %}
-            {% include reading_card.html book=b book_index=reading_index %}
+            {% unless b.to_finish %}
+              {% include reading_card.html book=b book_index=reading_index %}
+            {% endunless %}
             {% assign reading_index = reading_index | plus: 1 %}
           {% endif %}
         {% endfor %}
       </div>
-      {% assign current = books | where: "status", "reading" %}
+      {% assign current = books | where: "status", "reading" | where_exp: "b", "b.to_finish != true" %}
       {% if current.size == 0 %}
         <p class="reading-list__empty">Nothing in progress.</p>
       {% endif %}
@@ -44,6 +46,25 @@
       </div>
     </section>
   </div>
+
+  <section class="reading-list reading-list--to-finish" aria-labelledby="reading-to-finish-title">
+    <h2 id="reading-to-finish-title" class="reading-list__title">To finish</h2>
+    <div class="reading-cards">
+      {% assign reading_index = 0 %}
+      {% for b in books %}
+        {% if b.status == "reading" %}
+          {% if b.to_finish %}
+            {% include reading_card.html book=b book_index=reading_index %}
+          {% endif %}
+          {% assign reading_index = reading_index | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% assign to_finish = books | where: "status", "reading" | where_exp: "b", "b.to_finish" %}
+    {% if to_finish.size == 0 %}
+      <p class="reading-list__empty">No books in this list.</p>
+    {% endif %}
+  </section>
 
   <section class="reading-list" aria-labelledby="reading-tbr-title">
     <h2 id="reading-tbr-title" class="reading-list__title">To read</h2>
@@ -163,17 +184,24 @@
   }
 
   function calculateProjectedFinish(book) {
-    if (!book.progress_pages || !book.total_pages || !book.date_started) return null;
-    var remaining = book.total_pages - book.progress_pages;
+    var remaining, progress, dateStarted = book.date_started;
+    if (!dateStarted) return null;
+    if (book.use_juz && book.current_juz != null && book.total_juz) {
+      remaining = book.total_juz - book.current_juz;
+      progress = book.current_juz;
+    } else if (book.progress_pages && book.total_pages) {
+      remaining = book.total_pages - book.progress_pages;
+      progress = book.progress_pages;
+    } else return null;
     if (remaining <= 0) return null;
 
-    var startDate = new Date(book.date_started);
+    var startDate = new Date(dateStarted);
     var today = new Date();
     today.setHours(0, 0, 0, 0);
     var daysElapsed = Math.max(1, Math.floor((today - startDate) / (1000 * 60 * 60 * 24)));
-    var pagesPerDay = book.progress_pages / daysElapsed;
-    if (pagesPerDay <= 0) return null;
-    var daysRemaining = Math.ceil(remaining / pagesPerDay);
+    var unitsPerDay = progress / daysElapsed;
+    if (unitsPerDay <= 0) return null;
+    var daysRemaining = Math.ceil(remaining / unitsPerDay);
     var finishDate = new Date(today);
     finishDate.setDate(finishDate.getDate() + daysRemaining);
     return finishDate;
@@ -344,10 +372,16 @@
     if (!book) return;
     currentBookIndex = index;
 
-    var progress = book.progress_pages && book.total_pages ? (book.progress_pages / book.total_pages * 100) : 0;
+    var progress, progressText;
+    if (book.use_juz && book.current_juz != null && book.total_juz) {
+      progress = (book.current_juz / book.total_juz) * 100;
+      progressText = 'Juz ' + book.current_juz + ' / ' + book.total_juz;
+    } else {
+      progress = book.progress_pages && book.total_pages ? (book.progress_pages / book.total_pages * 100) : 0;
+      progressText = (book.progress_pages || 0) + ' / ' + (book.total_pages || 0) + ' pages';
+    }
     document.querySelector('[data-progress-bar]').style.width = progress + '%';
-    document.querySelector('[data-progress-text]').textContent = 
-      (book.progress_pages || 0) + ' / ' + (book.total_pages || 0) + ' pages';
+    document.querySelector('[data-progress-text]').textContent = progressText;
     document.querySelector('[data-book-title]').textContent = book.title || '';
     document.querySelector('[data-book-author]').textContent = book.author || '';
     document.querySelector('[data-date-started]').textContent = formatDate(book.date_started);

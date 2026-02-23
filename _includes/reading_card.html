@@ -31,7 +31,14 @@
       {% endif %}
     </div>
     <p class="reading-card__author">{{ b.author }}</p>
-    {% if b.status == "reading" and b.progress_pages and b.total_pages %}
+    {% if b.status == "reading" and b.use_juz and b.current_juz and b.total_juz %}
+      <div class="reading-card__progress">
+        <div class="reading-card__progress-track">
+          <div class="reading-card__progress-bar" style="width: {{ b.current_juz | times: 100 | divided_by: b.total_juz }}%"></div>
+        </div>
+        <span class="reading-card__progress-text">Juz {{ b.current_juz }} / {{ b.total_juz }}</span>
+      </div>
+    {% elsif b.status == "reading" and b.progress_pages and b.total_pages %}
       <div class="reading-card__progress">
         <div class="reading-card__progress-track">
           <div class="reading-card__progress-bar" style="width: {{ b.progress_pages | times: 100 | divided_by: b.total_pages }}%"></div>

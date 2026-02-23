@@ -13,6 +13,12 @@ daily_log:
   "2026-02-04": 100
   "2026-02-05": 10
   "2026-02-07": 188
+  "2026-02-17": 50
+  "2026-02-18": 50
+  "2026-02-19": 50
+  "2026-02-20": 50
+  "2026-02-21": 50
+  "2026-02-22": 50
 
 books:
   - title: "How To Be More D&D"
@@ -77,9 +83,30 @@ books:
         end_page: 150
         text: ""
 
+  - title: "The Quran (English)"
+    author: "Various / translation"
+    status: "reading"
+    isbn: "9781958318010"
+    use_juz: true
+    current_juz: 6
+    total_juz: 30
+    date_started: "2026-02-17"
+    last_date_read: "2026-02-22"
+
+  - title: "The Quran (Arabic)"
+    author: "—"
+    status: "reading"
+    isbn: "9781958318010"
+    use_juz: true
+    current_juz: 6
+    total_juz: 30
+    date_started: "2026-02-17"
+    last_date_read: "2026-02-22"
+
   - title: "The Vampire Lestat"
     author: "Anne Rice"
     status: "reading"
+    to_finish: true
     isbn: "9780345313867"
     progress_pages: 119
     total_pages: 512

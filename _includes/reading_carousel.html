@@ -35,7 +35,12 @@
             <div class="reading-carousel__body">
               <h3 class="reading-carousel__heading">{{ b.title }}</h3>
               <p class="reading-carousel__author">{{ b.author }}</p>
-              {% if b.progress_pages and b.total_pages %}
+              {% if b.use_juz and b.current_juz and b.total_juz %}
+                <div class="reading-carousel__progress">
+                  <div class="reading-carousel__progress-bar" style="width: {{ b.current_juz | times: 100 | divided_by: b.total_juz }}%"></div>
+                </div>
+                <span class="reading-carousel__pages">Juz {{ b.current_juz }} / {{ b.total_juz }}</span>
+              {% elsif b.progress_pages and b.total_pages %}
                 <div class="reading-carousel__progress">
                   <div class="reading-carousel__progress-bar" style="width: {{ b.progress_pages | times: 100 | divided_by: b.total_pages }}%"></div>
                 </div>
