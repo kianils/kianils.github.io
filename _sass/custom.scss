@@ -995,15 +995,26 @@
 .reading-tracker-legend__cell[data-level="2"] { background: rgba($primary-color, 0.45); border-color: rgba($primary-color, 0.5); }
 .reading-tracker-legend__cell[data-level="3"] { background: rgba($primary-color, 0.7); border-color: $primary-color; }
 
-.reading-page-wrap {
-  max-width: 1400px;
-  padding: 0 2rem;
-  margin: 0 auto;
+/* Reading page: full-width centered main (no sidebar column) */
+#main.reading-main.archive {
+  float: none;
+  width: 100%;
+  max-width: 100%;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-@media (min-width: 1200px) {
+.reading-page-wrap {
+  max-width: 1280px;
+  padding: 0 2rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 1280px) {
   .reading-page-wrap {
-    max-width: 1400px;
+    max-width: 1280px;
   }
 }
 
