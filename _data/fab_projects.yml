@@ -10,3 +10,9 @@
   image_path: /assets/img/pliers/final.jpg
   url: /portfolio/MultiMaterialPlierPrint/
   btn_label: "View Project"
+
+- title: "Pinch Flow Fractionation Device"
+  excerpt: "Resin-printed microfluidic mold for particle separation by size; PFF device design and PDMS casting."
+  image_path: /assets/img/fluids/teaser.jpg
+  url: /portfolio/PinchFlowFractionation/
+  btn_label: "View Project"
