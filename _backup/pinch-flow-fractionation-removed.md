@@ -1,3 +1,7 @@
+# Stored 2026: Pinch Flow Fractionation (microfluid) project — removed temporarily.
+# To restore: copy this file to _portfolio/PinchFlowFractionation.md and add the fab_projects entry below back into _data/fab_projects.yml.
+# Drawing PDF: assets/img/fluids/50x75-Base-Model Drawing v1.pdf
+
 ---
 title: "Pinch Flow Fractionation Device (μFluidic Device)"
 layout: single
@@ -104,3 +108,11 @@ Tuning outlet widths for better resistance balance, adjusting outlet angles to c
 | Drawing | Link |
 |--------|------|
 | 50×75 Base Model (v1) | [PDF](/assets/img/fluids/50x75-Base-Model%20Drawing%20v1.pdf) |
+
+---
+# fab_projects.yml entry to restore (add under the other entries):
+# - title: "Pinch Flow Fractionation Device"
+#   excerpt: "Resin-printed microfluidic mold for particle separation by size; PFF device design and PDMS casting."
+#   image_path: /assets/img/fluids/teaser.jpg
+#   url: /portfolio/PinchFlowFractionation/
+#   btn_label: "View Project"
