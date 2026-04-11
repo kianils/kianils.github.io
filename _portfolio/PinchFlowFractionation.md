@@ -65,13 +65,13 @@ If I could iterate on this design again, I would try a **more symmetric-looking 
 
 [Watch on YouTube](https://youtu.be/ChUNb9b515A)
 
-**Sketch / CAD (critical dimensions)** — Add an image here when you export one from Fusion (e.g. `sketch-dimensions.jpg` under `assets/img/fluids/`).
 
-**Fusion 360 embed (mold)** — Paste your share link like the [pliers project](/portfolio/MultiMaterialPlierPrint/):
 
-```html
-<iframe src="https://a360.co/YOUR_LINK?mode=embed" width="100%" height="600px" frameborder="0" allowfullscreen></iframe>
-```
+**Fusion 360 embed (mold)** — [Open in Fusion 360](https://a360.co/4snlirt)
+
+<iframe src="https://a360.co/4snlirt?mode=embed" width="100%" height="600px" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen>
+  <p>Your browser does not support embedded CAD models. <a href="https://a360.co/4snlirt">View CAD model</a></p>
+</iframe>
 
 **Technical drawing (PDF)**
 
@@ -91,8 +91,11 @@ To scale this design up, I would first increase **outlet channel widths** so the
 
 ### How small can the particles be?
 
-The lower limit is set by **Brownian diffusion**, which causes them to wander across streamlines, which weakens size-based separation. At the same time, channel **surface roughness** and finite **print resolution** become large relative to particle size, so the effective flow profile is less ideal.
+The lower limit is set by **Brownian diffusion**  which causes them to wander across streamlines, which weakens size-based separation. At the same time, channel **surface roughness** and finite **print resolution** become large relative to particle size, so the effective flow profile is less ideal.
 
 ## References
 
 - Takagi, M., et al. Continuum particle separation by pinch flow fractionation. *Microfluidics and Nanofluidics* **2009**. [https://doi.org/10.1007/s10404-008-0319-0](https://doi.org/10.1007/s10404-008-0319-0)
+
+
+
