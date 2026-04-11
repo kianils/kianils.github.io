@@ -6,3 +6,6 @@ _site/
 .sass-cache/
 vendor/
 Gemfile.lock
+
+# Local demo only; portfolio page uses YouTube embed (file exceeds GitHub size limit)
+assets/img/fluids/pinch-flow-demo.mp4
