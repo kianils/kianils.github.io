@@ -23,20 +23,20 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Lyla Kiani">
 <meta property="og:title" content="Multi-Material Plier Print">
-<meta property="og:url" content="https://kianils.github.io/portfolio/MultiMaterialPlierPrint/">
+<meta property="og:url" content="http://localhost:4001/portfolio/MultiMaterialPlierPrint/">
 
 
   <meta property="og:description" content="Multi-material 3D-printed functional pliers with dovetail join and TPU buffer.">
 
 
 
-  <meta property="og:image" content="https://kianils.github.io/assets/img/pliers/final.jpg">
+  <meta property="og:image" content="http://localhost:4001/assets/img/pliers/final.jpg">
 
 
 
 
 
-  <meta property="article:published_time" content="2026-02-16T18:17:26-06:00">
+  <meta property="article:published_time" content="2026-03-05T16:10:18-06:00">
 
 
 
@@ -47,7 +47,7 @@
   
 
 
-<link rel="canonical" href="https://kianils.github.io/portfolio/MultiMaterialPlierPrint/">
+<link rel="canonical" href="http://localhost:4001/portfolio/MultiMaterialPlierPrint/">
 
 
 
@@ -58,7 +58,7 @@
     
       "@type": "Person",
       "name": "Lyla Kiani",
-      "url": "https://kianils.github.io/",
+      "url": "http://localhost:4001/",
       "sameAs": ["https://www.instagram.com/dr.dflo"]
     
   }
@@ -187,16 +187,13 @@
 
 <p><strong>What I learned from this assignment:</strong> (1) <strong>Material must drive iteration.</strong> Early on I did not account for TPU in the design. The buffer needs to flex; rigid geometry and rigid assumptions led to failure. Iterating with material behavior in mind—how TPU deforms, where stress concentrates—fixed the design. (2) <strong>Diagnose at the source, one issue at a time.</strong> When the buffer was too stiff, I could have tweaked several things at once. Instead I traced it to base layers in the slicer, fixed that, then addressed fillets, then angles. Fixing one root cause before moving on kept the process clear and avoidable mistakes to a minimum.</p>
 
-<p><strong><a href="/assets/files/MultiMaterial-Pliers-V2.pdf">Design PDF (V2)</a></strong></p>
-
 <hr />
 
 <h2 id="iteration-one-plier-base-design">Iteration One: Plier Base Design</h2>
 
 <p>The first iteration defined the core body and jaw geometry. It was modeled as a single, rigid assembly. At this stage I did not yet account for how the material would deform when gripping objects, or how to make the design modular for easier printing and assembly.</p>
 
-<p><img src="/assets/img/pliers/iteration-1-pliers.png" alt="Iteration 1 pliers" style="width:100%; max-width:800px;" />
-<em>Iteration 1 pliers</em></p>
+<p><img src="/assets/img/pliers/iteration-1-pliers.png" alt="Iteration 1 pliers" style="width:100%; max-width:800px;" /></p>
 
 <hr />
 
@@ -207,6 +204,42 @@
 <p><strong>Dovetail join</strong> — I switched to a dovetail joint to connect the handle and jaw components. This gives a strong mechanical connection without fasteners and makes parts easy to swap or reprint.</p>
 
 <p><strong>Buffer for 3D printing</strong> — The buffer is the part that returns the jaws to an open position. I redesigned it specifically for 3D printing and for deformation: it is meant to be printed in TPU so it can flex and absorb strain instead of cracking. The geometry was sized so the flexible buffer would allow the pliers to grip and release reliably over many cycles.</p>
+
+<hr />
+
+<h2 id="demonstration">Demonstration</h2>
+
+<video controls="" style="width:100%; max-width:720px; border-radius:8px;" preload="metadata">
+  <source src="/assets/img/pliers/demo-update.mp4" type="video/mp4" />
+  Your browser does not support the video tag. <a href="/assets/img/pliers/demo-update.mp4">Download video</a>.
+</video>
+
+<hr />
+
+<h2 id="drawings">Drawings</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Drawing</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Pliers base design (v1)</td>
+      <td><a href="/assets/img/pliers/plier-drawing/Pliers-base-design%20Drawing%20v1.pdf">PDF</a></td>
+    </tr>
+    <tr>
+      <td>PLA print (v1)</td>
+      <td><a href="/assets/img/pliers/plier-drawing/pla-print-wednesday%20Drawing%20v1.pdf">PDF</a></td>
+    </tr>
+    <tr>
+      <td>TPU print (v1)</td>
+      <td><a href="/assets/img/pliers/plier-drawing/tpu-print-wednesday%20Drawing%20v1.pdf">PDF</a></td>
+    </tr>
+  </tbody>
+</table>
 
 <hr />
 
@@ -250,8 +283,7 @@
 
 <h2 id="final-assembly">Final Assembly</h2>
 
-<p><img src="/assets/img/pliers/final.jpg" alt="Final prototype" style="width:100%; max-width:800px;" />
-<em>Final prototype</em></p>
+<p><img src="/assets/img/pliers/final.jpg" alt="Final prototype" style="width:100%; max-width:800px;" /></p>
 
         
       </section>
@@ -270,11 +302,11 @@
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Multi-Material+Plier+Print%20https%3A%2F%2Fkianils.github.io%2Fportfolio%2FMultiMaterialPlierPrint%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Multi-Material+Plier+Print%20http%3A%2F%2Flocalhost%3A4001%2Fportfolio%2FMultiMaterialPlierPrint%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkianils.github.io%2Fportfolio%2FMultiMaterialPlierPrint%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4001%2Fportfolio%2FMultiMaterialPlierPrint%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkianils.github.io%2Fportfolio%2FMultiMaterialPlierPrint%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4001%2Fportfolio%2FMultiMaterialPlierPrint%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -284,7 +316,7 @@
       <a href="#" class="pagination--pager disabled">Previous</a>
     
     
-      <a href="/portfolio/SyringePump/" class="pagination--pager" title="Syringe Pump
+      <a href="/portfolio/PinchFlowFractionation/" class="pagination--pager" title="Pinch Flow Fractionation Device (μFluidic Device)
 ">Next</a>
     
   </nav>
