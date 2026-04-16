@@ -1,4 +1,10 @@
 # Digital fabrication + CHBE projects for homepage carousel
+- title: "Top-Down Modeled Handlebar Phone Mount"
+  excerpt: "Fusion 360 top-down design: handlebar clamps, detent rotation, modular cover, and phone grip; FFF structure plus resin for fine phone-holder features."
+  image_path: /assets/img/detent/teaser.jpg
+  url: /portfolio/TopDownModeling/
+  btn_label: "View Project"
+
 - title: "Syringe Pump"
   excerpt: "DIY precision syringe pump capable of 1 μL/min to 10 mL/min flow rates with programmable control system."
   image_path: /assets/img/Syringepumpphotos/Homepage.jpg
