@@ -4,7 +4,7 @@ layout: single
 classes: wide
 excerpt: "Fusion 360 top-down design: handlebar clamps, detent rotation, modular cover, and phone grip; FFF structure plus resin for fine phone-holder features."
 header:
-  teaser: /assets/img/detent/teaser.jpg
+  teaser: /assets/img/detent/detentviews/detent.jpg
 ---
 
 ## Project Overview
@@ -31,13 +31,11 @@ After that, my professor suggested making the design **more modular** and adding
 
 I started with a **simplified prototype** to learn the **geometry and motion** of the detent. After testing and refining that **smaller model**, I **scaled** the idea and **integrated** it into the full clamp and housing so the mechanism sits **inside a single structural flow** where possible, which helped **stability**, **assembly**, and part count.
 
-**Micro detent (first prototype)** — photo below; technical drawing exported as PDF.
+**Micro detent (first prototype)** — first detent test before full integration.
 
-![Micro detent prototype (first print)](/assets/img/detent/micro-detent-prototype.jpg)
+![Micro detent prototype (first print)](/assets/img/detent/microdetent/microdetent.jpg)
 
-| Document | Link |
-|----------|------|
-| Micro detent drawing / export | [PDF](/assets/img/detent/micro-detent.pdf) |
+Micro detent drawing: [PDF](/assets/img/detent/micro-detent.pdf)
 
 ---
 
@@ -65,54 +63,88 @@ No **large** dimensional changes were driven only by **shrinkage tables**. The m
 
 ---
 
-## CAD Model (Fusion 360)
+## CAD Models (Fusion 360)
 
-[Open in Fusion 360](https://a360.co/41BAzdw)
+### Phone holder
 
-<iframe src="https://a360.co/41BAzdw?mode=embed" width="100%" height="600px" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen>
-  <p>Your browser does not support embedded CAD models. <a href="https://a360.co/41BAzdw">View CAD model</a></p>
+[Open in Fusion 360](https://a360.co/4cu0Fnw)
+
+<iframe src="https://a360.co/4cu0Fnw?mode=embed" width="100%" height="600px" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen>
+  <p>Your browser does not support embedded CAD models. <a href="https://a360.co/4cu0Fnw">View CAD model</a></p>
 </iframe>
 
+![Phone holder component](/assets/img/detent/individual-parts/phoneholder.jpg)
+
+### C-clamp with cover
+
+[Open in Fusion 360](https://a360.co/3Q4vSX9)
+
+<iframe src="https://a360.co/3Q4vSX9?mode=embed" width="100%" height="600px" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen>
+  <p>Your browser does not support embedded CAD models. <a href="https://a360.co/3Q4vSX9">View CAD model</a></p>
+</iframe>
+
+![Clamp with cover component](/assets/img/detent/individual-parts/clamp-cover.jpg)
+
+### Detent
+
+[Open in Fusion 360](https://a360.co/3QepVa3)
+
+<iframe src="https://a360.co/3QepVa3?mode=embed" width="100%" height="600px" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen>
+  <p>Your browser does not support embedded CAD models. <a href="https://a360.co/3QepVa3">View CAD model</a></p>
+</iframe>
+
+![Detent component](/assets/img/detent/individual-parts/detent.jpg)
+
+### Detent cover
+
+[Open in Fusion 360](https://a360.co/4vwIshV)
+
+<iframe src="https://a360.co/4vwIshV?mode=embed" width="100%" height="600px" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen>
+  <p>Your browser does not support embedded CAD models. <a href="https://a360.co/4vwIshV">View CAD model</a></p>
+</iframe>
+
+![Cover component](/assets/img/detent/individual-parts/cover.jpg)
+
+### Base clamp
+
+[Open in Fusion 360](https://a360.co/4ceGTxz)
+
+<iframe src="https://a360.co/4ceGTxz?mode=embed" width="100%" height="600px" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen>
+  <p>Your browser does not support embedded CAD models. <a href="https://a360.co/4ceGTxz">View CAD model</a></p>
+</iframe>
+
+![Base clamp component](/assets/img/detent/individual-parts/clamp.jpg)
+
 ---
 
-## Figures (`assets/img/detent/`)
+## Detent Views (`assets/img/detent/detentviews/`)
 
-Add or replace files using the names below so every required figure resolves on the site. *(Right now several paths are placeholders—you can copy your exports into these filenames.)*
+### Overall detent assembly view
 
-### Real life on the handlebar
+![Detent assembly view](/assets/img/detent/detentviews/detent.jpg)
 
-![Mount on handlebars (in use)](/assets/img/detent/handlebar-in-use-1.jpg)
+### Detent with cover
 
-![Mount on handlebars (alternate view)](/assets/img/detent/handlebar-in-use-2.jpg)
+![Detent with cover](/assets/img/detent/detentviews/detent-with-cover.jpg)
 
-*Tip: overwrite `teaser.jpg` in this folder with your best **in-use** shot for the portfolio archive thumbnail.*
+### Cross-section view (internal mechanism)
 
-### Rotation: landscape ↔ portrait
-
-![Animation: rotating between landscape and portrait](/assets/img/detent/rotation-landscape-portrait.gif)
-
-### Fusion rendering: holder with phone
-
-![Fusion render: phone holder with phone](/assets/img/detent/render-phone-holder-with-phone.jpg)
-
-### Cross section: internal rotation / detent
-
-![Cross section: rotation mechanism (Fusion section analysis)](/assets/img/detent/cross-section-rotation-mechanism.jpg)
-
-### Individual top-down components (real photos or Fusion renders)
-
-| Component | Image |
-|-----------|--------|
-| Clamp / bar interface | ![Clamp component](/assets/img/detent/component-clamp.jpg) |
-| Detent / rotating core | ![Detent core](/assets/img/detent/component-detent-core.jpg) |
-| Cover | ![Cover](/assets/img/detent/component-cover.jpg) |
-| Phone grip / holder | ![Phone grip](/assets/img/detent/component-phone-grip.jpg) |
-| Base / housing (if separate) | ![Base or housing](/assets/img/detent/component-base.jpg) |
-
-*Add or remove rows to match how you split the top-down tree; keep filenames consistent so you do not have to edit this page again.*
+![Internal detent cross section](/assets/img/detent/detentviews/internaldetent.jpg)
 
 ---
 
-## What I Learned
+## Real-Life Photos on Bike Handlebars
 
-**Datum discipline matters.** Keeping the handlebar as the root reference aligned clamps, inserts, and rotation on one axis. **A small detent prototype** saved time before a full build. **Modularity** made printing and final assembly easier as the part count grew.
+Add your in-use handlebar photos in this section as soon as they are exported into `assets/img/detent/`.
+
+![Mount in use on handlebars - photo 1](/assets/img/detent/handlebar-in-use-1.jpg)
+
+![Mount in use on handlebars - photo 2](/assets/img/detent/handlebar-in-use-2.jpg)
+
+## GIF, Render, and Extra Figures
+
+![Rotation GIF (landscape to portrait)](/assets/img/detent/rotation-landscape-portrait.gif)
+
+![Fusion render with phone](/assets/img/detent/render-phone-holder-with-phone.jpg)
+
+---
