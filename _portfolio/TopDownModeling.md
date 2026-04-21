@@ -33,9 +33,9 @@ I started with a **simplified prototype** to learn the **geometry and motion** o
 
 **Micro detent (first prototype)** — first detent test before full integration.
 
-![Micro detent prototype (first print)](/assets/img/detent/microdetent/microdetent.jpg)
+![Micro detent prototype (first print)]({{ '/assets/img/detent/microdetent/microdetent.jpg' | relative_url }})
 
-Micro detent drawing: [PDF](/assets/img/detent/micro-detent.pdf)
+Micro detent drawing: PDF not uploaded yet.
 
 ---
 
@@ -65,55 +65,22 @@ No **large** dimensional changes were driven only by **shrinkage tables**. The m
 
 ## CAD Models (Fusion 360)
 
-### Phone holder
+The individual-part Fusion links are removed because they are outdated.  
+Use the updated overall assembly model:
 
-[Open in Fusion 360](https://a360.co/4cu0Fnw)
+[Open updated overall model in Fusion 360](https://a360.co/41BAzdw)
 
-<iframe src="https://a360.co/4cu0Fnw?mode=embed" width="100%" height="600px" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen>
-  <p>Your browser does not support embedded CAD models. <a href="https://a360.co/4cu0Fnw">View CAD model</a></p>
+<iframe src="https://a360.co/41BAzdw?mode=embed" width="100%" height="600px" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen>
+  <p>Your browser does not support embedded CAD models. <a href="https://a360.co/41BAzdw">View CAD model</a></p>
 </iframe>
 
-![Phone holder component](/assets/img/detent/individual-parts/phoneholder.jpg)
+### Individual part images
 
-### C-clamp with cover
-
-[Open in Fusion 360](https://a360.co/3Q4vSX9)
-
-<iframe src="https://a360.co/3Q4vSX9?mode=embed" width="100%" height="600px" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen>
-  <p>Your browser does not support embedded CAD models. <a href="https://a360.co/3Q4vSX9">View CAD model</a></p>
-</iframe>
-
-![Clamp with cover component](/assets/img/detent/individual-parts/clamp-cover.jpg)
-
-### Detent
-
-[Open in Fusion 360](https://a360.co/3QepVa3)
-
-<iframe src="https://a360.co/3QepVa3?mode=embed" width="100%" height="600px" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen>
-  <p>Your browser does not support embedded CAD models. <a href="https://a360.co/3QepVa3">View CAD model</a></p>
-</iframe>
-
-![Detent component](/assets/img/detent/individual-parts/detent.jpg)
-
-### Detent cover
-
-[Open in Fusion 360](https://a360.co/4vwIshV)
-
-<iframe src="https://a360.co/4vwIshV?mode=embed" width="100%" height="600px" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen>
-  <p>Your browser does not support embedded CAD models. <a href="https://a360.co/4vwIshV">View CAD model</a></p>
-</iframe>
-
-![Cover component](/assets/img/detent/individual-parts/cover.jpg)
-
-### Base clamp
-
-[Open in Fusion 360](https://a360.co/4ceGTxz)
-
-<iframe src="https://a360.co/4ceGTxz?mode=embed" width="100%" height="600px" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen>
-  <p>Your browser does not support embedded CAD models. <a href="https://a360.co/4ceGTxz">View CAD model</a></p>
-</iframe>
-
-![Base clamp component](/assets/img/detent/individual-parts/clamp.jpg)
+![Phone holder component]({{ '/assets/img/detent/individual-parts/phoneholder.png' | relative_url }})
+![Clamp with cover component]({{ '/assets/img/detent/individual-parts/clamp-cover.jpg' | relative_url }})
+![Detent component]({{ '/assets/img/detent/individual-parts/detent.jpg' | relative_url }})
+![Cover component]({{ '/assets/img/detent/individual-parts/cover.jpg' | relative_url }})
+![Base clamp component]({{ '/assets/img/detent/individual-parts/clamp.jpg' | relative_url }})
 
 ---
 
@@ -121,15 +88,15 @@ No **large** dimensional changes were driven only by **shrinkage tables**. The m
 
 ### Overall detent assembly view
 
-![Detent assembly view](/assets/img/detent/detentviews/detent.jpg)
+![Detent assembly view]({{ '/assets/img/detent/detentviews/detent.jpg' | relative_url }})
 
 ### Detent with cover
 
-![Detent with cover](/assets/img/detent/detentviews/detent-with-cover.jpg)
+![Detent with cover]({{ '/assets/img/detent/detentviews/detent-with-cover.jpg' | relative_url }})
 
 ### Cross-section view (internal mechanism)
 
-![Internal detent cross section](/assets/img/detent/detentviews/internaldetent.jpg)
+![Internal detent cross section]({{ '/assets/img/detent/detentviews/internaldetent.jpg' | relative_url }})
 
 ---
 
@@ -137,14 +104,19 @@ No **large** dimensional changes were driven only by **shrinkage tables**. The m
 
 Add your in-use handlebar photos in this section as soon as they are exported into `assets/img/detent/`.
 
-![Mount in use on handlebars - photo 1](/assets/img/detent/handlebar-in-use-1.jpg)
-
-![Mount in use on handlebars - photo 2](/assets/img/detent/handlebar-in-use-2.jpg)
+Handlebar in-use photos not uploaded yet.
 
 ## GIF, Render, and Extra Figures
 
-![Rotation GIF (landscape to portrait)](/assets/img/detent/rotation-landscape-portrait.gif)
+### Detent video
 
-![Fusion render with phone](/assets/img/detent/render-phone-holder-with-phone.jpg)
+<video controls width="100%">
+  <source src="{{ '/assets/img/detent/detent-video.mp4' | relative_url }}" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+### Final render
+
+![Phone mount final render]({{ '/assets/img/detent/phone-render.jpg' | relative_url }})
 
 ---
